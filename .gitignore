@@ -39,3 +39,12 @@ yarn-error.*
 
 expo-env.d.ts
 # @end expo-cli
+
+#Files
+android
+ios
+
+# Expo
+.expo
+dist/
+web-build/
