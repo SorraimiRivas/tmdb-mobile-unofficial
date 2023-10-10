@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { TMovie, TMovies } from "../lib/types";
+import { IMovies, TMovie, TMovies } from "../lib/types";
 import { getRequestOptions } from "../api";
+import { formattedMovies } from "@/lib/utils";
 
 export const useGetMovies = (url: string, params?: {}) => {
-  const [data, setData] = useState<TMovies[]>([]);
+  const [data, setData] = useState<IMovies[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-
-  console.log(
-    "Running hook from Details",
-    "URL is: ",
-    url,
-    "Params are: ",
-    params
-  );
 
   const isError = (err: unknown): err is Error => err instanceof Error;
 
@@ -31,7 +24,9 @@ export const useGetMovies = (url: string, params?: {}) => {
             apiKey: process.env.EXPO_PUBLIC_API_KEY,
           },
         });
-        setData(response.data.results);
+
+        const formatMovies = formattedMovies(response.data.results);
+        setData(formatMovies);
       } catch (err) {
         if (isError(err)) {
           console.log(err.message);
@@ -42,7 +37,7 @@ export const useGetMovies = (url: string, params?: {}) => {
       }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, loading, error };
 };

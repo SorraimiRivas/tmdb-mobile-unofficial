@@ -8,14 +8,6 @@ export default function useMovie(url: string, params: {}) {
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<string>("");
 
-  console.log(
-    "Running hook from Details",
-    "URL is: ",
-    url,
-    "Params are: ",
-    params
-  );
-
   useEffect(() => {
     const abortSignal = new AbortController();
     const fetchData = async () => {

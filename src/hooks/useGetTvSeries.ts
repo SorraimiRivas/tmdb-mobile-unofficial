@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { TSeries } from "../lib/types";
+import { ISeries, TSeries } from "../lib/types";
 import { getRequestOptions } from "../api";
+import { formattedSeries } from "@/lib/utils";
 
 export const useGetTvSeries = (url: string, params?: {}) => {
-  const [data, setData] = useState<TSeries[]>([]);
+  const [data, setData] = useState<ISeries[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-
-  console.log(
-    "Running hook from TV Series",
-    "URL is: ",
-    url,
-    "Params are: ",
-    params
-  );
 
   const isError = (err: unknown): err is Error => err instanceof Error;
 
@@ -30,7 +23,9 @@ export const useGetTvSeries = (url: string, params?: {}) => {
             ...params,
           },
         });
-        setData(response.data.results);
+
+        const formatSeries = formattedSeries(response.data.results);
+        setData(formatSeries);
       } catch (err) {
         if (isError(err)) {
           console.log(err.message);
@@ -41,7 +36,7 @@ export const useGetTvSeries = (url: string, params?: {}) => {
       }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
   return { data, loading, error };
 };
