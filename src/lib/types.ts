@@ -43,7 +43,7 @@ export type TMovie = {
   tagline?: string;
   title: string;
   video?: boolean;
-  rating: number;
+  vote_average: number;
   vote_count?: number;
 };
 
