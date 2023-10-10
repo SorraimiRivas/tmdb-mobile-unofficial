@@ -1,38 +1,39 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
-import { TMovies } from "../../lib/types";
-import { imageParser } from "../../lib/utils";
-import { poster } from "../../api";
+import { IMovies, ISeries } from "../../lib/types";
+import { formatDate, imageParser } from "../../lib/utils";
+import { posterSize } from "../../api";
 import { Link } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-type CommonCardProps = TMovies;
+type CommonCardProps = (IMovies | ISeries) & { type: "movie" | "tv" };
 
 const CommonCard = ({
   title,
-  overview,
-  poster_path,
-  release_date,
+  poster,
+  releaseDate,
   id,
+  type,
 }: CommonCardProps) => {
-  const imageUrl = imageParser(poster_path, poster.xl);
-  console.log(imageUrl);
-
+  const imageUrl = imageParser(poster, posterSize.xxl);
+  const formattedDate = formatDate(releaseDate!);
   return (
     <Link
-      href={`/movie/${id}`}
+      href={`/${type}/${id}`}
       asChild
-      className="h-[342] w-[192] flex flex-col mx-2 mt-4 bg-gray-200 rounded-b-lg"
+      className="w-[167] flex flex-col mx-2 mt-6"
     >
-      <Pressable>
+      <TouchableOpacity>
         <Image
           source={{ uri: imageUrl }}
-          className="h-[80%] w-full mb-4 rounded-t-lg"
+          className="h-[250] w-full mb-2 rounded-md"
+          style={{ resizeMode: "cover" }}
         />
-        <View className="flex flex-col gap-2 px-2">
-          <Text className="font-semibold">{title}</Text>
-          <Text className="font-semibold text-gray-400">{release_date}</Text>
+        <View className="flex flex-col gap-1">
+          <Text className="font-semibold text-base">{title}</Text>
+          <Text className=" text-gray-600 text-xs">{formattedDate}</Text>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </Link>
   );
 };
