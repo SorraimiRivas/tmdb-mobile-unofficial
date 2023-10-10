@@ -5,8 +5,11 @@ export const imageURL = "https://image.tmdb.org/t/p/";
 
 /**
  * backdrop sizes
+ * @value sm w300
+ * @value md w780
+ * @value lg w1280
  */
-export const backdrop = {
+export const backdropSize = {
   sm: "w300",
   md: "w780",
   lg: "w1280",
@@ -14,13 +17,18 @@ export const backdrop = {
 
 /**
  * poster sizes
+ * @value sm: "w92"
+ * @value md: "w154"
+ * @value lg: "w185"
+ * @value xl: "w342"
+ * @value xxl: "w500"
  */
-export const poster = {
+export const posterSize = {
   sm: "w92",
   md: "w154",
   lg: "w185",
   xl: "w342",
-  "2xl": "w500",
+  xxl: "w500",
 };
 
 /**
