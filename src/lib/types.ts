@@ -27,7 +27,7 @@ export type TMovie = {
   adult?: boolean;
   backdrop_path?: string;
   budget?: number;
-  genres?: string[];
+  genres?: Genre[];
   homepage?: string;
   id: number;
   imdb_id?: string;
@@ -36,7 +36,7 @@ export type TMovie = {
   overview: string;
   popularity: number;
   poster_path?: string;
-  releaseDate: string;
+  release_date: string;
   revenue?: number;
   runtime?: number;
   status?: string;
@@ -45,8 +45,8 @@ export type TMovie = {
   video?: boolean;
   vote_average: number;
   vote_count?: number;
+  videos: Video;
 };
-
 export interface ISeries {
   id: number | undefined;
   title: string | undefined;
@@ -71,4 +71,24 @@ export type TSeries = {
   vote_average?: number;
   vote_count?: number;
   origin_country?: string[];
+};
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type Video = {
+  results: {
+    iso_639_1: string;
+    iso_3166_1: string;
+    name: string;
+    key: string;
+    site: string;
+    size: number;
+    type: string;
+    official: boolean;
+    published_at: string;
+    id: string;
+  }[];
 };
