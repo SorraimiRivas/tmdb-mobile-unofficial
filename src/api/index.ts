@@ -32,6 +32,19 @@ export const posterSize = {
 };
 
 /**
+ * @value sm: "w45"
+ * @value md: "w185"
+ * @value lg: "h632"
+ * @value original: "original"
+ */
+export const profileSize = {
+  sm: "w45",
+  md: "w185",
+  lg: "h632",
+  original: "original",
+};
+
+/**
  * api options
  */
 export const getRequestOptions = {
