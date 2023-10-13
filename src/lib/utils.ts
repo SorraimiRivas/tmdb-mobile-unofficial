@@ -1,25 +1,50 @@
 import { imageURL } from "../api";
-import { Genre, IMovies, ISeries, TMovies, TSeries, Video } from "./types";
+import {
+  FormattedMovieDetails,
+  FormattedMovies,
+  FormattedSeries,
+  FormattedSeriesDetails,
+  Genre,
+  MovieDetails,
+  SeriesDetails,
+  TMovies,
+  TSeries,
+  TrailerVideos,
+} from "./types";
 
 /**
- * takes in an array of type TMovies and returns a formatted array of type IMovies
+ * takes in an array of TMovies and returns a formatted array of FormattedMovies
  * @param data
  * @returns
  */
-export const formattedMovies = (data: TMovies[]): IMovies[] => {
+export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
+  if (!data) {
+    const obj = [
+      {
+        id: 0,
+        title: "",
+        voteAverage: 0,
+        releaseDate: "",
+        poster: "",
+      },
+    ];
+
+    return obj;
+  }
+
   return data.map((movie) => {
     const {
       id,
       title,
-      vote_average: rating,
+      vote_average: voteAverage,
       release_date: releaseDate,
       poster_path: poster,
     } = movie;
 
-    const formattedMovie: IMovies = {
+    const formattedMovie: FormattedMovies = {
       id,
       title,
-      rating,
+      voteAverage,
       releaseDate,
       poster,
     };
@@ -29,30 +54,105 @@ export const formattedMovies = (data: TMovies[]): IMovies[] => {
 };
 
 /**
- * takes in an array of type TSeries and returns a formatted array of type ISeries
+ *
  * @param data
  * @returns
  */
-export const formattedSeries = (data: TSeries[]): ISeries[] => {
+export const formatMovie = (data: MovieDetails): FormattedMovieDetails => {
+  const {
+    id,
+    title,
+    poster_path: poster,
+    backdrop_path: backdrop,
+    vote_average: voteAverage,
+    release_date: releaseDate,
+    runtime,
+    genres,
+    tagline,
+    overview,
+    credits,
+    videos,
+  } = data;
+
+  console.log("Loggin on formatter: ", poster);
+  const formatted: FormattedMovieDetails = {
+    id,
+    title,
+    poster,
+    backdrop,
+    voteAverage,
+    releaseDate,
+    runtime,
+    genres,
+    tagline,
+    overview,
+    credits,
+    videos,
+  };
+  return formatted;
+};
+
+/**
+ * Takes in an array of type TSeries and returns a formatted array of type ISeries
+ * @param data
+ * @returns
+ */
+export const formatSeriesArray = (data: TSeries[]): FormattedSeries[] => {
   return data.map((series) => {
     const {
       id,
       name: title,
       poster_path: poster,
-      vote_average: rating,
-      first_air_date: releaseDate,
+      vote_average: voteAverage,
+      first_air_date: firstAirDate,
     } = series;
 
-    const formatted: ISeries = {
+    const formatted: FormattedSeries = {
       id,
       title,
-      rating,
-      releaseDate,
+      voteAverage,
+      firstAirDate,
       poster,
     };
-
     return formatted;
   });
+};
+
+/**
+ *
+ * @param series
+ * @returns
+ */
+export const formatSeries = (data: SeriesDetails): FormattedSeriesDetails => {
+  const {
+    id,
+    name: title,
+    poster_path: poster,
+    backdrop_path: backdrop,
+    vote_average: voteAverage,
+    first_air_date: firstAirDate,
+    genres,
+    tagline,
+    overview,
+    credits,
+    videos,
+  } = data;
+
+  const formatted = {
+    id,
+    title,
+    poster,
+    backdrop,
+    voteAverage,
+    firstAirDate,
+    genres,
+    tagline,
+    overview,
+    credits,
+    videos,
+  };
+
+  return formatted;
 };
 
 /**
@@ -90,15 +190,18 @@ export const formatDate = (date: string) => {
  * @param minutes 82
  * @returns 1h 22m
  *
- * @example formatMinutesToHoursAndMinutes(82) = '1h 22m'
+ * @example runtimeFormatter(82) = '1h 22m'
  */
-export const formatMinutesToHoursAndMinutes = (minutes: number) => {
+export const runtimeFormatter = (minutes: number) => {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
 
   const hourString = hours > 0 ? `${hours}h ` : "";
   const minuteString = remainingMinutes > 0 ? `${remainingMinutes}m` : "";
 
+  if (!hourString || !!minuteString) {
+    return "0h 0m";
+  }
   return `${hourString}${minuteString}`;
 };
 
@@ -146,32 +249,28 @@ export const getColorByRating = (rating: number) => {
   }
 };
 
-// export const getVideoURL = (data: Video["results"]) => {
-//   if (!data) {
-//     return "";
-//   }
+/**
+ *
+ * @param arr
+ * @returns
+ */
+export const trailersArrayFilter = (arr: TrailerVideos[]) => {
+  const filteredArray = (arr || []).filter((item) => item.type === "Trailer");
 
-//   const officialTrailer = data.find(
-//     (obj) =>
-//       obj.name === "Official Trailer" ||
-//       obj.name === "Official Trailer 2" ||
-//       obj.type === "Trailer"
-//   );
-
-//   return officialTrailer
-//     ? `s://www.youtube/watch?v=${officialTrailer.key}`
-//     : "";
-// };
-
-export function filterOfficialTrailer(arr: any) {
-  // console.log(JSON.stringify(arr, "", 2));
-
-  if (!arr || arr.length === 0) {
-    return null;
+  if (filteredArray.length === 0) {
+    filteredArray.push({
+      iso_639_1: "",
+      iso_3166_1: "",
+      name: "No Trailers",
+      key: "",
+      site: "",
+      size: 0,
+      type: "Trailer",
+      official: false,
+      published_at: "",
+      id: "",
+    });
   }
 
-  const officialTrailer = arr.find(
-    (item: any) => item.name === "Official Trailer"
-  );
-  return officialTrailer ? officialTrailer.key : "";
-}
+  return filteredArray;
+};
