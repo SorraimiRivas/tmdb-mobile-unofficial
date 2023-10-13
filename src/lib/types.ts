@@ -1,94 +1,181 @@
+/**
+ * Simple Movies Type for Movies Array Result from TMDB
+ */
 export type TMovies = {
-  adult: boolean;
-  backdrop_path: string;
   id: number;
   title: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
   poster_path: string;
-  media_type: string;
-  genre_ids: number[];
-  popularity: number;
   release_date: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
+  vote_average: number | string;
 };
-export interface IMovies {
+
+/**
+ * Simple Movies Type for formatted Movies Array to be used as a middleware interface between App and API
+ */
+export type FormattedMovies = {
   id: number;
   title: string;
   poster: string;
   releaseDate: string;
-  rating?: number;
-}
+  voteAverage: number | string;
+};
 
-export type TMovie = {
-  adult?: boolean;
-  backdrop_path?: string;
-  budget?: number;
-  genres?: Genre[];
-  homepage?: string;
+/**
+ *
+ */
+export type MovieDetails = {
   id: number;
-  imdb_id?: string;
-  original_language?: string;
-  original_title?: string;
-  overview: string;
-  popularity: number;
-  poster_path?: string;
-  release_date: string;
-  revenue?: number;
-  runtime?: number;
-  status?: string;
-  tagline?: string;
+  poster_path: string;
+  backdrop_path: string;
   title: string;
-  video?: boolean;
   vote_average: number;
-  vote_count?: number;
-  videos: Video;
-};
-export interface ISeries {
-  id: number | undefined;
-  title: string | undefined;
-  poster: string | undefined;
-  releaseDate: string | undefined;
-  rating: number | undefined;
-}
-
-export type TSeries = {
-  adult?: boolean;
-  backdrop_path?: string;
-  id?: number;
-  name?: string;
-  original_language?: string;
-  original_name?: string;
-  overview?: string;
-  poster_path?: string;
-  media_type?: string;
-  genre_ids?: number[];
-  popularity?: number;
-  first_air_date?: string;
-  vote_average?: number;
-  vote_count?: number;
-  origin_country?: string[];
+  release_date: string;
+  runtime: number;
+  genres: Genre[];
+  tagline: string;
+  overview: string;
+  credits: Credits;
+  videos: Videos;
 };
 
+/**
+ *
+ */
+export type FormattedMovieDetails = {
+  id: number;
+  poster: string;
+  backdrop: string;
+  title: string;
+  voteAverage: number;
+  releaseDate: string;
+  runtime: number;
+  genres: Genre[];
+  tagline: string;
+  overview: string;
+  credits: Credits;
+  videos: Videos;
+};
+
+/**
+ *
+ */
 export type Genre = {
   id: number;
   name: string;
 };
 
-export type Video = {
-  results: {
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    key: string;
-    site: string;
-    size: number;
-    type: string;
-    official: boolean;
-    published_at: string;
-    id: string;
-  }[];
+/**
+ *
+ */
+export type Credits = {
+  cast: Cast[];
+  crew: Crew[];
+};
+
+/**
+ *
+ */
+export type Videos = {
+  results: TrailerVideos[];
+};
+
+/**
+ *
+ */
+export type TrailerVideos = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+};
+
+/**
+ *
+ */
+export type Cast = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path?: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
+};
+
+/**
+ *
+ */
+export type Crew = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path?: string;
+  credit_id: string;
+  department: string;
+  job: string;
+};
+
+/**
+ * Simple Series Type for Series Array Result From TMDB
+ */
+export type TSeries = {
+  id: number;
+  name: string;
+  poster_path: string;
+  first_air_date: string;
+  vote_average: string;
+};
+
+/**
+ * Simple Movies Type for formatted Movies Array to be used as a middleware interface between App and API
+ */
+export type FormattedSeries = {
+  id: number;
+  title: string;
+  poster: string;
+  firstAirDate: string;
+  voteAverage: number | string;
+};
+
+export type SeriesDetails = {
+  id: number;
+  poster_path: string;
+  backdrop_path: string;
+  name: string;
+  vote_average: number;
+  first_air_date: string;
+  genres: Genre[];
+  tagline: string;
+  overview: string;
+  credits: Credits;
+  videos: Videos;
+};
+
+export type FormattedSeriesDetails = {
+  id: number;
+  poster: string;
+  backdrop: string;
+  title: string;
+  voteAverage: number;
+  firstAirDate: string;
+  genres: Genre[];
+  tagline: string;
+  overview: string;
+  credits: Credits;
+  videos: Videos;
 };
