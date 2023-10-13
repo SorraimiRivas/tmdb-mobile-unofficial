@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { ISeries, TSeries } from "../lib/types";
 import { getRequestOptions } from "../api";
-import { formattedSeries } from "@/lib/utils";
+import { FormattedSeries } from "@/lib/types";
+import { formatSeriesArray } from "@/lib/utils";
 
-export const useGetTvSeries = (url: string, params?: {}) => {
-  const [data, setData] = useState<ISeries[]>([]);
+export const useGetSeries = (url: string, params?: {}) => {
+  const [data, setData] = useState<FormattedSeries[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -24,7 +24,7 @@ export const useGetTvSeries = (url: string, params?: {}) => {
           },
         });
 
-        const formatSeries = formattedSeries(response.data.results);
+        const formatSeries = formatSeriesArray(response.data.results);
         setData(formatSeries);
       } catch (err) {
         if (isError(err)) {

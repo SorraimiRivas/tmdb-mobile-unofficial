@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { IMovies, TMovie, TMovies } from "../lib/types";
+import { FormattedMovies } from "../lib/types";
 import { getRequestOptions } from "../api";
-import { formattedMovies } from "@/lib/utils";
+import { formattedMoviesArray } from "@/lib/utils";
 
 export const useGetMovies = (url: string, params?: {}) => {
-  const [data, setData] = useState<IMovies[]>([]);
+  const [data, setData] = useState<FormattedMovies[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -25,7 +25,7 @@ export const useGetMovies = (url: string, params?: {}) => {
           },
         });
 
-        const formatMovies = formattedMovies(response.data.results);
+        const formatMovies = formattedMoviesArray(response.data.results);
         setData(formatMovies);
       } catch (err) {
         if (isError(err)) {
