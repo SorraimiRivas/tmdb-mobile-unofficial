@@ -1,25 +1,25 @@
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { useGetTvSeries } from "../../../hooks/useGetTvSeries";
+import { useGetSeries } from "../../../hooks/useGetSeries";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import CommonCard from "@/components/common/CommonCard";
-import { ISeries } from "@/lib/types";
 import RowFilter from "@/components/common/RowFilter";
 import { Grid } from "react-native-animated-spinkit";
+import { FormattedSeries } from "@/lib/types";
 
 export default function TV() {
   const [selected, setSelected] = useState<string>("day");
-  const { data: trendingData, loading } = useGetTvSeries(
+  const { data: trendingData, loading } = useGetSeries(
     `trending/tv/${selected}`,
     {}
   );
-  const { data: airingTodayData } = useGetTvSeries("/tv/airing_today", {
+  const { data: airingTodayData } = useGetSeries("/tv/airing_today", {
     sort_by: "popularity.desc",
     language: "en-US",
   });
-  const { data: topRatedData } = useGetTvSeries("/tv/top_rated", {});
+  const { data: topRatedData } = useGetSeries("/tv/top_rated", {});
 
-  const renderItem = ({ item }: { item: ISeries }) => {
+  const renderItem = ({ item }: { item: FormattedSeries }) => {
     return <CommonCard {...item} type="tv" />;
   };
 
@@ -27,7 +27,7 @@ export default function TV() {
     <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
       {/* Trending Series List */}
       <View>
-        <View className="flex flex-row justify-between items-center mx-2 mt-4">
+        <View className="flex flex-row justify-between items-center mx-4 mt-4">
           <Text className="font-semibold text-2xl">Trending</Text>
           <View className="flex flex-row bg-white rounded-full">
             <RowFilter
@@ -57,7 +57,7 @@ export default function TV() {
       </View>
       {/* Series Airing Today */}
       <View>
-        <Text className="font-semibold text-2xl ml-2 mt-4">Airing Today</Text>
+        <Text className="font-semibold text-2xl ml-4 mt-4">Airing Today</Text>
         <FlatList
           data={airingTodayData}
           renderItem={renderItem}
@@ -67,7 +67,7 @@ export default function TV() {
       </View>
       {/* Top Rated Series */}
       <View>
-        <Text className="font-semibold text-2xl ml-2 mt-4">Top Rated</Text>
+        <Text className="font-semibold text-2xl ml-4 mt-4">Top Rated</Text>
         <FlatList
           data={topRatedData}
           renderItem={renderItem}

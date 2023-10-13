@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRequestOptions } from "../api";
 import axios from "axios";
+
 import { FormattedMovieDetails } from "@/lib/types";
 import { formatMovie } from "@/lib/utils";
 
@@ -19,10 +20,8 @@ export default function useGetMovieById(url: string, params?: {}) {
           url,
           params: {
             ...params,
-            apiKey: process.env.EXPO_PUBLIC_API_KEY,
           },
         });
-
         const formattedMovie = formatMovie(response.data);
         setData(formattedMovie);
       } catch (err: any) {
@@ -32,7 +31,6 @@ export default function useGetMovieById(url: string, params?: {}) {
         setLoading(false);
       }
     };
-
     fetchData();
 
     return () => {
