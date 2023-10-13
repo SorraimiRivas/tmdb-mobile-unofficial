@@ -14,7 +14,7 @@ const RowFilter = ({ label, selected, onPress }: TRowFilterProps) => {
     >
       <Text
         className={`${
-          selected ? "bg-secondary text-white" : "text-gray-600"
+          selected ? "bg-secondary text-white font-bold" : "text-gray-600"
         } py-2 px-4 rounded-full`}
       >
         {label}
