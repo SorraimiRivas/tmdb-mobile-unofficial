@@ -74,7 +74,6 @@ export const formatMovie = (data: MovieDetails): FormattedMovieDetails => {
     videos,
   } = data;
 
-  console.log("Loggin on formatter: ", poster);
   const formatted: FormattedMovieDetails = {
     id,
     title,
@@ -199,9 +198,10 @@ export const runtimeFormatter = (minutes: number) => {
   const hourString = hours > 0 ? `${hours}h ` : "";
   const minuteString = remainingMinutes > 0 ? `${remainingMinutes}m` : "";
 
-  if (!hourString || !!minuteString) {
-    return "0h 0m";
+  if (!hourString || !minuteString) {
+    return "";
   }
+
   return `${hourString}${minuteString}`;
 };
 
@@ -223,12 +223,8 @@ export const joinGenres = (genres: Genre[]) => {
  * @param number 7.725
  * @returns 77
  */
-export const convertToWholeNumber = (number: number) => {
-  if (!number) {
-    return 0;
-  }
-
-  return Math.round((number / 10) * 100);
+export const convertToWholeNumber = (number: number): number => {
+  return Math.round(number * 10) || 0;
 };
 
 /**
