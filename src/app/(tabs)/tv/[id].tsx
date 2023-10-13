@@ -51,7 +51,7 @@ export default function TVDetails() {
     }
   }, [loading]);
 
-  return !loading ? (
+  return loading ? (
     <View className="flex-1 items-center justify-center">
       <Fold size={50} color="#01b4e4" />
     </View>
@@ -72,7 +72,7 @@ export default function TVDetails() {
         trailers={trailers!}
       />
       <View className="mx-2">
-        <Text className="mb-4 ml-2 text-lg font-bold">Top Paid Cast</Text>
+        <Text className="mb-4 ml-2 text-lg font-bold">Series Cast</Text>
         <FlatList
           horizontal
           keyExtractor={(item) => item.id!.toString()}

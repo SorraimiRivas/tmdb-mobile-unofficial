@@ -61,7 +61,7 @@ export default function Details() {
     </View>
   ) : (
     <ScrollView
-      className="flex-1 flex flex-col relative"
+      className="relative flex flex-1 flex-col"
       style={{ width: width }}
     >
       <StatusBar style="auto" />
@@ -77,7 +77,7 @@ export default function Details() {
         trailers={trailers}
       />
       <View className="mx-2">
-        <Text className="font-bold text-lg ml-2 mb-4">Top Paid Cast</Text>
+        <Text className="mb-4 ml-2 text-lg font-bold">Top Billed Cast</Text>
         <FlatList
           horizontal
           keyExtractor={(item) => item.id!.toString()}

@@ -179,7 +179,7 @@ export const formatDate = (date: string) => {
   const [year, month, day] = date.split("-").map(Number);
   const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
     "en-US",
-    options
+    options,
   );
   return formattedDate;
 };
