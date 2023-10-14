@@ -30,14 +30,14 @@ const TrailersPopover = ({ trailers }: TrailersPopoverProps) => {
           </View>
         </TouchableOpacity>
       }
-      popoverStyle={{ borderRadius: 3, paddingVertical: 4 }}
+      popoverStyle={{ borderRadius: 5, paddingVertical: 4 }}
     >
       {trailers.map((trailer) => (
         <Link
           asChild
           key={trailer.id}
           href={`https://www.youtube.com/watch?v=${trailer.key}`}
-          className="mx-2 my-1 rounded-sm bg-secondary/20"
+          className="mx-2 my-1 rounded-md bg-secondary/20"
         >
           <Pressable className="">
             <Text className="px-2 py-1 text-base">{trailer.name}</Text>
