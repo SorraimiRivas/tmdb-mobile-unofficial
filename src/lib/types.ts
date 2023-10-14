@@ -168,8 +168,8 @@ export type SeriesDetails = {
 
 export type FormattedSeriesDetails = {
   id: number;
-  poster: string;
-  backdrop: string;
+  poster: string | null;
+  backdrop: string | null;
   title: string;
   voteAverage: number;
   firstAirDate: string;
