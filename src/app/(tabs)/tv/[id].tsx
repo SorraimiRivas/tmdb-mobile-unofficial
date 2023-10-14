@@ -5,7 +5,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { useLocalSearchParams } from "expo-router";
 import { Fold } from "react-native-animated-spinkit";
@@ -24,7 +24,6 @@ import DetailsSection from "@/components/DetailsSection";
 import useGetSeriesById from "@/hooks/useGetSeriesById";
 
 export default function TVDetails() {
-  const [pageLoading, setPageLoading] = useState<boolean>(false);
   const { id } = useLocalSearchParams();
 
   const { data, loading, error } = useGetSeriesById(`tv/${id}`, {
@@ -42,14 +41,6 @@ export default function TVDetails() {
   const genres = joinGenres(data?.genres!);
   const firstAirDate = formatDate(data?.firstAirDate!);
   const trailers = trailersArrayFilter(data?.videos.results!);
-
-  useEffect(() => {
-    if (loading) {
-      setPageLoading(true);
-    } else {
-      setPageLoading(false);
-    }
-  }, [loading]);
 
   return loading ? (
     <View className="flex-1 items-center justify-center">
@@ -71,14 +62,14 @@ export default function TVDetails() {
         voteAverage={data?.voteAverage!}
         trailers={trailers!}
       />
-      <View className="mx-2">
-        <Text className="mb-4 ml-2 text-lg font-bold">Series Cast</Text>
+      <View className="mx-4 mb-6">
+        <Text className="mb-4 text-lg font-bold">Series Cast</Text>
         <FlatList
           horizontal
           keyExtractor={(item) => item.id!.toString()}
           data={data?.credits?.cast!}
           renderItem={renderItem}
-          contentContainerStyle={{ justifyContent: "space-around" }}
+          contentContainerStyle={{ gap: 10 }}
         />
       </View>
     </ScrollView>
