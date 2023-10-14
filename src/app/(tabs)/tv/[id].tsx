@@ -50,6 +50,7 @@ export default function TVDetails() {
     <ScrollView
       className="relative flex flex-1 flex-col"
       style={{ width: width }}
+      showsVerticalScrollIndicator={false}
     >
       <StatusBar style="auto" />
       <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
@@ -62,16 +63,19 @@ export default function TVDetails() {
         voteAverage={data?.voteAverage!}
         trailers={trailers!}
       />
-      <View className="mx-4 mb-6">
-        <Text className="mb-4 text-lg font-bold">Series Cast</Text>
-        <FlatList
-          horizontal
-          keyExtractor={(item) => item.id!.toString()}
-          data={data?.credits?.cast!}
-          renderItem={renderItem}
-          contentContainerStyle={{ gap: 10 }}
-        />
-      </View>
+      {!data?.credits.cast ? (
+        <View className="mx-4 mb-6">
+          <Text className="mb-4 text-lg font-bold">Series Cast</Text>
+          <FlatList
+            horizontal
+            keyExtractor={(item) => item.id!.toString()}
+            data={data?.credits?.cast!}
+            renderItem={renderItem}
+            contentContainerStyle={{ gap: 10 }}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      ) : null}
     </ScrollView>
   );
 }
