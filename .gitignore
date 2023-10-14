@@ -44,7 +44,5 @@ expo-env.d.ts
 android
 ios
 
-# Expo
-.expo
-dist/
-web-build/
+# Settings
+.vscode
