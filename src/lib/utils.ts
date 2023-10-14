@@ -162,6 +162,9 @@ export const formatSeries = (data: SeriesDetails): FormattedSeriesDetails => {
  * @example imageParser(poster, posterSize.xl)
  */
 export const imageParser = (url: string = "", size: string = "w342") => {
+  if (!url) {
+    return null;
+  }
   const wholeURL = `${imageURL}${size}${url}`;
   return wholeURL.toString();
 };
@@ -269,4 +272,12 @@ export const trailersArrayFilter = (arr: TrailerVideos[]) => {
   }
 
   return filteredArray;
+};
+
+export const getInitials = (name: string) => {
+  const words = name.split(" ").filter((word) => word.trim() !== "");
+
+  const initials = words.map((word) => word[0].toUpperCase()).join("");
+
+  return initials || "";
 };
