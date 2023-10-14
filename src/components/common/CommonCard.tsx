@@ -1,10 +1,12 @@
 import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
 
 import { formatDate, imageParser } from "../../lib/utils";
-import { imageURL, posterSize } from "../../api";
+import { posterSize } from "../../api";
 import NoImageIcon from "./NoImageIcon";
+import { blurhash } from "@/lib/constants";
 
 type CommonMovieCardProps = {
   title: string;
@@ -28,20 +30,22 @@ const CommonCard = ({
   id,
   type,
 }: CommonCardProps) => {
-  const imageUrl = imageParser(poster, posterSize.xxl);
+  const imageURL = imageParser(poster, posterSize.xxl);
   const formattedDate = formatDate(releaseDate! || firstAirDate!);
   return (
     <Link
       href={`/${type}/${id}`}
       asChild
-      className="mx-4 mt-6 flex w-[167] flex-col"
+      className="mt-6 flex w-[167] flex-col"
     >
       <TouchableOpacity>
-        {imageUrl ? (
+        {imageURL ? (
           <Image
-            source={{ uri: imageUrl }}
+            source={{ uri: imageURL }}
             className="mb-2 h-[250] w-full rounded-md"
             style={{ resizeMode: "cover" }}
+            placeholder={blurhash}
+            transition={1000}
           />
         ) : (
           <NoImageIcon styles="mb-2 h-[250] w-full rounded-md bg-primary" />

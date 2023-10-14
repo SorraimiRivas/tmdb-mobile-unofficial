@@ -1,6 +1,8 @@
-import { View, Image } from "react-native";
 import React from "react";
+import { View } from "react-native";
+import { Image } from "expo-image";
 import NoImageIcon from "./common/NoImageIcon";
+import { blurhash } from "@/lib/constants";
 
 type BannerSectionProps = {
   backdropImageURL: string | null;
@@ -14,7 +16,9 @@ const BannerSection = ({ backdropImageURL, posterURL }: BannerSectionProps) => {
         <Image
           source={{ uri: backdropImageURL }}
           className="absolute h-80 w-full"
-          style={{ resizeMode: "cover" }}
+          contentFit="cover"
+          placeholder={blurhash}
+          transition={1000}
         />
       ) : (
         <NoImageIcon styles="w-full h-80 absolute" />
@@ -27,7 +31,12 @@ const BannerSection = ({ backdropImageURL, posterURL }: BannerSectionProps) => {
         }}
       >
         {posterURL ? (
-          <Image source={{ uri: posterURL }} className="h-48 w-32" />
+          <Image
+            source={{ uri: posterURL }}
+            className="h-48 w-32"
+            placeholder={blurhash}
+            transition={1000}
+          />
         ) : null}
       </View>
     </View>
