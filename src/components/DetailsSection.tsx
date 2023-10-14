@@ -1,5 +1,4 @@
 import { View, Text } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 
 import VerticalDivider from "./common/VerticalDivider";
 import TrailersPopover from "./common/TrailersPopover";
@@ -46,25 +45,21 @@ const DetailsSection = ({
       <Text className="mt-2 text-center text-lg font-bold">{title}</Text>
       <View className="my-4 flex flex-1 flex-row items-center justify-around">
         {/* Left */}
-        <View className="flex flex-1 flex-row items-center">
+        <View className="left-2 flex flex-1 flex-row items-center">
           <VoteAverage rating={rating} ratingColor={ratingColor} />
           <Text className="ml-2 text-sm font-bold">User Score</Text>
         </View>
-        <VerticalDivider />
+        <View className="left-[70] flex-1">
+          <VerticalDivider />
+        </View>
         {/* Right */}
-        <TrailersPopover
-          playTrailerButton={
-            <View className="flex flex-1 flex-row items-center">
-              <MaterialIcons name="play-arrow" size={24} />
-              <Text className="left-5">Play Trailer</Text>
-            </View>
-          }
-          trailers={trailers}
-        />
+        <View className="flex-1">
+          <TrailersPopover trailers={trailers!} />
+        </View>
       </View>
-      <View className="rounded-md bg-secondary/20 px-4 py-2">
+      <View className="rounded-md bg-secondary/30 px-4 py-2">
         <View className="flex flex-row items-center justify-center">
-          <Text className=" text-base">{releaseDate || firstAirDate}</Text>
+          <Text className="text-base">{releaseDate || firstAirDate}</Text>
           {duration && (
             <>
               <DotDivider />

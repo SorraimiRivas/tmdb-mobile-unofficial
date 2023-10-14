@@ -1,58 +1,50 @@
-import React, { ReactNode, useState } from "react";
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Popover from "react-native-popover-view";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Pressable, Text, View } from "react-native";
+import { TrailerVideos } from "@/lib/types";
 import { Link } from "expo-router";
 
-import { TrailerVideos } from "@/lib/types";
-
 type TrailersPopoverProps = {
-  playTrailerButton: ReactNode;
   trailers: TrailerVideos[];
 };
 
-const TrailersPopover = ({
-  playTrailerButton,
-  trailers,
-}: TrailersPopoverProps) => {
-  const [visible, setVisible] = useState(false);
-
-  const togglePopover = () => {
-    setVisible(!visible);
-  };
-
-  const handleOutsidePress = () => {
-    setVisible(false);
-  };
+const TrailersPopover = ({ trailers }: TrailersPopoverProps) => {
+  const disabled = trailers[0].name === "No Trailers";
 
   return (
-    <View className="flex-1 items-center justify-center">
-      <TouchableOpacity onPress={togglePopover} className="relative">
-        {playTrailerButton}
-      </TouchableOpacity>
-      {visible && (
-        <View className="absolute bottom-14 right-0 rounded-md bg-white px-2 py-2 shadow-sm shadow-black">
-          <Pressable className="flex-1" onPress={handleOutsidePress} />
-          {/* Content Goes Here */}
-          {trailers.map((trailer, index) => (
-            <Link
-              asChild
-              href={`https://www.youtube.com/watch?v=${trailer.key}`}
-              key={index}
-            >
-              <Pressable className="my-1 rounded-md bg-tertiary/30 px-2 py-1">
-                {({ pressed }) => (
-                  <Text
-                    className="text-sm"
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  >
-                    {trailer.name}
-                  </Text>
-                )}
-              </Pressable>
-            </Link>
-          ))}
-        </View>
-      )}
-    </View>
+    <Popover
+      from={
+        <TouchableOpacity disabled={disabled}>
+          <View
+            className="flex flex-row items-center gap-2"
+            style={{ opacity: disabled ? 0.5 : 1 }}
+          >
+            <MaterialCommunityIcons
+              name="youtube"
+              size={24}
+              color={disabled ? "gray" : "red"}
+            />
+            <Text>Watch Trailer</Text>
+          </View>
+        </TouchableOpacity>
+      }
+      popoverStyle={{ borderRadius: 3, paddingVertical: 4 }}
+    >
+      {trailers.map((trailer) => (
+        <Link
+          asChild
+          key={trailer.id}
+          href={`https://www.youtube.com/watch?v=${trailer.key}`}
+          className="mx-2 my-1 rounded-sm bg-secondary/20"
+        >
+          <Pressable className="">
+            <Text className="px-2 py-1 text-base">{trailer.name}</Text>
+          </Pressable>
+        </Link>
+      ))}
+    </Popover>
   );
 };
 
