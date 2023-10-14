@@ -15,6 +15,7 @@ export default function TabsLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="tv"
         options={{
@@ -25,6 +26,17 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="people"
+        options={{
+          title: "People",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="people" color={color} size={size} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="search"
         options={{
@@ -34,15 +46,7 @@ export default function TabsLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="artists"
-        options={{
-          title: "People",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="people" color={color} size={size} />
-          ),
-        }}
-      />
+
       <Tabs.Screen
         name="settings"
         options={{
