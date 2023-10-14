@@ -57,16 +57,19 @@ export default function Details() {
         voteAverage={data?.voteAverage!}
         trailers={trailers}
       />
-      <View className="mx-4 mb-6">
-        <Text className="mb-4 text-lg font-bold">Top Billed Cast</Text>
-        <FlatList
-          horizontal
-          keyExtractor={(item) => item.id!.toString()}
-          data={data?.credits?.cast!}
-          renderItem={renderItem}
-          contentContainerStyle={{ gap: 10 }}
-        />
-      </View>
+      {!data?.credits.cast ? (
+        <View className="mb-6 px-4">
+          <Text className="mb-4 text-lg font-bold">Top Billed Cast</Text>
+          <FlatList
+            horizontal
+            keyExtractor={(item) => item.id!.toString()}
+            data={data?.credits?.cast!}
+            renderItem={renderItem}
+            contentContainerStyle={{ gap: 10 }}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      ) : null}
     </ScrollView>
   );
 }

@@ -11,7 +11,7 @@ export default function TV() {
   const [selected, setSelected] = useState<string>("day");
   const { data: trendingData, loading } = useGetSeries(
     `trending/tv/${selected}`,
-    {}
+    {},
   );
   const { data: airingTodayData } = useGetSeries("/tv/airing_today", {
     sort_by: "popularity.desc",
@@ -27,9 +27,9 @@ export default function TV() {
     <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
       {/* Trending Series List */}
       <View>
-        <View className="flex flex-row justify-between items-center mx-4 mt-4">
-          <Text className="font-semibold text-2xl">Trending</Text>
-          <View className="flex flex-row bg-white rounded-full">
+        <View className="mx-4 mt-4 flex flex-row items-center justify-between">
+          <Text className="text-2xl font-semibold">Trending</Text>
+          <View className="flex flex-row rounded-full bg-white">
             <RowFilter
               label="Today"
               selected={selected === "day"}
@@ -43,7 +43,7 @@ export default function TV() {
           </View>
         </View>
         {loading ? (
-          <View className="flex justify-center items-center h-[370]">
+          <View className="flex h-[370] items-center justify-center">
             <Grid color="#01b4e4" size={50} />
           </View>
         ) : (
@@ -51,28 +51,37 @@ export default function TV() {
             data={trendingData}
             renderItem={renderItem}
             horizontal
-            contentContainerStyle={{ paddingBottom: 8 }}
+            contentContainerStyle={{ gap: 10 }}
+            ListHeaderComponent={<View className="mx-1" />}
+            ListFooterComponent={<View className="mx-1" />}
+            showsHorizontalScrollIndicator={false}
           ></FlatList>
         )}
       </View>
       {/* Series Airing Today */}
       <View>
-        <Text className="font-semibold text-2xl ml-4 mt-4">Airing Today</Text>
+        <Text className="ml-4 mt-4 text-2xl font-semibold">Airing Today</Text>
         <FlatList
           data={airingTodayData}
           renderItem={renderItem}
           horizontal
-          contentContainerStyle={{ paddingBottom: 8 }}
+          contentContainerStyle={{ gap: 10 }}
+          ListHeaderComponent={<View className="mx-1" />}
+          ListFooterComponent={<View className="mx-1" />}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
       {/* Top Rated Series */}
       <View>
-        <Text className="font-semibold text-2xl ml-4 mt-4">Top Rated</Text>
+        <Text className="ml-4 mt-4 text-2xl font-semibold">Top Rated</Text>
         <FlatList
           data={topRatedData}
           renderItem={renderItem}
           horizontal
-          contentContainerStyle={{ paddingBottom: 8 }}
+          contentContainerStyle={{ gap: 10 }}
+          ListHeaderComponent={<View className="mx-1" />}
+          ListFooterComponent={<View className="mx-1" />}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </ScrollView>
