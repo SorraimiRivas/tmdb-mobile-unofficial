@@ -1,14 +1,18 @@
 import React, { ReactNode, useState } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import { Link } from "expo-router";
+
 import { TrailerVideos } from "@/lib/types";
 
-type PopOverProps = {
+type TrailersPopoverProps = {
   playTrailerButton: ReactNode;
   trailers: TrailerVideos[];
 };
 
-const Popover = ({ playTrailerButton, trailers }: PopOverProps) => {
+const TrailersPopover = ({
+  playTrailerButton,
+  trailers,
+}: TrailersPopoverProps) => {
   const [visible, setVisible] = useState(false);
 
   const togglePopover = () => {
@@ -20,12 +24,12 @@ const Popover = ({ playTrailerButton, trailers }: PopOverProps) => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center">
+    <View className="flex-1 items-center justify-center">
       <TouchableOpacity onPress={togglePopover} className="relative">
         {playTrailerButton}
       </TouchableOpacity>
       {visible && (
-        <View className="absolute bg-white rounded-md px-2 py-2 bottom-14 right-0 shadow-sm shadow-black">
+        <View className="absolute bottom-14 right-0 rounded-md bg-white px-2 py-2 shadow-sm shadow-black">
           <Pressable className="flex-1" onPress={handleOutsidePress} />
           {/* Content Goes Here */}
           {trailers.map((trailer, index) => (
@@ -34,7 +38,7 @@ const Popover = ({ playTrailerButton, trailers }: PopOverProps) => {
               href={`https://www.youtube.com/watch?v=${trailer.key}`}
               key={index}
             >
-              <Pressable className="my-1 bg-tertiary/30 px-2 py-1 rounded-md">
+              <Pressable className="my-1 rounded-md bg-tertiary/30 px-2 py-1">
                 {({ pressed }) => (
                   <Text
                     className="text-sm"
@@ -52,4 +56,4 @@ const Popover = ({ playTrailerButton, trailers }: PopOverProps) => {
   );
 };
 
-export default Popover;
+export default TrailersPopover;

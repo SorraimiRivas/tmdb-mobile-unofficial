@@ -1,11 +1,12 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import DotDivider from "./common/DotDivider";
-import { convertToWholeNumber, getColorByRating } from "@/lib/utils";
 import VerticalDivider from "./common/VerticalDivider";
+import TrailersPopover from "./common/TrailersPopover";
 import VoteAverage from "./common/VoteAverage";
-import Popover from "./common/TrailersPopOver";
+import DotDivider from "./common/DotDivider";
+
+import { convertToWholeNumber, getColorByRating } from "@/lib/utils";
 import { TrailerVideos } from "@/lib/types";
 
 type MovieDetailsProps = {
@@ -41,19 +42,19 @@ const DetailsSection = ({
   const ratingColor = getColorByRating(rating);
 
   return (
-    <View className="flex-1 mx-4 mb-6">
-      <Text className="font-bold text-lg text-center mt-2">{title}</Text>
-      <View className="flex-1 my-4 flex flex-row justify-around items-center">
+    <View className="mx-4 mb-6 flex-1">
+      <Text className="mt-2 text-center text-lg font-bold">{title}</Text>
+      <View className="my-4 flex flex-1 flex-row items-center justify-around">
         {/* Left */}
-        <View className="flex-1 flex flex-row items-center">
+        <View className="flex flex-1 flex-row items-center">
           <VoteAverage rating={rating} ratingColor={ratingColor} />
-          <Text className="font-bold text-sm ml-2">User Score</Text>
+          <Text className="ml-2 text-sm font-bold">User Score</Text>
         </View>
         <VerticalDivider />
         {/* Right */}
-        <Popover
+        <TrailersPopover
           playTrailerButton={
-            <View className="flex-1 flex flex-row items-center">
+            <View className="flex flex-1 flex-row items-center">
               <MaterialIcons name="play-arrow" size={24} />
               <Text className="left-5">Play Trailer</Text>
             </View>
@@ -61,7 +62,7 @@ const DetailsSection = ({
           trailers={trailers}
         />
       </View>
-      <View className="bg-secondary/20 py-2 px-4 rounded-md">
+      <View className="rounded-md bg-secondary/20 px-4 py-2">
         <View className="flex flex-row items-center justify-center">
           <Text className=" text-base">{releaseDate || firstAirDate}</Text>
           {duration && (
@@ -72,13 +73,13 @@ const DetailsSection = ({
           )}
           <View className="bg-white" />
         </View>
-        <Text className=" text-sm text-center">{genres}</Text>
+        <Text className=" text-center text-sm">{genres}</Text>
       </View>
       {tagline && (
-        <Text className="text-base font-light italic mt-4">{tagline}</Text>
+        <Text className="mt-4 text-base font-light italic">{tagline}</Text>
       )}
-      <Text className="text-lg font-bold mt-4">Overview</Text>
-      <Text className="text-base mt-2 text-left">{overview}</Text>
+      <Text className="mt-4 text-lg font-bold">Overview</Text>
+      <Text className="mt-2 text-left text-base">{overview}</Text>
     </View>
   );
 };

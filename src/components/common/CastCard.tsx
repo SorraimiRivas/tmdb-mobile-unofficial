@@ -1,4 +1,4 @@
-import { View, Text, Image, Platform, StyleSheet } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { getInitials, imageParser } from "@/lib/utils";
 import { profileSize } from "@/api";

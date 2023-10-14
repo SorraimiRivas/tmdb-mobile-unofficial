@@ -1,12 +1,12 @@
 import { Text, Pressable } from "react-native";
 
-type TRowFilterProps = {
+type RowFilterProps = {
   onPress: () => void;
   selected: boolean;
   label: string;
 };
 
-const RowFilter = ({ label, selected, onPress }: TRowFilterProps) => {
+const RowFilter = ({ label, selected, onPress }: RowFilterProps) => {
   return (
     <Pressable
       className="flex flex-row items-center overflow-hidden rounded-full"
@@ -14,8 +14,8 @@ const RowFilter = ({ label, selected, onPress }: TRowFilterProps) => {
     >
       <Text
         className={`${
-          selected ? "bg-secondary text-white font-bold" : "text-gray-600"
-        } py-2 px-4 rounded-full`}
+          selected ? "bg-secondary font-bold text-white" : "text-gray-600"
+        } rounded-full px-4 py-2`}
       >
         {label}
       </Text>
