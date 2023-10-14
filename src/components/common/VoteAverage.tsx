@@ -10,14 +10,14 @@ type VoteAverageProps = {
 const VoteAverage = ({ ratingColor, rating }: VoteAverageProps) => {
   const showVotes = () => {
     return (
-      <View className="flex flex-row h-[70px] w-[70px] rounded-full items-center justify-center bg-[#081C22]">
+      <View className="flex h-[70px] w-[70px] flex-row items-center justify-center rounded-full bg-[#081C22]">
         {rating ? (
           <>
-            <Text className="text-white font-bold text-[20px]">{rating}</Text>
-            <Text className="text-[8px] text-white font-bold">%</Text>
+            <Text className="text-[20px] font-bold text-white">{rating}</Text>
+            <Text className="text-[8px] font-bold text-white">%</Text>
           </>
         ) : (
-          <Text className="text-white font-bold text-xl">NR</Text>
+          <Text className="text-xl font-bold text-white">NR</Text>
         )}
       </View>
     );
@@ -26,7 +26,7 @@ const VoteAverage = ({ ratingColor, rating }: VoteAverageProps) => {
   return (
     <AnimatedCircularProgress
       size={60}
-      width={5}
+      width={7}
       tintColor={ratingColor}
       backgroundColor="gray"
       backgroundWidth={8}
