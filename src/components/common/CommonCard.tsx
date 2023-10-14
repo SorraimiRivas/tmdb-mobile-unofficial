@@ -3,7 +3,8 @@ import { Link } from "expo-router";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import { formatDate, imageParser } from "../../lib/utils";
-import { posterSize } from "../../api";
+import { imageURL, posterSize } from "../../api";
+import NoImageIcon from "./NoImageIcon";
 
 type CommonMovieCardProps = {
   title: string;
@@ -33,17 +34,21 @@ const CommonCard = ({
     <Link
       href={`/${type}/${id}`}
       asChild
-      className="w-[167] flex flex-col mx-4 mt-6"
+      className="mx-4 mt-6 flex w-[167] flex-col"
     >
       <TouchableOpacity>
-        <Image
-          source={{ uri: imageUrl }}
-          className="h-[250] w-full mb-2 rounded-md"
-          style={{ resizeMode: "cover" }}
-        />
+        {imageUrl ? (
+          <Image
+            source={{ uri: imageUrl }}
+            className="mb-2 h-[250] w-full rounded-md"
+            style={{ resizeMode: "cover" }}
+          />
+        ) : (
+          <NoImageIcon styles="mb-2 h-[250] w-full rounded-md bg-primary" />
+        )}
         <View className="flex flex-col gap-1">
-          <Text className="font-semibold text-base">{title}</Text>
-          <Text className=" text-gray-600 text-xs">{formattedDate}</Text>
+          <Text className="text-base font-semibold">{title}</Text>
+          <Text className=" text-xs text-gray-600">{formattedDate}</Text>
         </View>
       </TouchableOpacity>
     </Link>

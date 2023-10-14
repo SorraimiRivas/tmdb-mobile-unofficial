@@ -36,8 +36,8 @@ export default function TVDetails() {
     return <CastCard {...item} />;
   };
 
-  const posterURL = imageParser(data?.poster, posterSize.xl);
-  const backdropURL = imageParser(data?.backdrop, backdropSize.lg);
+  const posterURL = imageParser(data?.poster!, posterSize.xl);
+  const backdropURL = imageParser(data?.backdrop!, backdropSize.lg);
   const genres = joinGenres(data?.genres!);
   const firstAirDate = formatDate(data?.firstAirDate!);
   const trailers = trailersArrayFilter(data?.videos.results!);
