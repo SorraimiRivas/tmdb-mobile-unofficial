@@ -43,7 +43,7 @@ const CommonCard = ({
           <Image
             source={{ uri: imageURL }}
             className="mb-2 h-[250] w-full rounded-md"
-            style={{ resizeMode: "cover" }}
+            contentFit="contain"
             placeholder={blurhash}
             transition={1000}
           />

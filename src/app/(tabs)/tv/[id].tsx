@@ -63,7 +63,7 @@ export default function TVDetails() {
         voteAverage={data?.voteAverage!}
         trailers={trailers!}
       />
-      {!data?.credits.cast ? (
+      {data?.credits.cast ? (
         <View className="mx-4 mb-6">
           <Text className="mb-4 text-lg font-bold">Series Cast</Text>
           <FlatList
