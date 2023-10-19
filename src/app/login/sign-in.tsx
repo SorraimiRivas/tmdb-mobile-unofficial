@@ -1,10 +1,9 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
 import WebView from "react-native-webview";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function Auth() {
-  // const [reqToken, setReqToken] = useState<string>("");
   const [url, setUrl] = useState<string>();
   const { token } = useLocalSearchParams();
   const router = useRouter();

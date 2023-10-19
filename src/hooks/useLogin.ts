@@ -1,17 +1,23 @@
 import { useState } from "react";
-import { RequestToken } from "@/lib/types";
-import axios from "axios";
-import { postRequestOptions, getRequestOptions } from "@/api";
 import { Alert } from "react-native";
-import { err } from "react-native-svg/lib/typescript/xml";
+import axios from "axios";
+
+import { useAppDispatch, useAppSelector } from "./useRedux";
+import { setAccount, setSession } from "@/redux/sessionSlice";
+import { postRequestOptions, getRequestOptions } from "@/api";
 
 const useLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [loadingUserAccount, setLoadingUserAccount] = useState<boolean>(false);
   const [error, setError] = useState("");
+  const [loadingUserAccount, setLoadingUserAccount] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { session_id } = useAppSelector((state) => state.userSession);
 
+  /**
+   * Gets a request token to validate and use it to obtain a session id
+   * @returns
+   */
   const getRequestToken = async () => {
-    console.log("Login Flow Initialized...");
     setLoading(true);
     setError("");
     try {
@@ -19,7 +25,6 @@ const useLogin = () => {
         ...getRequestOptions,
         url: "authentication/token/new",
       });
-      // console.log(response.data);
       return response.data.request_token;
     } catch (err: any) {
       Alert.alert(err.message);
@@ -29,10 +34,14 @@ const useLogin = () => {
     }
   };
 
+  /**
+   * Takes an authorized token to get a session id to use it to get a user account
+   * @param token
+   * @returns
+   */
   const getSessionId = async (token: string | string[]) => {
     setLoadingUserAccount(true);
     setError("");
-    console.log("Requesting Session ID with token", token);
     try {
       const response = await axios.request({
         ...postRequestOptions,
@@ -41,7 +50,7 @@ const useLogin = () => {
           request_token: token,
         },
       });
-      console.log(JSON.stringify(response));
+      dispatch(setSession(response.data));
       return response.data.session_id;
     } catch (err: any) {
       Alert.alert("Session ID", err.message);
@@ -51,13 +60,15 @@ const useLogin = () => {
     }
   };
 
+  /**
+   * Gets a user account validated via TMDB webpage using a request token and a session id then saves the account using SecureStore
+   * @param validatedToken
+   */
   const getUserAccount = async (validatedToken: string | string[]) => {
-    console.log("Requesting User Account with:", validatedToken);
     setLoading(false);
     setLoadingUserAccount(true);
     setError("");
     const sessionId = await getSessionId(validatedToken);
-    console.log("ID: ", sessionId);
     try {
       const response = await axios.request({
         ...getRequestOptions,
@@ -66,8 +77,7 @@ const useLogin = () => {
           session_id: sessionId,
         },
       });
-      console.log("Reached here!");
-      // console.log(response.data);
+      dispatch(setAccount(response.data));
     } catch (err: any) {
       Alert.alert(err.message);
     } finally {
@@ -75,11 +85,16 @@ const useLogin = () => {
     }
   };
 
+  const isAuth = () => {
+    return session_id !== "";
+  };
+
   return {
     getRequestToken,
     getUserAccount,
     loading,
     loadingUserAccount,
+    isAuth,
   };
 };
 
