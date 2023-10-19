@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
+
 import { getInitials, imageParser } from "@/lib/utils";
 import { profileSize } from "@/api";
 import { blurhash } from "@/lib/constants";
