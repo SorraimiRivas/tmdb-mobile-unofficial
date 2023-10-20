@@ -152,6 +152,9 @@ export type FormattedSeries = {
   voteAverage: number | string;
 };
 
+/**
+ *
+ */
 export type SeriesDetails = {
   id: number;
   poster_path: string;
@@ -166,6 +169,9 @@ export type SeriesDetails = {
   videos: Videos;
 };
 
+/**
+ *
+ */
 export type FormattedSeriesDetails = {
   id: number;
   poster: string | null;
@@ -178,4 +184,31 @@ export type FormattedSeriesDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
+};
+
+/**
+ *
+ */
+export type RequestToken = {
+  success: boolean;
+  expires_at: string;
+  request_token: string;
+};
+
+export type Account = {
+  avatar: Avatar | null;
+  id: number | null;
+  iso_639_1?: string;
+  iso_3166_1?: string;
+  name: string | null;
+  include_adult?: boolean;
+  username: string | null;
+};
+
+export type Avatar = {
+  gravatar: Gravatar;
+};
+
+export type Gravatar = {
+  hash: string;
 };

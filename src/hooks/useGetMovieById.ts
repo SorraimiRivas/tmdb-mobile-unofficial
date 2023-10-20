@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getRequestOptions } from "../api";
 import axios from "axios";
 
+import { getRequestOptions } from "../api";
 import { FormattedMovieDetails } from "@/lib/types";
 import { formatMovie } from "@/lib/utils";
 

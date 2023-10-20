@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View } from "react-native";
 
 const VerticalDivider = () => {
   return <View className="h-8 w-[2px] rounded-md bg-gray-600" />;

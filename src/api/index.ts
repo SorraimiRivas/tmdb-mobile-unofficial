@@ -45,10 +45,22 @@ export const profileSize = {
 };
 
 /**
- * api options
+ * api get options
  */
 export const getRequestOptions = {
   method: "GET",
+  baseURL,
+  headers: {
+    accept: "application/json",
+    Authorization: "Bearer " + TOKEN,
+  },
+};
+
+/**
+ * api post options
+ */
+export const postRequestOptions = {
+  method: "POST",
   baseURL,
   headers: {
     accept: "application/json",
