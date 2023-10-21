@@ -6,7 +6,7 @@ import { useGetMovies } from "@/hooks/useGetMovies";
 import { Grid } from "react-native-animated-spinkit";
 import RowFilter from "@/components/common/RowFilter";
 import moment from "moment";
-import { FormattedMovies, TMovies } from "@/lib/types";
+import { FormattedMovies } from "@/lib/types";
 
 export default function Movies() {
   const [selected, setSelected] = useState<string>("day");

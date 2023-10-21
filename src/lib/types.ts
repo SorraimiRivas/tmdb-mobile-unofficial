@@ -1,7 +1,7 @@
 /**
  * Simple Movies Type for Movies Array Result from TMDB
  */
-export type TMovies = {
+export type Movies = {
   id: number;
   title: string;
   poster_path: string;
@@ -18,6 +18,7 @@ export type FormattedMovies = {
   poster: string;
   releaseDate: string;
   voteAverage: number | string;
+  mediaType: string;
 };
 
 /**
@@ -42,6 +43,7 @@ export type MovieDetails = {
  *
  */
 export type FormattedMovieDetails = {
+  adult?: boolean;
   id: number;
   poster: string;
   backdrop: string;
@@ -54,6 +56,8 @@ export type FormattedMovieDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
+  genreIds?: Array<number>;
+  mediaType: string;
 };
 
 /**
@@ -150,6 +154,7 @@ export type FormattedSeries = {
   poster: string;
   firstAirDate: string;
   voteAverage: number | string;
+  mediaType: string;
 };
 
 /**
@@ -184,6 +189,81 @@ export type FormattedSeriesDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
+  mediaType: string;
+};
+
+/**
+ *
+ */
+export type People = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for: KnownFor[];
+  known_for_department: string;
+  name: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export type PeopleDetails = {
+  adult: boolean;
+  also_known_as: Array<string>;
+  biography: string;
+  birthday: string;
+  deathday: any;
+  gender: number;
+  homepage: any;
+  id: number;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export type FormattedPeopleDetails = {
+  adult: boolean;
+  alsoKnownAs: Array<string>;
+  biography: string;
+  birthday: string;
+  deathday: any;
+  gender: number;
+  homepage: string;
+  id: number;
+  knownForDepartment: string;
+  name: string;
+  placeOfBirth: string;
+  popularity: number;
+  profilePath: string;
+};
+
+export type KnownFor = {
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: Array<number>;
+  id?: number;
+  media_type?: string;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  poster_path?: string;
+  release_date?: string;
+  title: string;
+  video?: boolean;
+  vote_average?: number;
+  vote_count?: number;
+};
+
+export type FormattedKnownFor = {
+  title: string;
+};
+
+export type FormattedPeople = {
+  id: number;
+  name: string;
+  profilePath: string;
+  mediaType: string;
 };
 
 /**
