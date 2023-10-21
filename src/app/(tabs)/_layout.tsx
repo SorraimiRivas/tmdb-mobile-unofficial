@@ -26,8 +26,9 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="people"
+        name="person"
         options={{
+          headerShown: false,
           title: "People",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="people" color={color} size={size} />
