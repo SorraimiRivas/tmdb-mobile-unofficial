@@ -2,14 +2,20 @@ import { imageURL } from "../api";
 import {
   FormattedMovieDetails,
   FormattedMovies,
+  FormattedPeople,
   FormattedSeries,
   FormattedSeriesDetails,
   Genre,
   MovieDetails,
+  People,
   SeriesDetails,
-  TMovies,
+  Movies,
   TSeries,
   TrailerVideos,
+  KnownFor,
+  FormattedKnownFor,
+  PeopleDetails,
+  FormattedPeopleDetails,
 } from "./types";
 
 /**
@@ -17,7 +23,7 @@ import {
  * @param data
  * @returns
  */
-export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
+export const formattedMoviesArray = (data: Movies[]): FormattedMovies[] => {
   if (!data) {
     const obj = [
       {
@@ -26,6 +32,7 @@ export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
         voteAverage: 0,
         releaseDate: "",
         poster: "",
+        mediaType: "",
       },
     ];
 
@@ -47,6 +54,7 @@ export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
       voteAverage,
       releaseDate,
       poster,
+      mediaType: "movie",
     };
 
     return formattedMovie;
@@ -87,6 +95,7 @@ export const formatMovie = (data: MovieDetails): FormattedMovieDetails => {
     overview,
     credits,
     videos,
+    mediaType: "movie",
   };
   return formatted;
 };
@@ -112,6 +121,7 @@ export const formatSeriesArray = (data: TSeries[]): FormattedSeries[] => {
       voteAverage,
       firstAirDate,
       poster,
+      mediaType: "tv",
     };
     return formatted;
   });
@@ -149,9 +159,54 @@ export const formatSeries = (data: SeriesDetails): FormattedSeriesDetails => {
     overview,
     credits,
     videos,
+    mediaType: "tv",
   };
 
   return formatted;
+};
+
+/**
+ *
+ * @param data
+ * @returns
+ */
+export const formatPeople = (data: People[]) => {
+  return data.map((person) => {
+    const { id, name, profile_path } = person;
+
+    const formatted: FormattedPeople = {
+      id,
+      name,
+      profilePath: profile_path,
+      mediaType: "person",
+    };
+
+    return formatted;
+  });
+};
+
+/**
+ * Takes an array of PeopleDetails and returns the same array formatted to camelCase
+ * @param data
+ * @returns
+ */
+export const formattedPeopleDetails = (data: PeopleDetails[]) => {
+  return data.map((person) => {
+    return {
+      id: person.id,
+      biography: person.biography,
+      alsoKnownAs: person.also_known_as,
+      birthday: person.birthday,
+      deathday: person.deathday,
+      gender: person.gender,
+      homepage: person.homepage,
+      knownForDepartment: person.known_for_department,
+      placeOfBirth: person.place_of_birth,
+      name: person.name,
+      profilePath: person.profile_path,
+      popularity: person.popularity,
+    } as FormattedPeopleDetails;
+  });
 };
 
 /**
