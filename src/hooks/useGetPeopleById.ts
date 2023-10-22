@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { FormattedPeople, FormattedPeopleDetails } from "@/lib/types";
+import { FormattedPeopleDetails } from "@/lib/types";
 import { getRequestOptions } from "../api";
-import { formatPeople, formattedPeopleDetails } from "@/lib/utils";
+import { formattedPeopleDetails } from "@/lib/utils";
 
 const useGetPeopleById = (url: string, params?: {}) => {
-  const [data, setData] = useState<Array<FormattedPeopleDetails>>();
+  const [data, setData] = useState<FormattedPeopleDetails>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -25,7 +25,7 @@ const useGetPeopleById = (url: string, params?: {}) => {
             ...params,
           },
         });
-        const formattedResponse = formattedPeopleDetails(response.data.results);
+        const formattedResponse = formattedPeopleDetails(response.data);
         setData(formattedResponse);
       } catch (err) {
         if (isError(err)) {
