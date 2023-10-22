@@ -190,23 +190,39 @@ export const formatPeople = (data: People[]) => {
  * @param data
  * @returns
  */
-export const formattedPeopleDetails = (data: PeopleDetails[]) => {
-  return data.map((person) => {
-    return {
-      id: person.id,
-      biography: person.biography,
-      alsoKnownAs: person.also_known_as,
-      birthday: person.birthday,
-      deathday: person.deathday,
-      gender: person.gender,
-      homepage: person.homepage,
-      knownForDepartment: person.known_for_department,
-      placeOfBirth: person.place_of_birth,
-      name: person.name,
-      profilePath: person.profile_path,
-      popularity: person.popularity,
-    } as FormattedPeopleDetails;
-  });
+export const formattedPeopleDetails = (data: PeopleDetails) => {
+  const {
+    name,
+    also_known_as: alsoKnownAs,
+    biography,
+    birthday,
+    deathday,
+    gender,
+    homepage,
+    id,
+    known_for_department: knownForDepartment,
+    place_of_birth: placeOfBirth,
+    profile_path: profilePath,
+    popularity,
+    adult,
+  } = data;
+
+  const formatted = {
+    name,
+    alsoKnownAs,
+    biography,
+    birthday,
+    deathday,
+    gender,
+    homepage,
+    knownForDepartment,
+    placeOfBirth,
+    profilePath,
+    popularity,
+    adult,
+  };
+
+  return formatted as FormattedPeopleDetails;
 };
 
 /**
