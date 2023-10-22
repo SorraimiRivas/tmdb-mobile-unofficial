@@ -345,10 +345,22 @@ export const trailersArrayFilter = (arr: TrailerVideos[]) => {
   return filteredArray;
 };
 
+/**
+ * takes in a celeb name and returns the initials to be use as fallback for when there is not profile picture available
+ * @param name Tom Hanks
+ * @returns TH
+ */
 export const getInitials = (name: string) => {
   const words = name.split(" ").filter((word) => word.trim() !== "");
-
-  const initials = words.map((word) => word[0].toUpperCase()).join("");
+  const initials = words
+    .map((word) => {
+      if (word.startsWith('"') && word.endsWith('"')) {
+        return word[1].toUpperCase();
+      } else {
+        return word[0].toUpperCase();
+      }
+    })
+    .join("");
 
   return initials || "";
 };
