@@ -27,8 +27,6 @@ const useGetPeople = (url: string, page: number) => {
         });
         const formattedResponse = formatPeople(response.data.results);
         setData([...data, ...formattedResponse]);
-        console.log("resolved");
-        console.log(loading);
       } catch (err) {
         if (isError(err)) {
           console.log(err.message);

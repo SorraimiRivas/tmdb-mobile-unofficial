@@ -10,8 +10,6 @@ import _ from "lodash";
 const People = () => {
   const [page, setPage] = useState<number>(1);
   const { data, loading } = useGetPeople("person/popular", page);
-  const { width } = useWindowDimensions();
-  console.log(width);
 
   const renderItem = ({ item }: { item: FormattedPeople }) => {
     return (

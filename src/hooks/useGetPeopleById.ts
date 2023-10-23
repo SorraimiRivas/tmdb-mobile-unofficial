@@ -3,7 +3,8 @@ import axios from "axios";
 
 import { FormattedPeopleDetails } from "@/lib/types";
 import { getRequestOptions } from "../api";
-import { formattedPeopleDetails } from "@/lib/utils";
+import { formatPeopleDetails } from "@/lib/utils";
+import { printer } from "@/lib/constants";
 
 const useGetPeopleById = (url: string, params?: {}) => {
   const [data, setData] = useState<FormattedPeopleDetails>();
@@ -25,7 +26,7 @@ const useGetPeopleById = (url: string, params?: {}) => {
             ...params,
           },
         });
-        const formattedResponse = formattedPeopleDetails(response.data);
+        const formattedResponse = formatPeopleDetails(response.data);
         setData(formattedResponse);
       } catch (err) {
         if (isError(err)) {

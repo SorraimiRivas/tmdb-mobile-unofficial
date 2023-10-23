@@ -1,4 +1,5 @@
 import { imageURL } from "../api";
+import { icons } from "./icons";
 import {
   FormattedMovieDetails,
   FormattedMovies,
@@ -12,10 +13,10 @@ import {
   Movies,
   TSeries,
   TrailerVideos,
-  KnownFor,
-  FormattedKnownFor,
   PeopleDetails,
   FormattedPeopleDetails,
+  ExternalIds,
+  SocialMedia,
 } from "./types";
 
 /**
@@ -190,7 +191,7 @@ export const formatPeople = (data: People[]) => {
  * @param data
  * @returns
  */
-export const formattedPeopleDetails = (data: PeopleDetails) => {
+export const formatPeopleDetails = (data: PeopleDetails) => {
   const {
     name,
     also_known_as: alsoKnownAs,
@@ -205,9 +206,11 @@ export const formattedPeopleDetails = (data: PeopleDetails) => {
     profile_path: profilePath,
     popularity,
     adult,
+    external_ids: externalIds,
   } = data;
 
   const formatted = {
+    id,
     name,
     alsoKnownAs,
     biography,
@@ -220,6 +223,7 @@ export const formattedPeopleDetails = (data: PeopleDetails) => {
     profilePath,
     popularity,
     adult,
+    externalIds,
   };
 
   return formatted as FormattedPeopleDetails;
@@ -234,7 +238,7 @@ export const formattedPeopleDetails = (data: PeopleDetails) => {
  */
 export const imageParser = (url: string = "", size: string = "w342") => {
   if (!url) {
-    return null;
+    return "";
   }
   const wholeURL = `${imageURL}${size}${url}`;
   return wholeURL.toString();
@@ -247,7 +251,7 @@ export const imageParser = (url: string = "", size: string = "w342") => {
  */
 export const formatDate = (date: string) => {
   if (!date) {
-    return "n/a";
+    return "";
   }
   const options: {} = { year: "numeric", month: "short", day: "numeric" };
   const [year, month, day] = date.split("-").map(Number);
@@ -286,7 +290,7 @@ export const runtimeFormatter = (minutes: number) => {
  */
 export const joinGenres = (genres: Genre[]) => {
   if (!genres) {
-    return "n/a";
+    return "";
   }
   const names = genres.map((genre) => genre.name).join(", ");
   return names;
