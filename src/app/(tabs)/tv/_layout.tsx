@@ -7,6 +7,9 @@ export default function TVLayout() {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
+        headerTitleAlign: "center",
+        headerTintColor: "white",
+        headerStyle: { backgroundColor: "#0d253f" },
         headerRight: () => (
           <Link href="/search" asChild>
             <Pressable>
