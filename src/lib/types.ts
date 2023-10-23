@@ -220,6 +220,7 @@ export type PeopleDetails = {
   place_of_birth: string;
   popularity: number;
   profile_path: string;
+  external_ids: ExternalIds;
 };
 
 export type FormattedPeopleDetails = {
@@ -236,6 +237,20 @@ export type FormattedPeopleDetails = {
   placeOfBirth: string;
   popularity: number;
   profilePath: string;
+  externalIds: ExternalIds;
+};
+
+export type ExternalIds = {
+  freebase_mid: string;
+  freebase_id: string;
+  imdb_id: string;
+  tvrage_id: number;
+  wikidata_id: string;
+  facebook_id: any;
+  instagram_id: any;
+  tiktok_id: any;
+  twitter_id: any;
+  youtube_id: any;
 };
 
 export type KnownFor = {
@@ -291,4 +306,9 @@ export type Avatar = {
 
 export type Gravatar = {
   hash: string;
+};
+
+export type SocialMedia = {
+  href: string;
+  icon: string | React.ReactElement;
 };
