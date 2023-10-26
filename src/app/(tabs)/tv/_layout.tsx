@@ -1,5 +1,5 @@
 import { Link, Stack } from "expo-router";
-import { Pressable, Platform } from "react-native";
+import { Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function TVLayout() {
@@ -9,6 +9,7 @@ export default function TVLayout() {
         headerShadowVisible: false,
         headerTitleAlign: "center",
         headerTintColor: "white",
+        animation: "slide_from_right",
         headerStyle: { backgroundColor: "#0d253f" },
         headerRight: () => (
           <Link href="/search" asChild>
@@ -17,6 +18,7 @@ export default function TVLayout() {
                 <MaterialIcons
                   name="search"
                   size={25}
+                  color="white"
                   style={{
                     opacity: pressed ? 0.5 : 1,
                   }}

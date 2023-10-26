@@ -7,6 +7,7 @@ export default function MoviesLayout() {
         headerTitleAlign: "center",
         headerTintColor: "white",
         headerStyle: { backgroundColor: "#0d253f" },
+        animation: "slide_from_right",
       }}
     >
       <Stack.Screen name="index" options={{ title: "Movies" }} />
