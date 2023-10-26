@@ -1,10 +1,19 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import { setStatusBarStyle } from "expo-status-bar";
 
 export default function TabsLayout() {
+  setStatusBarStyle("light");
+
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerStyle: { backgroundColor: "#0d253f" },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+      }}
+    >
       <Tabs.Screen
         name="movie"
         options={{

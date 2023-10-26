@@ -45,7 +45,6 @@ export default function Details() {
       className="relative flex flex-1 flex-col"
       style={{ width: width }}
     >
-      <StatusBar style="auto" />
       <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
       <DetailsSection
         overview={data?.overview!}
