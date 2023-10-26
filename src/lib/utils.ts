@@ -1,5 +1,4 @@
 import { imageURL } from "../api";
-import { icons } from "./icons";
 import {
   FormattedMovieDetails,
   FormattedMovies,
@@ -15,8 +14,10 @@ import {
   TrailerVideos,
   PeopleDetails,
   FormattedPeopleDetails,
-  ExternalIds,
-  SocialMedia,
+  CombinedCredits,
+  KnownForCardTypes,
+  CreditsCast,
+  CreditsCrew,
 } from "./types";
 
 /**
@@ -207,6 +208,7 @@ export const formatPeopleDetails = (data: PeopleDetails) => {
     popularity,
     adult,
     external_ids: externalIds,
+    combined_credits: combinedCredits,
   } = data;
 
   const formatted = {
@@ -224,6 +226,7 @@ export const formatPeopleDetails = (data: PeopleDetails) => {
     popularity,
     adult,
     externalIds,
+    combinedCredits,
   };
 
   return formatted as FormattedPeopleDetails;
@@ -367,4 +370,72 @@ export const getInitials = (name: string) => {
     .join("");
 
   return initials || "";
+};
+
+/**
+ *
+ * @param gender
+ * @returns
+ */
+export const genderSelector = (gender: number) => {
+  switch (gender) {
+    case 1:
+      return "Female";
+      break;
+    case 2:
+      return "Male";
+      break;
+    case 3:
+      return "Non-binary";
+      break;
+    default:
+      return "-";
+  }
+};
+
+export const knownForConstructor = (
+  data: CombinedCredits,
+  department: string,
+) => {
+  if (department === "Acting" && data.cast) {
+    const sort = data.cast.sort((a, b) => b.vote_count! - a.vote_count!);
+    const result = formatCreditsCast(sort);
+    return result;
+  } else if (department !== "Acting" && data.crew) {
+    const sort = data.crew.sort((a, b) => b.vote_average! - a.vote_average!);
+    const result = formatCreditsCrew(sort);
+
+    return result;
+  } else {
+    return [];
+  }
+};
+
+const formatCreditsCast = (data: CreditsCast[]) => {
+  return data.map((item) => {
+    const { title, name, poster_path: poster, id, media_type } = item;
+
+    const formatted = {
+      title,
+      name,
+      poster,
+      id,
+      media_type,
+    };
+    return formatted as KnownForCardTypes;
+  });
+};
+const formatCreditsCrew = (data: CreditsCrew[]) => {
+  return data.map((item) => {
+    const { title, name, poster_path: poster, id, media_type } = item;
+
+    const formatted = {
+      title,
+      name,
+      poster,
+      id,
+      media_type,
+    };
+    return formatted as KnownForCardTypes;
+  });
 };
