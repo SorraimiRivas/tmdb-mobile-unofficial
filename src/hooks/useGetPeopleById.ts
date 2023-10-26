@@ -4,7 +4,6 @@ import axios from "axios";
 import { FormattedPeopleDetails } from "@/lib/types";
 import { getRequestOptions } from "../api";
 import { formatPeopleDetails } from "@/lib/utils";
-import { printer } from "@/lib/constants";
 
 const useGetPeopleById = (url: string, params?: {}) => {
   const [data, setData] = useState<FormattedPeopleDetails>();
