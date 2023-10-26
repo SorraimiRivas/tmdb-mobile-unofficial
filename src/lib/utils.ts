@@ -2,14 +2,22 @@ import { imageURL } from "../api";
 import {
   FormattedMovieDetails,
   FormattedMovies,
+  FormattedPeople,
   FormattedSeries,
   FormattedSeriesDetails,
   Genre,
   MovieDetails,
+  People,
   SeriesDetails,
-  TMovies,
+  Movies,
   TSeries,
   TrailerVideos,
+  PeopleDetails,
+  FormattedPeopleDetails,
+  CombinedCredits,
+  KnownForCardTypes,
+  CreditsCast,
+  CreditsCrew,
 } from "./types";
 
 /**
@@ -17,7 +25,7 @@ import {
  * @param data
  * @returns
  */
-export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
+export const formattedMoviesArray = (data: Movies[]): FormattedMovies[] => {
   if (!data) {
     const obj = [
       {
@@ -26,6 +34,7 @@ export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
         voteAverage: 0,
         releaseDate: "",
         poster: "",
+        mediaType: "",
       },
     ];
 
@@ -47,6 +56,7 @@ export const formattedMoviesArray = (data: TMovies[]): FormattedMovies[] => {
       voteAverage,
       releaseDate,
       poster,
+      mediaType: "movie",
     };
 
     return formattedMovie;
@@ -87,6 +97,7 @@ export const formatMovie = (data: MovieDetails): FormattedMovieDetails => {
     overview,
     credits,
     videos,
+    mediaType: "movie",
   };
   return formatted;
 };
@@ -112,6 +123,7 @@ export const formatSeriesArray = (data: TSeries[]): FormattedSeries[] => {
       voteAverage,
       firstAirDate,
       poster,
+      mediaType: "tv",
     };
     return formatted;
   });
@@ -149,9 +161,75 @@ export const formatSeries = (data: SeriesDetails): FormattedSeriesDetails => {
     overview,
     credits,
     videos,
+    mediaType: "tv",
   };
 
   return formatted;
+};
+
+/**
+ *
+ * @param data
+ * @returns
+ */
+export const formatPeople = (data: People[]) => {
+  return data.map((person) => {
+    const { id, name, profile_path } = person;
+
+    const formatted: FormattedPeople = {
+      id,
+      name,
+      profilePath: profile_path,
+      mediaType: "person",
+    };
+
+    return formatted;
+  });
+};
+
+/**
+ * Takes an array of PeopleDetails and returns the same array formatted to camelCase
+ * @param data
+ * @returns
+ */
+export const formatPeopleDetails = (data: PeopleDetails) => {
+  const {
+    name,
+    also_known_as: alsoKnownAs,
+    biography,
+    birthday,
+    deathday,
+    gender,
+    homepage,
+    id,
+    known_for_department: knownForDepartment,
+    place_of_birth: placeOfBirth,
+    profile_path: profilePath,
+    popularity,
+    adult,
+    external_ids: externalIds,
+    combined_credits: combinedCredits,
+  } = data;
+
+  const formatted = {
+    id,
+    name,
+    alsoKnownAs,
+    biography,
+    birthday,
+    deathday,
+    gender,
+    homepage,
+    knownForDepartment,
+    placeOfBirth,
+    profilePath,
+    popularity,
+    adult,
+    externalIds,
+    combinedCredits,
+  };
+
+  return formatted as FormattedPeopleDetails;
 };
 
 /**
@@ -163,7 +241,7 @@ export const formatSeries = (data: SeriesDetails): FormattedSeriesDetails => {
  */
 export const imageParser = (url: string = "", size: string = "w342") => {
   if (!url) {
-    return null;
+    return "";
   }
   const wholeURL = `${imageURL}${size}${url}`;
   return wholeURL.toString();
@@ -176,7 +254,7 @@ export const imageParser = (url: string = "", size: string = "w342") => {
  */
 export const formatDate = (date: string) => {
   if (!date) {
-    return "n/a";
+    return "";
   }
   const options: {} = { year: "numeric", month: "short", day: "numeric" };
   const [year, month, day] = date.split("-").map(Number);
@@ -215,7 +293,7 @@ export const runtimeFormatter = (minutes: number) => {
  */
 export const joinGenres = (genres: Genre[]) => {
   if (!genres) {
-    return "n/a";
+    return "";
   }
   const names = genres.map((genre) => genre.name).join(", ");
   return names;
@@ -274,10 +352,90 @@ export const trailersArrayFilter = (arr: TrailerVideos[]) => {
   return filteredArray;
 };
 
+/**
+ * takes in a celeb name and returns the initials to be use as fallback for when there is not profile picture available
+ * @param name Tom Hanks
+ * @returns TH
+ */
 export const getInitials = (name: string) => {
   const words = name.split(" ").filter((word) => word.trim() !== "");
-
-  const initials = words.map((word) => word[0].toUpperCase()).join("");
+  const initials = words
+    .map((word) => {
+      if (word.startsWith('"') && word.endsWith('"')) {
+        return word[1].toUpperCase();
+      } else {
+        return word[0].toUpperCase();
+      }
+    })
+    .join("");
 
   return initials || "";
+};
+
+/**
+ *
+ * @param gender
+ * @returns
+ */
+export const genderSelector = (gender: number) => {
+  switch (gender) {
+    case 1:
+      return "Female";
+      break;
+    case 2:
+      return "Male";
+      break;
+    case 3:
+      return "Non-binary";
+      break;
+    default:
+      return "-";
+  }
+};
+
+export const knownForConstructor = (
+  data: CombinedCredits,
+  department: string,
+) => {
+  if (department === "Acting" && data.cast) {
+    const sort = data.cast.sort((a, b) => b.vote_count! - a.vote_count!);
+    const result = formatCreditsCast(sort);
+    return result;
+  } else if (department !== "Acting" && data.crew) {
+    const sort = data.crew.sort((a, b) => b.vote_average! - a.vote_average!);
+    const result = formatCreditsCrew(sort);
+
+    return result;
+  } else {
+    return [];
+  }
+};
+
+const formatCreditsCast = (data: CreditsCast[]) => {
+  return data.map((item) => {
+    const { title, name, poster_path: poster, id, media_type } = item;
+
+    const formatted = {
+      title,
+      name,
+      poster,
+      id,
+      media_type,
+    };
+    return formatted as KnownForCardTypes;
+  });
+};
+const formatCreditsCrew = (data: CreditsCrew[]) => {
+  return data.map((item) => {
+    const { title, name, poster_path: poster, id, media_type } = item;
+
+    const formatted = {
+      title,
+      name,
+      poster,
+      id,
+      media_type,
+    };
+    return formatted as KnownForCardTypes;
+  });
 };

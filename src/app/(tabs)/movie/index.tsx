@@ -6,7 +6,7 @@ import { useGetMovies } from "@/hooks/useGetMovies";
 import { Grid } from "react-native-animated-spinkit";
 import RowFilter from "@/components/common/RowFilter";
 import moment from "moment";
-import { FormattedMovies, TMovies } from "@/lib/types";
+import { FormattedMovies } from "@/lib/types";
 
 export default function Movies() {
   const [selected, setSelected] = useState<string>("day");
@@ -78,7 +78,7 @@ export default function Movies() {
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">In Theaters</Text>
         <FlatList
-          keyExtractor={(item) => item.id!.toString()}
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
           data={inTheaters}
           renderItem={renderItem}
           horizontal
@@ -92,7 +92,7 @@ export default function Movies() {
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">Upcoming</Text>
         <FlatList
-          keyExtractor={(item) => item.id!.toString()}
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
           data={upcoming}
           renderItem={renderItem}
           horizontal
@@ -106,7 +106,7 @@ export default function Movies() {
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">Top Rated</Text>
         <FlatList
-          keyExtractor={(item, index) => item.id!.toString()}
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
           data={popularData}
           renderItem={renderItem}
           horizontal

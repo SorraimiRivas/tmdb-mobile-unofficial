@@ -62,6 +62,7 @@ export default function TV() {
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">Airing Today</Text>
         <FlatList
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
           data={airingTodayData}
           renderItem={renderItem}
           horizontal
@@ -75,6 +76,7 @@ export default function TV() {
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">Top Rated</Text>
         <FlatList
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
           data={topRatedData}
           renderItem={renderItem}
           horizontal
