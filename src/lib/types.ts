@@ -225,18 +225,18 @@ export type PeopleDetails = {
 };
 
 export type FormattedPeopleDetails = {
-  adult: boolean;
-  alsoKnownAs: Array<string>;
+  adult?: boolean;
+  alsoKnownAs?: Array<string>;
   biography: string;
   birthday: string;
   deathday: any;
   gender: number;
-  homepage: string;
+  homepage?: string;
   id: number;
   knownForDepartment: string;
   name: string;
   placeOfBirth: string;
-  popularity: number;
+  popularity?: number;
   profilePath: string;
   externalIds: ExternalIds;
   combinedCredits: CombinedCredits;
