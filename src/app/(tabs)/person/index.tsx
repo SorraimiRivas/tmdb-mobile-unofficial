@@ -36,6 +36,7 @@ const People = () => {
   return (
     <View className="flex-1 items-center">
       <FlatList
+        keyExtractor={(item, index) => `${item.id + index.toString()}`}
         data={data}
         renderItem={renderItem}
         numColumns={2}
