@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import { Link } from "expo-router";
-import {} from "react-native-gesture-handler";
 import { Image } from "expo-image";
 import { imageParser } from "@/lib/utils";
 import { posterSize } from "@/api";
 import { blurhash } from "@/lib/constants";
+import { styled } from "nativewind";
 
 type KnownForCardProps = {
   title?: string | undefined;
@@ -14,6 +14,8 @@ type KnownForCardProps = {
   media_type: "tv" | "movie";
   name?: string | undefined;
 };
+
+const StyledView = styled(View);
 
 const KnownForCard = ({
   title,
@@ -24,19 +26,21 @@ const KnownForCard = ({
 }: KnownForCardProps) => {
   const imageURL = imageParser(poster, posterSize.xl);
 
-  console.log(id, media_type);
-
   return (
     <Link href={`/${media_type}/${id}`} asChild>
       <TouchableOpacity className="gap-4">
-        <View className="shadow-sm shadow-primary">
+        <StyledView
+          className={`${
+            Platform.OS === "ios" ? "shadow-sm" : "shadow-md"
+          } overflow-clip rounded-md bg-primary  shadow-black`}
+        >
           <Image
             source={{ uri: imageURL }}
             className="h-48 w-32 rounded-md"
             contentFit="cover"
             placeholder={blurhash}
           />
-        </View>
+        </StyledView>
         <View className="w-32">
           <Text className="font-bold">{title || name}</Text>
         </View>
