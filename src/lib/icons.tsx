@@ -5,15 +5,6 @@ import {
 } from "@expo/vector-icons";
 import { ExternalIds, SocialMedia } from "./types";
 
-export const icons = {
-  Facebook: <MaterialIcons name="facebook" size={25} color="black" />,
-  Tiktok: <FontAwesome5 name="tiktok" size={25} color="black" />,
-  Twitter: <MaterialCommunityIcons name="twitter" size={25} color="black" />,
-  Instagram: (
-    <MaterialCommunityIcons name="instagram" size={25} color="black" />
-  ),
-};
-
 export const socialMediaConstructor = (item: ExternalIds) => {
   const arr: SocialMedia[] = [];
   const entries = Object.entries(item);
