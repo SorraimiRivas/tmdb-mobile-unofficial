@@ -221,6 +221,7 @@ export type PeopleDetails = {
   popularity: number;
   profile_path: string;
   external_ids: ExternalIds;
+  combined_credits: CombinedCredits;
 };
 
 export type FormattedPeopleDetails = {
@@ -238,6 +239,7 @@ export type FormattedPeopleDetails = {
   popularity: number;
   profilePath: string;
   externalIds: ExternalIds;
+  combinedCredits: CombinedCredits;
 };
 
 export type ExternalIds = {
@@ -253,25 +255,77 @@ export type ExternalIds = {
   youtube_id: any;
 };
 
-export type KnownFor = {
+export type CombinedCredits = {
+  cast: CreditsCast[];
+  crew: CreditsCrew[];
+};
+
+export type CreditsCast = {
   adult?: boolean;
   backdrop_path?: string;
   genre_ids?: Array<number>;
-  id?: number;
-  media_type?: string;
+  id: number;
   original_language?: string;
   original_title?: string;
   overview?: string;
+  popularity?: number;
   poster_path?: string;
   release_date?: string;
-  title: string;
+  title?: string;
   video?: boolean;
   vote_average?: number;
   vote_count?: number;
+  character?: string;
+  credit_id?: string;
+  order?: number;
+  media_type: string;
+  origin_country?: Array<string>;
+  original_name?: string;
+  first_air_date?: string;
+  name?: string;
+  episode_count?: number;
 };
 
-export type FormattedKnownFor = {
+export type CreditsCrew = {
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: Array<number>;
+  id: number;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  popularity?: number;
+  poster_path?: string;
+  release_date?: string;
+  title?: string;
+  video?: boolean;
+  vote_average?: number;
+  vote_count?: number;
+  credit_id?: string;
+  department?: string;
+  job?: string;
+  media_type: string;
+  origin_country?: Array<string>;
+  original_name?: string;
+  first_air_date?: string;
+  name?: string;
+  episode_count?: number;
+};
+
+export type KnownFor = {
+  id: number;
+  media_type: string;
+  poster_path: string;
   title: string;
+  vote_count: number;
+};
+
+export type KnownForCardTypes = {
+  name?: string | undefined;
+  title?: string | undefined;
+  id: number;
+  poster: string;
+  media_type: "tv" | "movie";
 };
 
 export type FormattedPeople = {
