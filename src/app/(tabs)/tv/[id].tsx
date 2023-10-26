@@ -25,8 +25,7 @@ import useGetSeriesById from "@/hooks/useGetSeriesById";
 
 export default function TVDetails() {
   const { id } = useLocalSearchParams();
-
-  const { data, loading, error } = useGetSeriesById(`tv/${id}`, {
+  const { data, loading } = useGetSeriesById(`tv/${id}`, {
     append_to_response: "credits,videos",
   });
 
