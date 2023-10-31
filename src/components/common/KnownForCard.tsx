@@ -13,6 +13,8 @@ type KnownForCardProps = {
   id: number;
   media_type: "tv" | "movie";
   name?: string | undefined;
+  episode_count?: number;
+  original_title: string;
 };
 
 const StyledView = styled(View);
@@ -23,6 +25,8 @@ const KnownForCard = ({
   id,
   media_type,
   name,
+  episode_count,
+  original_title,
 }: KnownForCardProps) => {
   const imageURL = imageParser(poster, posterSize.xl);
 
@@ -43,6 +47,9 @@ const KnownForCard = ({
         </StyledView>
         <View className="w-32">
           <Text className="font-bold">{title || name}</Text>
+          <Text className="mt-2 text-gray-600">
+            {episode_count ? `${episode_count!} episodes` : ""}
+          </Text>
         </View>
       </TouchableOpacity>
     </Link>
