@@ -413,7 +413,15 @@ export const knownForConstructor = (
 
 const formatCreditsCast = (data: CreditsCast[]) => {
   return data.map((item) => {
-    const { title, name, poster_path: poster, id, media_type } = item;
+    const {
+      title,
+      original_title,
+      name,
+      poster_path: poster,
+      id,
+      media_type,
+      episode_count,
+    } = item;
 
     const formatted = {
       title,
@@ -421,6 +429,8 @@ const formatCreditsCast = (data: CreditsCast[]) => {
       poster,
       id,
       media_type,
+      episode_count,
+      original_title,
     };
     return formatted as KnownForCardTypes;
   });
