@@ -13,7 +13,6 @@ import moment from "moment";
 
 import KnownForSection from "@/components/KnownForSection";
 import PersonalInformationSection from "@/components/PersonalInformationSection";
-import Animated from "react-native-reanimated";
 
 const Details = () => {
   const { id } = useLocalSearchParams();
