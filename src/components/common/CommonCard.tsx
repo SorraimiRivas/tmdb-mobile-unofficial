@@ -7,7 +7,6 @@ import { formatDate, imageParser } from "../../lib/utils";
 import { posterSize } from "../../api";
 import NoImageIcon from "./NoImageIcon";
 import { blurhash } from "@/lib/constants";
-import { FormattedKnownFor } from "@/lib/types";
 
 type CommonMovieCardProps = {
   title?: string;
