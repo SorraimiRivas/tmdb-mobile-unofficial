@@ -18,6 +18,15 @@ What can you do?
 
 ![logo](https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg)
 
+## Gallery
+
+![Screenshot_1699702962](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/4889382b-e72b-4b39-b276-b5ed3608e7f1)
+![Screenshot_1699702953](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/7c84dff1-717c-4f17-a2e7-2adfeec9006c)
+![Screenshot_1699702925](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/c1b570b8-0d5d-451d-93a4-51831b735e98)
+![Screenshot_1699702047](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/80e76f2f-c605-4892-9ae9-4668dc2a7454)
+![Screenshot_1699702025](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/732ab7e7-0b75-4f54-ae8e-bdca9bdac617)
+![Screenshot_1699702015](https://github.com/SorraimiRivas/tmdb-mobile-unofficial/assets/73683734/d72d222b-864b-4e48-b583-5f9dc7a8b010)
+
 ## Installation
 
 This repository contains a React Native app built with Expo 49 and Expo Router that utilizes The Movie Database (TMDb) API. To get started, follow these steps:
