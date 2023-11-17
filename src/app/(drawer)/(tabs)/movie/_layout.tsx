@@ -1,3 +1,4 @@
+import { DrawerToggleButton } from "@react-navigation/drawer";
 import { Stack } from "expo-router";
 
 export default function MoviesLayout() {
@@ -10,7 +11,19 @@ export default function MoviesLayout() {
         animation: "slide_from_right",
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Movies" }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          title: "Movies",
+          headerLeft: () => (
+            <DrawerToggleButton
+              tintColor="white"
+              pressOpacity={0.5}
+              pressColor="gray"
+            />
+          ),
+        }}
+      />
       <Stack.Screen name="[id]" options={{ title: "Movie Details" }} />
     </Stack>
   );

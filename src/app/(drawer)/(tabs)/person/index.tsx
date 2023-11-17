@@ -1,4 +1,4 @@
-import { View, Text, useWindowDimensions } from "react-native";
+import { View } from "react-native";
 import React, { useState } from "react";
 import useGetPeople from "@/hooks/useGetPeople";
 import { FlatList } from "react-native-gesture-handler";
