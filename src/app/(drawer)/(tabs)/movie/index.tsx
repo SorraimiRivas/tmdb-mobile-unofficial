@@ -1,35 +1,50 @@
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
-import React, { useState } from "react";
-import { useGetSeries } from "../../../hooks/useGetSeries";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { useState } from "react";
+import { View, Text, ScrollView, FlatList } from "react-native";
+
 import CommonCard from "@/components/common/CommonCard";
-import RowFilter from "@/components/common/RowFilter";
+import { useGetMovies } from "@/hooks/useGetMovies";
 import { Grid } from "react-native-animated-spinkit";
-import { FormattedSeries } from "@/lib/types";
+import RowFilter from "@/components/common/RowFilter";
+import moment from "moment";
+import { FormattedMovies } from "@/lib/types";
 
-export default function TV() {
+export default function Movies() {
   const [selected, setSelected] = useState<string>("day");
-  const { data: trendingData, loading } = useGetSeries(
-    `trending/tv/${selected}`,
-    {},
-  );
-  const { data: airingTodayData } = useGetSeries("/tv/airing_today", {
-    sort_by: "popularity.desc",
-    language: "en-US",
-  });
-  const { data: topRatedData } = useGetSeries("/tv/top_rated", {});
 
-  const renderItem = ({ item }: { item: FormattedSeries }) => {
-    return <CommonCard {...item} type="tv" />;
+  const {
+    data: trendingData,
+    loading,
+    error,
+  } = useGetMovies(`trending/movie/${selected}`, {
+    sort_by: "popularity.desc",
+  });
+
+  const minDate = moment().add(1, "day").format("YYYY-MM-DD");
+  const maxDate = moment().add(180, "days").format("YYYY-MM-DD");
+
+  const { data: popularData } = useGetMovies("movie/top_rated");
+  const { data: inTheaters } = useGetMovies("movie/now_playing");
+  const { data: upcoming } = useGetMovies("discover/movie", {
+    include_adult: false,
+    language: "en-US",
+    page: 1,
+    sort_by: "popularity.desc",
+    with_release_type: 2 | 3,
+    "primary_release_date.gte": minDate,
+    "primary_release_date.lte": maxDate,
+  });
+
+  const renderItem = ({ item }: { item: FormattedMovies }) => {
+    return <CommonCard {...item} type="movie" />;
   };
 
   return (
     <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
-      {/* Trending Series List */}
+      {/* Trending Movies List */}
       <View>
         <View className="mx-4 mt-4 flex flex-row items-center justify-between">
           <Text className="text-2xl font-semibold">Trending</Text>
-          <View className="flex flex-row rounded-full bg-white">
+          <View className="-z-10 flex flex-row rounded-full bg-primary/10">
             <RowFilter
               label="Today"
               selected={selected === "day"}
@@ -48,6 +63,7 @@ export default function TV() {
           </View>
         ) : (
           <FlatList
+            keyExtractor={(item) => item.id!.toString()}
             data={trendingData}
             renderItem={renderItem}
             horizontal
@@ -55,15 +71,15 @@ export default function TV() {
             ListHeaderComponent={<View className="mx-1" />}
             ListFooterComponent={<View className="mx-1" />}
             showsHorizontalScrollIndicator={false}
-          ></FlatList>
+          />
         )}
       </View>
-      {/* Series Airing Today */}
+      {/* Movies In Theaters */}
       <View>
-        <Text className="ml-4 mt-4 text-2xl font-semibold">Airing Today</Text>
+        <Text className="ml-4 mt-4 text-2xl font-semibold">In Theaters</Text>
         <FlatList
           keyExtractor={(item, index) => `${item.id + index.toString()}`}
-          data={airingTodayData}
+          data={inTheaters}
           renderItem={renderItem}
           horizontal
           contentContainerStyle={{ gap: 10 }}
@@ -72,12 +88,26 @@ export default function TV() {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      {/* Top Rated Series */}
+      {/* Upcoming Movies  */}
+      <View>
+        <Text className="ml-4 mt-4 text-2xl font-semibold">Upcoming</Text>
+        <FlatList
+          keyExtractor={(item, index) => `${item.id + index.toString()}`}
+          data={upcoming}
+          renderItem={renderItem}
+          horizontal
+          contentContainerStyle={{ gap: 10 }}
+          ListHeaderComponent={<View className="mx-1" />}
+          ListFooterComponent={<View className="mx-1" />}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+      {/* Top Rated Movies */}
       <View>
         <Text className="ml-4 mt-4 text-2xl font-semibold">Top Rated</Text>
         <FlatList
           keyExtractor={(item, index) => `${item.id + index.toString()}`}
-          data={topRatedData}
+          data={popularData}
           renderItem={renderItem}
           horizontal
           contentContainerStyle={{ gap: 10 }}

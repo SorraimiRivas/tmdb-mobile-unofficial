@@ -20,6 +20,10 @@ import {
   CreditsCrew,
 } from "./types";
 
+export const prettify = (data: any) => {
+  console.log(JSON.stringify(data, null, 2));
+};
+
 /**
  * takes in an array of TMovies and returns a formatted array of FormattedMovies
  * @param data

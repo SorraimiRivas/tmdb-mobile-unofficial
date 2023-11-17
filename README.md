@@ -18,6 +18,17 @@ What can you do?
 
 ![logo](https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg)
 
+## Gallery
+
+<div align="center">
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702015.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702025.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702047.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702925.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702953.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702962.png" width="200" />
+</div>
+
 ## Installation
 
 This repository contains a React Native app built with Expo 49 and Expo Router that utilizes The Movie Database (TMDb) API. To get started, follow these steps:
