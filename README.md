@@ -21,12 +21,12 @@ What can you do?
 ## Gallery
 
 <div align="center">
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702015.png" width="300" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702025.png" width="300" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702047.png" width="300" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702925.png" width="300" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702953.png" width="300" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702962.png" width="300" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702015.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702025.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702047.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702925.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702953.png" width="200" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/drawer-navigation/src/assets/images/Screenshot_1699702962.png" width="200" />
 </div>
 
 ## Installation
