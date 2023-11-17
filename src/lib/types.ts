@@ -326,6 +326,8 @@ export type KnownForCardTypes = {
   id: number;
   poster: string;
   media_type: "tv" | "movie";
+  episode_count: number;
+  original_title: string;
 };
 
 export type FormattedPeople = {
@@ -356,6 +358,9 @@ export type Account = {
 
 export type Avatar = {
   gravatar: Gravatar;
+  tmdb: {
+    avatar_path: string;
+  };
 };
 
 export type Gravatar = {

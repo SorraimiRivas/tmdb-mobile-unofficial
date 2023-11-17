@@ -20,6 +20,10 @@ import {
   CreditsCrew,
 } from "./types";
 
+export const prettify = (data: any) => {
+  console.log(JSON.stringify(data, null, 2));
+};
+
 /**
  * takes in an array of TMovies and returns a formatted array of FormattedMovies
  * @param data
@@ -413,7 +417,15 @@ export const knownForConstructor = (
 
 const formatCreditsCast = (data: CreditsCast[]) => {
   return data.map((item) => {
-    const { title, name, poster_path: poster, id, media_type } = item;
+    const {
+      title,
+      original_title,
+      name,
+      poster_path: poster,
+      id,
+      media_type,
+      episode_count,
+    } = item;
 
     const formatted = {
       title,
@@ -421,6 +433,8 @@ const formatCreditsCast = (data: CreditsCast[]) => {
       poster,
       id,
       media_type,
+      episode_count,
+      original_title,
     };
     return formatted as KnownForCardTypes;
   });
