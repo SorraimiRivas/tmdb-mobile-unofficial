@@ -5,12 +5,14 @@ export type Session = {
   session_id: string;
   success: boolean;
   account: Account | null;
+  isLogged: boolean;
 };
 
 const initialState: Session = {
   success: false,
   session_id: "",
   account: null,
+  isLogged: false,
 };
 
 const userSession = createSlice({
@@ -31,10 +33,14 @@ const userSession = createSlice({
         iso_3166_1: payload.iso_3166_1,
         iso_639_1: payload.iso_639_1,
       };
+      state.isLogged = true;
     },
 
     logout: (state: Session) => {
-      (state.session_id = ""), (state.success = false), (state.account = null);
+      (state.session_id = ""),
+        (state.success = false),
+        (state.account = null),
+        (state.isLogged = false);
     },
   },
 });

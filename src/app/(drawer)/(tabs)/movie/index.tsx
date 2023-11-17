@@ -44,7 +44,7 @@ export default function Movies() {
       <View>
         <View className="mx-4 mt-4 flex flex-row items-center justify-between">
           <Text className="text-2xl font-semibold">Trending</Text>
-          <View className="flex flex-row rounded-full bg-primary/10">
+          <View className="-z-10 flex flex-row rounded-full bg-primary/10">
             <RowFilter
               label="Today"
               selected={selected === "day"}
