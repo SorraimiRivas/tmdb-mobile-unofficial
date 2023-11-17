@@ -10,7 +10,6 @@ const PeopleLayout = () => {
         screenOptions={{
           headerTintColor: "white",
           headerStyle: { backgroundColor: "#0d253f" },
-          headerBackTitleVisible: true,
           headerTitleAlign: "center",
           animation: "slide_from_right",
         }}

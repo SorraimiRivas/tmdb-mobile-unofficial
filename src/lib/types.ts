@@ -356,6 +356,9 @@ export type Account = {
 
 export type Avatar = {
   gravatar: Gravatar;
+  tmdb: {
+    avatar_path: string;
+  };
 };
 
 export type Gravatar = {

@@ -6,7 +6,6 @@ export default function TVLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShadowVisible: false,
         headerTitleAlign: "center",
         headerTintColor: "white",
         animation: "slide_from_right",
