@@ -1,7 +1,7 @@
 /**
  * Simple Movies Type for Movies Array Result from TMDB
  */
-export type TMovies = {
+export type Movies = {
   id: number;
   title: string;
   poster_path: string;
@@ -18,6 +18,7 @@ export type FormattedMovies = {
   poster: string;
   releaseDate: string;
   voteAverage: number | string;
+  mediaType: string;
 };
 
 /**
@@ -42,6 +43,7 @@ export type MovieDetails = {
  *
  */
 export type FormattedMovieDetails = {
+  adult?: boolean;
   id: number;
   poster: string;
   backdrop: string;
@@ -54,6 +56,8 @@ export type FormattedMovieDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
+  genreIds?: Array<number>;
+  mediaType: string;
 };
 
 /**
@@ -150,8 +154,12 @@ export type FormattedSeries = {
   poster: string;
   firstAirDate: string;
   voteAverage: number | string;
+  mediaType: string;
 };
 
+/**
+ *
+ */
 export type SeriesDetails = {
   id: number;
   poster_path: string;
@@ -166,6 +174,9 @@ export type SeriesDetails = {
   videos: Videos;
 };
 
+/**
+ *
+ */
 export type FormattedSeriesDetails = {
   id: number;
   poster: string | null;
@@ -178,4 +189,185 @@ export type FormattedSeriesDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
+  mediaType: string;
+};
+
+/**
+ *
+ */
+export type People = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for: KnownFor[];
+  known_for_department: string;
+  name: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export type PeopleDetails = {
+  adult: boolean;
+  also_known_as: Array<string>;
+  biography: string;
+  birthday: string;
+  deathday: any;
+  gender: number;
+  homepage: any;
+  id: number;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+  external_ids: ExternalIds;
+  combined_credits: CombinedCredits;
+};
+
+export type FormattedPeopleDetails = {
+  adult?: boolean;
+  alsoKnownAs?: Array<string>;
+  biography: string;
+  birthday: string;
+  deathday: any;
+  gender: number;
+  homepage?: string;
+  id: number;
+  knownForDepartment: string;
+  name: string;
+  placeOfBirth: string;
+  popularity?: number;
+  profilePath: string;
+  externalIds: ExternalIds;
+  combinedCredits: CombinedCredits;
+};
+
+export type ExternalIds = {
+  freebase_mid: string;
+  freebase_id: string;
+  imdb_id: string;
+  tvrage_id: number;
+  wikidata_id: string;
+  facebook_id: any;
+  instagram_id: any;
+  tiktok_id: any;
+  twitter_id: any;
+  youtube_id: any;
+};
+
+export type CombinedCredits = {
+  cast: CreditsCast[];
+  crew: CreditsCrew[];
+};
+
+export type CreditsCast = {
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: Array<number>;
+  id: number;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  popularity?: number;
+  poster_path?: string;
+  release_date?: string;
+  title?: string;
+  video?: boolean;
+  vote_average?: number;
+  vote_count?: number;
+  character?: string;
+  credit_id?: string;
+  order?: number;
+  media_type: string;
+  origin_country?: Array<string>;
+  original_name?: string;
+  first_air_date?: string;
+  name?: string;
+  episode_count?: number;
+};
+
+export type CreditsCrew = {
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: Array<number>;
+  id: number;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  popularity?: number;
+  poster_path?: string;
+  release_date?: string;
+  title?: string;
+  video?: boolean;
+  vote_average?: number;
+  vote_count?: number;
+  credit_id?: string;
+  department?: string;
+  job?: string;
+  media_type: string;
+  origin_country?: Array<string>;
+  original_name?: string;
+  first_air_date?: string;
+  name?: string;
+  episode_count?: number;
+};
+
+export type KnownFor = {
+  id: number;
+  media_type: string;
+  poster_path: string;
+  title: string;
+  vote_count: number;
+};
+
+export type KnownForCardTypes = {
+  name?: string | undefined;
+  title?: string | undefined;
+  id: number;
+  poster: string;
+  media_type: "tv" | "movie";
+  episode_count: number;
+  original_title: string;
+};
+
+export type FormattedPeople = {
+  id: number;
+  name: string;
+  profilePath: string;
+  mediaType: string;
+};
+
+/**
+ *
+ */
+export type RequestToken = {
+  success: boolean;
+  expires_at: string;
+  request_token: string;
+};
+
+export type Account = {
+  avatar: Avatar | null;
+  id: number | null;
+  iso_639_1?: string;
+  iso_3166_1?: string;
+  name: string | null;
+  include_adult?: boolean;
+  username: string | null;
+};
+
+export type Avatar = {
+  gravatar: Gravatar;
+  tmdb: {
+    avatar_path: string;
+  };
+};
+
+export type Gravatar = {
+  hash: string;
+};
+
+export type SocialMedia = {
+  href: string;
+  icon: string | React.ReactElement;
 };

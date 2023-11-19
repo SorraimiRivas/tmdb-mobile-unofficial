@@ -11,7 +11,6 @@ import {
 } from "@/lib/utils";
 import { backdropSize, posterSize } from "@/api";
 import { Grid } from "react-native-animated-spinkit";
-import { StatusBar } from "expo-status-bar";
 import BannerSection from "@/components/BannerSection";
 import DetailsSection from "@/components/DetailsSection";
 import { FlatList } from "react-native-gesture-handler";
@@ -45,7 +44,6 @@ export default function Details() {
       className="relative flex flex-1 flex-col"
       style={{ width: width }}
     >
-      <StatusBar style="auto" />
       <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
       <DetailsSection
         overview={data?.overview!}
