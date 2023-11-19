@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Popover from "react-native-popover-view";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
 import { Pressable, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import Popover from "react-native-popover-view";
 import { TrailerVideos } from "@/lib/types";
 import { Link } from "expo-router";
 

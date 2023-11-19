@@ -1,11 +1,14 @@
-import { Stack } from "expo-router";
+import { store } from "@/redux/store";
+import { Slot } from "expo-router";
+import { setStatusBarStyle } from "expo-status-bar";
+import { Provider } from "react-redux";
 
-export default function RootLayout() {
+export default function Root() {
+  setStatusBarStyle("light");
+
   return (
-    <Stack screenOptions={{ headerShadowVisible: false }}>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="login" />
-      <Stack.Screen name="register" />
-    </Stack>
+    <Provider store={store}>
+      <Slot />
+    </Provider>
   );
 }
