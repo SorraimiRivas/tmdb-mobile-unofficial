@@ -39,7 +39,7 @@ const Profile = () => {
 
   return (
     <View className="flex-1">
-      <View className="relative h-20 bg-primary">
+      <View className="relative h-24 bg-primary">
         <View className="top-[50%] ml-4">
           <DrawerToggleButton tintColor="white" />
         </View>
@@ -56,7 +56,7 @@ const Profile = () => {
       {/* Favorites Movies */}
       <ScrollView className="mb-4">
         <View className="mt-4">
-          <Text className="ml-7 text-xl font-bold">Favorite Movies</Text>
+          <Text className="ml-4 text-xl font-bold">Favorite Movies</Text>
           <FlatList
             data={movieData}
             horizontal
@@ -67,14 +67,14 @@ const Profile = () => {
                 <Text>No items found</Text>
               </View>
             )}
-            contentContainerStyle={{ gap: 20 }}
+            contentContainerStyle={{ gap: 10 }}
             ListHeaderComponent={<View className="mx-1" />}
             ListFooterComponent={<View className="mx-1" />}
           />
         </View>
         {/* Favorite Series */}
         <View className="mt-4">
-          <Text className="ml-7 text-xl font-bold">Favorite Series</Text>
+          <Text className="ml-4 text-xl font-bold">Favorite Series</Text>
           <FlatList
             data={seriesData}
             horizontal
@@ -85,7 +85,7 @@ const Profile = () => {
                 <Text>No items found</Text>
               </View>
             )}
-            contentContainerStyle={{ gap: 20 }}
+            contentContainerStyle={{ gap: 10 }}
             ListHeaderComponent={<View className="mx-1" />}
             ListFooterComponent={<View className="mx-1" />}
           />
