@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Fold } from "react-native-animated-spinkit";
@@ -13,19 +13,25 @@ export default function login() {
   const router = useRouter();
   const { permission, validatedToken } = useLocalSearchParams();
 
+  // initiates the login process
   const handleLogin = async () => {
     const token = await getRequestToken();
     router.push({ pathname: "/login/sign-in", params: { token } });
   };
+
+  // redirects to the home page
   const handleExplore = () => {
     router.replace("/(drawer)/(tabs)/movie");
   };
+
+  // checks if permission were given to then redirect to home screen with user logged in
   useEffect(() => {
     if (permission === "allow") {
       getUserAccount(validatedToken);
       router.replace("/(drawer)/(tabs)/movie/");
     }
   }, []);
+
   return loading ? (
     <View className="flex-1 items-center justify-center">
       <Fold size={40} color="#01b4e4" />
