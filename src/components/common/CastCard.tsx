@@ -24,25 +24,21 @@ const CastCard = ({ name, profile_path, character, id }: CastCardProps) => {
         {profileURL ? (
           <Image
             source={{ uri: profileURL }}
-            className="h-32 w-32 rounded-full "
+            className="h-44 w-32 rounded-md"
             contentFit="cover"
             placeholder={blurhash}
             transition={1000}
           />
         ) : (
-          <View className="h-32 w-32 items-center justify-center rounded-full bg-tertiary">
+          <View className="h-44 w-32 items-center justify-center rounded-md bg-tertiary">
             <Text className="text-4xl font-bold text-gray-600">{initials}</Text>
           </View>
         )}
         <View className="mt-1 flex flex-col ">
-          <Text
-            className="text-center font-bold"
-            ellipsizeMode="tail"
-            numberOfLines={2}
-          >
+          <Text className="font-bold" ellipsizeMode="tail" numberOfLines={2}>
             {name}
           </Text>
-          <Text className="text-center text-gray-600">{character}</Text>
+          <Text className="text-gray-600">{character}</Text>
         </View>
       </TouchableOpacity>
     </Link>
