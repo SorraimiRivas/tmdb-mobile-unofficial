@@ -33,7 +33,7 @@ const Details = () => {
       <Grid size={50} color="black" />
     </View>
   ) : (
-    <ScrollView className="flex-1">
+    <ScrollView className="mb-20 flex-1">
       <Stack.Screen
         options={{
           title: data?.name,

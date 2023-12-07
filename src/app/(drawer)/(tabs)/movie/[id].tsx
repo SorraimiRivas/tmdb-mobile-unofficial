@@ -41,7 +41,7 @@ export default function Details() {
     </View>
   ) : (
     <ScrollView
-      className="relative flex flex-1 flex-col"
+      className="relative mb-20 flex flex-1 flex-col"
       style={{ width: width }}
     >
       <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />

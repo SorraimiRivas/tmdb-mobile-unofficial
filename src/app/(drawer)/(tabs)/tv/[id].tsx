@@ -47,7 +47,7 @@ export default function TVDetails() {
     </View>
   ) : (
     <ScrollView
-      className="relative flex flex-1 flex-col"
+      className="relative mb-20 flex flex-1 flex-col"
       style={{ width: width }}
       showsVerticalScrollIndicator={false}
     >
