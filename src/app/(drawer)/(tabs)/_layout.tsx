@@ -14,9 +14,8 @@ export default function TabsLayout() {
         headerStyle: { backgroundColor: "#0d253f" },
         headerTintColor: "white",
         headerTitleAlign: "center",
-        tabBarInactiveTintColor: "#e5e7eb",
+        tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
         tabBarActiveTintColor: "white",
-        tabBarLabelStyle: { fontSize: 14, fontWeight: "600" },
         tabBarStyle: {
           backgroundColor: "#0d253f",
           height: 70,
@@ -25,14 +24,26 @@ export default function TabsLayout() {
           marginBottom: 16,
           marginHorizontal: 10,
         },
+        tabBarLabelStyle: {
+          ...Platform.select({
+            android: {
+              marginBottom: 10,
+            },
+            ios: {
+              height: 15,
+              top: 5,
+            },
+          }),
+          fontSize: 13,
+          fontWeight: "600",
+        },
         tabBarItemStyle: {
           ...Platform.select({
             ios: {
-              top: 14,
+              top: 10,
             },
           }),
         },
-        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen
@@ -44,7 +55,7 @@ export default function TabsLayout() {
             <MaterialIcons
               name="movie"
               color={color}
-              size={35}
+              size={28}
               style={{ opacity: focused ? 1 : 0.5 }}
             />
           ),
@@ -59,7 +70,7 @@ export default function TabsLayout() {
             <MaterialIcons
               name="live-tv"
               color={color}
-              size={35}
+              size={28}
               style={{ opacity: focused ? 1 : 0.5 }}
             />
           ),
@@ -74,7 +85,7 @@ export default function TabsLayout() {
             <MaterialIcons
               name="people"
               color={color}
-              size={35}
+              size={28}
               style={{ opacity: focused ? 1 : 0.5 }}
             />
           ),
