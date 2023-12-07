@@ -24,7 +24,7 @@ export default function TV() {
   };
 
   return (
-    <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
+    <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
       {/* Trending Series List */}
       <View>
         <View className="mx-4 mt-4 flex flex-row items-center justify-between">

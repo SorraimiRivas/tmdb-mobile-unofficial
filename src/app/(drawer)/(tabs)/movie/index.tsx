@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
+import Constants from "expo-constants";
 
 import CommonCard from "@/components/common/CommonCard";
 import { useGetMovies } from "@/hooks/useGetMovies";
@@ -39,7 +40,7 @@ export default function Movies() {
   };
 
   return (
-    <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
+    <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
       {/* Trending Movies List */}
       <View>
         <View className="mx-4 mt-4 flex flex-row items-center justify-between">
