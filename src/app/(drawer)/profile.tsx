@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 
 import CountryFlag from "react-native-country-flag";
 
-import useGetUserFavoriteMovies from "@/hooks/useGetUserFavoriteMovies";
+import useGetUserFavorites from "@/hooks/useGetUserFavoriteMovies";
 import { FormattedMovies, FormattedSeries } from "@/lib/types";
 import CommonCard from "@/components/common/CommonCard";
 import { useAppSelector } from "@/hooks/useRedux";
@@ -13,13 +13,14 @@ import { profileSize } from "@/api";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
-import { useEffect } from "react";
 
 const Profile = () => {
   const router = useRouter();
   const { account, isLogged } = useAppSelector((state) => state.userSession);
-  const { data: movieData } = useGetUserFavoriteMovies("movies");
-  const { data: seriesData } = useGetUserFavoriteMovies("tv");
+  const { data: movieData, loading: loadingMovie } =
+    useGetUserFavorites("movies");
+  const { data: seriesData, loading: loadingSeries } =
+    useGetUserFavorites("tv");
 
   const avatar = account?.avatar?.tmdb.avatar_path;
   const avatarURL = imageParser(avatar, profileSize.original);
@@ -40,11 +41,9 @@ const Profile = () => {
     return <CommonCard {...item} type="tv" />;
   };
 
-  useEffect(() => {
-    if (!isLogged) {
-      router.replace("/login/");
-    }
-  }, []);
+  if (!isLogged) {
+    router.replace("/login/");
+  }
 
   return (
     <View className="flex-1">
@@ -53,7 +52,7 @@ const Profile = () => {
           <DrawerToggleButton tintColor="white" />
         </View>
       </View>
-      {isLogged && (
+      {isLogged && !loadingMovie && !loadingSeries && (
         <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
           <View className="mt-4 items-center">
             <Image
@@ -67,7 +66,7 @@ const Profile = () => {
             </Text>
             <CountryFlag isoCode={flagCode} size={40} />
           </View>
-          {/* Favorites Movies */}
+          {/* Favorite Movies */}
           <View className="mt-4">
             <Text className="ml-4 text-xl font-bold">Favorite Movies</Text>
             <FlatList
