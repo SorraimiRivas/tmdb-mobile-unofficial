@@ -22,12 +22,26 @@ import { backdropSize, posterSize } from "@/api";
 import BannerSection from "@/components/BannerSection";
 import DetailsSection from "@/components/DetailsSection";
 import useGetSeriesById from "@/hooks/useGetSeriesById";
+import ListButton from "@/components/common/actions/ListButton";
+import FavoriteButton from "@/components/common/actions/FavoriteButton";
+import WatchlistButton from "@/components/common/actions/WatchlistButton";
+import RatingButton from "@/components/common/actions/RatingButton";
+import useFavorites from "@/hooks/useAddFavorites";
+import useAddWatchlist from "@/hooks/useAddWatchlist";
+import useGetAccountStates from "@/hooks/useGetItemState";
 
 export default function TVDetails() {
   const { id } = useLocalSearchParams();
   const { data, loading } = useGetSeriesById(`tv/${id}`, {
     append_to_response: "credits,videos",
   });
+
+  const { addFavorite } = useFavorites();
+  const { addWatchlist } = useAddWatchlist();
+  const { data: stateData, refetchItemState } = useGetAccountStates(
+    Number(id),
+    "tv",
+  );
 
   const { width } = useWindowDimensions();
 
@@ -41,6 +55,24 @@ export default function TVDetails() {
   const firstAirDate = formatDate(data?.firstAirDate!);
   const trailers = trailersArrayFilter(data?.videos.results!);
 
+  const handleAddFavorite = async () => {
+    await addFavorite({
+      media_type: "tv",
+      favorite: !stateData?.favorite,
+      media_id: Number(id),
+    });
+    refetchItemState();
+  };
+
+  const handleAddWatchlist = () => {
+    addWatchlist({
+      media_type: "tv",
+      watchlist: !stateData?.watchlist,
+      media_id: Number(id),
+    });
+    refetchItemState();
+  };
+
   return loading ? (
     <View className="flex-1 items-center justify-center">
       <Fold size={50} color="#01b4e4" />
@@ -52,7 +84,24 @@ export default function TVDetails() {
       showsVerticalScrollIndicator={false}
     >
       <StatusBar style="auto" />
-      <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
+      <View className="relative">
+        <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
+        <View
+          className="absolute bottom-2 right-4 flex flex-row items-center"
+          style={{ gap: 5 }}
+        >
+          <ListButton />
+          <FavoriteButton
+            onPress={handleAddFavorite}
+            isFavorite={stateData?.favorite!}
+          />
+          <WatchlistButton
+            onPress={handleAddWatchlist}
+            isWatchlisted={stateData?.watchlist!}
+          />
+          <RatingButton />
+        </View>
+      </View>
       <DetailsSection
         overview={data?.overview!}
         title={data?.title!}
@@ -62,9 +111,9 @@ export default function TVDetails() {
         voteAverage={data?.voteAverage!}
         trailers={trailers!}
       />
-      {data?.credits.cast ? (
-        <View className="mx-4 mb-6">
-          <Text className="mb-4 text-lg font-bold">Series Cast</Text>
+      {data?.credits.cast.length !== 0 ? (
+        <View className="my-6">
+          <Text className="mb-4 ml-4 text-lg font-bold">Series Cast</Text>
           <FlatList
             horizontal
             keyExtractor={(item) => item.id!.toString()}
@@ -72,6 +121,8 @@ export default function TVDetails() {
             renderItem={renderItem}
             contentContainerStyle={{ gap: 10 }}
             showsHorizontalScrollIndicator={false}
+            ListHeaderComponent={<View className="mx-1" />}
+            ListFooterComponent={<View className="mx-1" />}
           />
         </View>
       ) : null}

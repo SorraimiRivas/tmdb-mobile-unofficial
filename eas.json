@@ -1,18 +1,20 @@
 {
-  "cli": {
-    "version": ">= 5.4.0"
-  },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
     "preview": {
+      "env": {
+        "EXPO_PUBLIC_API_KEY": "c58ba255a1812aec5648801720cc5400",
+        "EXPO_PUBLIC_ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNThiYTI1NWExODEyYWVjNTY0ODgwMTcyMGNjNTQwMCIsInN1YiI6IjYyZDRkNzVhMjNiY2Y0MDA0Zjk4ZTIxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.py2JuqUmEDICGlrVO7wrsp1AQM22hEBODT-X9HQtbbM"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "developmentClient": true
+    },
+    "preview3": {
       "distribution": "internal"
     },
-    "production": {}
-  },
-  "submit": {
     "production": {}
   }
 }
