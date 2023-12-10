@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 
 import { getInitials, imageParser } from "@/lib/utils";
 import { profileSize } from "@/api";
 import { blurhash } from "@/lib/constants";
 import { Link } from "expo-router";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 type CastCardProps = {
   name: string;
@@ -20,7 +19,7 @@ const CastCard = ({ name, profile_path, character, id }: CastCardProps) => {
 
   return (
     <Link href={`/person/${id}`} className="w-32" asChild>
-      <TouchableOpacity className="w-32">
+      <Pressable className="w-32">
         {profileURL ? (
           <Image
             source={{ uri: profileURL }}
@@ -40,7 +39,7 @@ const CastCard = ({ name, profile_path, character, id }: CastCardProps) => {
           </Text>
           <Text className="text-gray-600">{character}</Text>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </Link>
   );
 };
