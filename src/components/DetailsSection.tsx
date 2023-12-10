@@ -41,7 +41,7 @@ const DetailsSection = ({
   const ratingColor = getColorByRating(rating);
 
   return (
-    <View className="mb-6 w-full flex-1 bg-white px-4 py-6">
+    <View className="w-full flex-1 bg-white px-4 py-6">
       <Text className="mt-2 text-center text-lg font-bold">{title}</Text>
       <View className="my-4 flex flex-1 flex-row items-center justify-around">
         {/* Left */}
