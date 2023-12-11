@@ -14,7 +14,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sorraimi.rivas.tmdbmobile"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,12 +29,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-build-properties",
-      {
-        "ios": {
-          "deploymentTarget": "13.0"
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "13.0"
+          }
         }
-      }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

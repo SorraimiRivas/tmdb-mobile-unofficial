@@ -2,7 +2,7 @@ import axios from "axios";
 import { postRequestOptions } from "@/api";
 import { useAppSelector } from "./useRedux";
 import { useState } from "react";
-import { Alert } from "react-native";
+import * as Burnt from "burnt";
 
 type PostData = {
   media_type: string;
@@ -31,11 +31,29 @@ const useFavorites = () => {
         url: `account/${account?.id}/favorite`,
         data,
       });
+      setError(res.data.status_message);
       setLoading(false);
-      Alert.alert(res.data.status_message);
+      //Success Toast
+      Burnt.toast({
+        title: "Success",
+        preset: "done",
+        message: res.data.status_message,
+        haptic: "success",
+        duration: 2,
+        shouldDismissByDrag: true,
+        from: "top",
+      });
     } catch (err: any) {
-      setError(err);
-      console.log(err.message);
+      // Failure Toast
+      Burnt.toast({
+        title: "Failed",
+        preset: "error",
+        message: error,
+        haptic: "error",
+        duration: 2,
+        shouldDismissByDrag: true,
+        from: "top",
+      });
     }
   };
 
