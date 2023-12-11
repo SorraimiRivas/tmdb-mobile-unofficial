@@ -2,7 +2,7 @@ import axios from "axios";
 import { postRequestOptions } from "@/api";
 import { useAppSelector } from "./useRedux";
 import { useState } from "react";
-import { Alert } from "react-native";
+import * as Burnt from "burnt";
 
 type PostData = {
   media_type: string;
@@ -26,18 +26,35 @@ const useAddWatchlist = () => {
 
   const addWatchlist = async (data: PostData) => {
     setLoading(true);
+    console.log("trying");
+
     try {
       const res: Response = await axios.request({
         ...postRequestOptions,
         url: `account/${account?.id}/watchlist`,
         data,
       });
+      setError(res.data.status_message);
       setLoading(false);
-      setSuccess(res.data.success);
-      Alert.alert(res.data.status_message);
+      // Toast
+      Burnt.toast({
+        title: "Success",
+        preset: "done",
+        message: res.data.status_message,
+        haptic: "success",
+        duration: 2,
+        shouldDismissByDrag: true,
+        from: "top",
+      });
     } catch (err: any) {
-      setError(err);
-      console.log(err.message);
+      Burnt.toast({
+        title: "Failed",
+        preset: "error",
+        message: error,
+        haptic: "error",
+        shouldDismissByDrag: true,
+        from: "top",
+      });
     }
   };
 
