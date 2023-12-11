@@ -5,9 +5,9 @@ import {
   useWindowDimensions,
   FlatList,
 } from "react-native";
+import { Grid } from "react-native-animated-spinkit";
 import { useLocalSearchParams } from "expo-router";
 
-import useGetMovieById from "@/hooks/useGetMovieById";
 import {
   formatDate,
   imageParser,
@@ -15,23 +15,23 @@ import {
   runtimeFormatter,
   trailersArrayFilter,
 } from "@/lib/utils";
-import { backdropSize, posterSize } from "@/api";
-import { Grid } from "react-native-animated-spinkit";
-import BannerSection from "@/components/BannerSection";
-import DetailsSection from "@/components/DetailsSection";
-import { Cast } from "@/lib/types";
-import CastCard from "@/components/common/CastCard";
-import FavoriteButton from "@/components/common/actions/FavoriteButton";
-import useFavorites from "@/hooks/useAddFavorites";
 import WatchlistButton from "@/components/common/actions/WatchlistButton";
+import FavoriteButton from "@/components/common/actions/FavoriteButton";
 import RatingButton from "@/components/common/actions/RatingButton";
 import ListButton from "@/components/common/actions/ListButton";
-import useAddWatchlist from "@/hooks/useAddWatchlist";
 import useGetAccountStates from "@/hooks/useGetItemState";
+import DetailsSection from "@/components/DetailsSection";
+import BannerSection from "@/components/BannerSection";
+import useGetMovieById from "@/hooks/useGetMovieById";
+import useAddWatchlist from "@/hooks/useAddWatchlist";
+import CastCard from "@/components/common/CastCard";
+import useFavorites from "@/hooks/useAddFavorites";
+import { backdropSize, posterSize } from "@/api";
+import { Cast } from "@/lib/types";
 
 export default function Details() {
   const { id } = useLocalSearchParams();
-  const { data, loading, error } = useGetMovieById(`movie/${id}`, {
+  const { data, loading } = useGetMovieById(`movie/${id}`, {
     append_to_response: "credits,videos",
   });
 
