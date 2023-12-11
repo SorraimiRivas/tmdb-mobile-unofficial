@@ -77,10 +77,11 @@ const Profile = () => {
               contentContainerStyle={{ gap: 10 }}
               ListHeaderComponent={<View className="mx-1" />}
               ListFooterComponent={<View className="mx-1" />}
+              showsHorizontalScrollIndicator={false}
             />
           </View>
           {/* Favorite Series */}
-          <View className="mt-4">
+          <View className="my-4">
             <Text className="ml-4 text-xl font-bold">Favorite Series</Text>
             <FlatList
               data={seriesData}
@@ -90,6 +91,7 @@ const Profile = () => {
               contentContainerStyle={{ gap: 10 }}
               ListHeaderComponent={<View className="mx-1" />}
               ListFooterComponent={<View className="mx-1" />}
+              showsHorizontalScrollIndicator={false}
             />
           </View>
         </ScrollView>
