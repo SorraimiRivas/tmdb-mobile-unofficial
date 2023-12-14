@@ -54,7 +54,7 @@ const CommonCard = ({
         {imageURL ? (
           <StyledView
             className={`${
-              Platform.OS === "ios" ? "shadow-md" : "shadow-xl"
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
             } mb-3 h-[250] overflow-clip  rounded-md bg-primary shadow-black`}
           >
             <Image
@@ -69,8 +69,10 @@ const CommonCard = ({
           <NoImageIcon styles="h-[250] w-full rounded-md bg-primary" />
         )}
         <View className="mt-2 flex flex-col gap-1">
-          <Text className="text-base font-semibold">{title || name}</Text>
-          {/* TODO: => use better validation */}
+          <Text numberOfLines={2} className="text-base font-semibold">
+            {title || name}
+          </Text>
+          {/* TODO: use better validation */}
           {formattedDate !== "n/a" ? (
             <Text className=" text-xs text-gray-600">{formattedDate}</Text>
           ) : null}

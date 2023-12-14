@@ -5,30 +5,30 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { useLocalSearchParams } from "expo-router";
-import { Fold } from "react-native-animated-spinkit";
 
-import { Cast } from "@/lib/types";
-import CastCard from "@/components/common/CastCard";
+import { Fold } from "react-native-animated-spinkit";
+import { useLocalSearchParams } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+
 import {
   formatDate,
   imageParser,
   joinGenres,
   trailersArrayFilter,
 } from "@/lib/utils";
-import { backdropSize, posterSize } from "@/api";
-import BannerSection from "@/components/BannerSection";
+import WatchlistButton from "@/components/common/actions/WatchlistButton";
+import FavoriteButton from "@/components/common/actions/FavoriteButton";
+import RatingButton from "@/components/common/actions/RatingButton";
+import ListButton from "@/components/common/actions/ListButton";
+import useGetAccountStates from "@/hooks/useGetItemState";
 import DetailsSection from "@/components/DetailsSection";
 import useGetSeriesById from "@/hooks/useGetSeriesById";
-import ListButton from "@/components/common/actions/ListButton";
-import FavoriteButton from "@/components/common/actions/FavoriteButton";
-import WatchlistButton from "@/components/common/actions/WatchlistButton";
-import RatingButton from "@/components/common/actions/RatingButton";
-import useFavorites from "@/hooks/useAddFavorites";
+import BannerSection from "@/components/BannerSection";
 import useAddWatchlist from "@/hooks/useAddWatchlist";
-import useGetAccountStates from "@/hooks/useGetItemState";
+import CastCard from "@/components/common/CastCard";
+import useFavorites from "@/hooks/useAddFavorites";
+import { backdropSize, posterSize } from "@/api";
+import { Cast } from "@/lib/types";
 
 export default function TVDetails() {
   const { id } = useLocalSearchParams();
@@ -86,10 +86,7 @@ export default function TVDetails() {
       <StatusBar style="auto" />
       <View className="relative">
         <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
-        <View
-          className="absolute bottom-2 right-4 flex flex-row items-center"
-          style={{ gap: 5 }}
-        >
+        <View className="absolute bottom-2 right-4 flex flex-row items-center">
           <ListButton />
           <FavoriteButton
             onPress={handleAddFavorite}
@@ -99,7 +96,7 @@ export default function TVDetails() {
             onPress={handleAddWatchlist}
             isWatchlisted={stateData?.watchlist!}
           />
-          <RatingButton />
+          <RatingButton media_id={Number(id)} media_type="tv" />
         </View>
       </View>
       <DetailsSection

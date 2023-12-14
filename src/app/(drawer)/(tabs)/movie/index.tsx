@@ -20,11 +20,12 @@ export default function Movies() {
     sort_by: "popularity.desc",
   });
 
+  // TODO: update to Date-fns
   const minDate = moment().add(1, "day").format("YYYY-MM-DD");
   const maxDate = moment().add(180, "days").format("YYYY-MM-DD");
 
-  const { data: popularData } = useGetMovies("movie/top_rated");
   const { data: inTheaters } = useGetMovies("movie/now_playing");
+  const { data: popularData } = useGetMovies("movie/top_rated");
   const { data: upcoming } = useGetMovies("discover/movie", {
     include_adult: false,
     language: "en-US",
