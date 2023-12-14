@@ -3,17 +3,18 @@ import { useEffect, useState } from "react";
 import { getRequestOptions } from "@/api";
 import { useAppSelector } from "./useRedux";
 
-type Response = {
+type AccountState = {
   id: number;
   favorite: boolean;
   rated: {
-    value: number;
+    value: number | false;
   };
   watchlist: false;
 };
 
 const useGetAccountStates = (id: number, media_type: string) => {
-  const [data, setData] = useState<Response>();
+  const [data, setData] = useState<AccountState>();
+  const [rating, setRating] = useState<number | false>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [trigger, setTrigger] = useState<boolean>(false);
@@ -36,8 +37,8 @@ const useGetAccountStates = (id: number, media_type: string) => {
             session_id: session.session_id,
           },
         });
-        console.log(res.data);
         setData(res.data);
+        setRating(res.data.rated.value!);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -54,7 +55,7 @@ const useGetAccountStates = (id: number, media_type: string) => {
     }
   };
 
-  return { data, loading, error, refetchItemState };
+  return { data, loading, error, rating, refetchItemState };
 };
 
 export default useGetAccountStates;

@@ -37,10 +37,11 @@ export default function Details() {
 
   const { addFavorite, loading: loadingFavorites } = useFavorites();
   const { addWatchlist, loading: loadingWatchlist } = useAddWatchlist();
-  const { data: stateData, refetchItemState } = useGetAccountStates(
-    Number(id),
-    "movie",
-  );
+  const {
+    data: stateData,
+    refetchItemState,
+    loading: loadingStateData,
+  } = useGetAccountStates(Number(id), "movie");
 
   const { width } = useWindowDimensions();
 
@@ -75,7 +76,7 @@ export default function Details() {
     !loadingWatchlist && refetchItemState();
   };
 
-  return loading ? (
+  return loading && loadingStateData ? (
     <View className="flex-1 items-center justify-center">
       <Grid size={50} color="#01b4e4" />
     </View>
@@ -86,10 +87,7 @@ export default function Details() {
     >
       <View className="relative">
         <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
-        <View
-          className="absolute bottom-2 right-4 flex flex-row items-center"
-          style={{ gap: 5 }}
-        >
+        <View className="absolute bottom-2 right-4 flex flex-row items-center">
           <ListButton />
           <FavoriteButton
             onPress={handleAddFavorite}
@@ -99,7 +97,7 @@ export default function Details() {
             onPress={handleAddWatchlist}
             isWatchlisted={stateData?.watchlist!}
           />
-          <RatingButton />
+          <RatingButton media_id={Number(id)} media_type="movie" />
         </View>
       </View>
       <DetailsSection
