@@ -252,10 +252,12 @@ export const imageParser = (url: string = "", size: string = "w342") => {
 };
 
 /**
- * Takes in a string date and returns a formatted string date (8-20-2-23 => Aug 20, 2023)
+ * Takes in a string date and returns a formatted string date
  * @param string 8-20-2023
- * @returns string Aug 20, 2023
+ * @returns Aug 20, 2023
  */
+
+// TODO: Refactor using date lib like daysjs or Date-fns
 export const formatDate = (date: string) => {
   if (!date) {
     return "";
@@ -321,10 +323,8 @@ export const getColorByRating = (rating: number) => {
   switch (true) {
     case rating >= 40 && rating <= 69:
       return "#D2D532";
-      break;
     case rating >= 70:
       return "#21D07A";
-      break;
     default:
       return "#DB2360";
   }

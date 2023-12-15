@@ -26,7 +26,6 @@ const KnownForCard = ({
   media_type,
   name,
   episode_count,
-  original_title,
 }: KnownForCardProps) => {
   const imageURL = imageParser(poster, posterSize.xl);
 
@@ -35,7 +34,7 @@ const KnownForCard = ({
       <TouchableOpacity className="gap-4">
         <StyledView
           className={`${
-            Platform.OS === "ios" ? "shadow-sm" : "shadow-md"
+            Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
           } overflow-clip rounded-md bg-primary  shadow-black`}
         >
           <Image

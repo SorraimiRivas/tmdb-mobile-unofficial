@@ -95,6 +95,7 @@ const useLogin = () => {
     loading,
     loadingUserAccount,
     isAuth,
+    error,
   };
 };
 
