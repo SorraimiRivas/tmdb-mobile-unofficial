@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import WebView from "react-native-webview";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import Constants from "expo-constants";
+import { setStatusBarStyle } from "expo-status-bar";
 
 export default function Auth() {
   const [url, setUrl] = useState<string>();
   const { token } = useLocalSearchParams();
   const router = useRouter();
+
+  setStatusBarStyle("dark");
 
   const handleReturnNavigation = (res: string) => {
     if (res === "allow") {
@@ -40,7 +44,7 @@ export default function Auth() {
   }, [url]);
 
   return (
-    <View className="flex-1">
+    <View className="flex-1" style={{ paddingTop: Constants.statusBarHeight }}>
       <WebView
         source={{ uri: `https://www.themoviedb.org/authenticate/${token}` }}
         onNavigationStateChange={onNavigationChange}

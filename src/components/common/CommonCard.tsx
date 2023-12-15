@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Platform, Pressable } from "react-native";
 import { Link } from "expo-router";
 import { Image } from "expo-image";
 
@@ -7,6 +7,7 @@ import { formatDate, imageParser } from "../../lib/utils";
 import { posterSize } from "../../api";
 import NoImageIcon from "./NoImageIcon";
 import { blurhash } from "@/lib/constants";
+import { styled } from "nativewind";
 
 type CommonMovieCardProps = {
   title?: string;
@@ -23,6 +24,8 @@ type CommonPersonCardProps = {
   name?: string;
   profilePath?: string;
 };
+
+const StyledView = styled(View);
 
 type CommonCardProps = CommonMovieCardProps &
   CommonSeriesCardProps &
@@ -45,27 +48,36 @@ const CommonCard = ({
     <Link
       href={`/${type}/${id}`}
       asChild
-      className="mt-6 flex w-[167] flex-col"
+      className="mb-4 mt-6 flex w-[167] flex-col"
     >
-      <TouchableOpacity>
+      <Pressable>
         {imageURL ? (
-          <Image
-            source={{ uri: imageURL }}
-            className="mb-2 h-[250] w-full rounded-md"
-            contentFit="cover"
-            placeholder={blurhash}
-            transition={1000}
-          />
+          <StyledView
+            className={`${
+              Platform.OS === "ios" ? "shadow-sm" : "shadow-xl"
+            } mb-3 h-[250] overflow-clip  rounded-md bg-primary shadow-black`}
+          >
+            <Image
+              source={{ uri: imageURL }}
+              className="mb-2 h-[250] w-full rounded-md"
+              contentFit="cover"
+              placeholder={blurhash}
+              transition={1000}
+            />
+          </StyledView>
         ) : (
-          <NoImageIcon styles="mb-2 h-[250] w-full rounded-md bg-primary" />
+          <NoImageIcon styles="h-[250] w-full rounded-md bg-primary" />
         )}
-        <View className="flex flex-col gap-1">
-          <Text className="text-base font-semibold">{title || name}</Text>
+        <View className="mt-2 flex flex-col gap-1">
+          <Text numberOfLines={2} className="text-base font-semibold">
+            {title || name}
+          </Text>
+          {/* TODO: use better validation */}
           {formattedDate !== "n/a" ? (
             <Text className=" text-xs text-gray-600">{formattedDate}</Text>
           ) : null}
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </Link>
   );
 };
