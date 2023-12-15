@@ -47,3 +47,6 @@ ios
 # Settings
 .vscode
 .zed
+
+#Build
+eas.json
