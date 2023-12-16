@@ -35,7 +35,7 @@ export default function Details() {
     append_to_response: "credits,videos",
   });
 
-  const { addFavorite, loading: loadingFavorites } = useFavorites();
+  const { addFavorite, loading: loadingAddFavorites } = useFavorites();
   const { addWatchlist, loading: loadingWatchlist } = useAddWatchlist();
   const {
     data: stateData,
@@ -57,22 +57,22 @@ export default function Details() {
   };
 
   const handleAddFavorite = async () => {
-    !loadingFavorites &&
+    !loadingAddFavorites &&
       (await addFavorite({
         media_type: "movie",
         favorite: !stateData?.favorite,
         media_id: Number(id),
       }));
-    !loadingFavorites && refetchItemState();
+    !loadingAddFavorites && refetchItemState();
   };
 
-  const handleAddWatchlist = () => {
+  const handleAddWatchlist = async () => {
     !loadingWatchlist &&
-      addWatchlist({
+      (await addWatchlist({
         media_type: "movie",
         watchlist: !stateData?.watchlist,
         media_id: Number(id),
-      });
+      }));
     !loadingWatchlist && refetchItemState();
   };
 
@@ -87,7 +87,7 @@ export default function Details() {
     >
       <View className="relative">
         <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
-        <View className="absolute bottom-2 right-4 flex flex-row items-center">
+        <View className="absolute bottom-2 right-2 flex flex-row items-center">
           <ListButton />
           <FavoriteButton
             onPress={handleAddFavorite}
