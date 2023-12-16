@@ -86,7 +86,7 @@ export default function TVDetails() {
       <StatusBar style="auto" />
       <View className="relative">
         <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />
-        <View className="absolute bottom-2 right-4 flex flex-row items-center">
+        <View className="absolute bottom-2 right-0 flex flex-row items-center">
           <ListButton />
           <FavoriteButton
             onPress={handleAddFavorite}
