@@ -11,7 +11,7 @@ const WatchlistButton = ({ onPress, isWatchlisted }: Props) => {
   return (
     <Pressable
       onPress={onPress}
-      className="h-10 w-10 items-center justify-center rounded-full bg-primary"
+      className="mx-1 h-10 w-10 items-center justify-center rounded-full bg-primary"
     >
       <Ionicons
         name="md-bookmark"

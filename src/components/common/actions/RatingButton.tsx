@@ -52,7 +52,7 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
   return (
     <Popover
       from={
-        <Pressable className="h-10 w-10 items-center justify-center rounded-full bg-primary">
+        <Pressable className="mx-1 h-10 w-10 items-center justify-center rounded-full bg-primary">
           <FontAwesome
             name="star"
             size={25}
