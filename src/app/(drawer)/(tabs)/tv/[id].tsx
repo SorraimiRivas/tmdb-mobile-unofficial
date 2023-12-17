@@ -111,6 +111,7 @@ export default function TVDetails() {
       {data?.credits.cast.length !== 0 ? (
         <View className="my-6">
           <Text className="mb-4 ml-4 text-lg font-bold">Series Cast</Text>
+
           <FlatList
             horizontal
             keyExtractor={(item) => item.id!.toString()}

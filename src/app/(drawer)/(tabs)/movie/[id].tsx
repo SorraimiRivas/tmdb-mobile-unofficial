@@ -77,6 +77,7 @@ export default function Details() {
   };
 
   return loading && loadingStateData ? (
+      
     <View className="flex-1 items-center justify-center">
       <Grid size={50} color="#01b4e4" />
     </View>
