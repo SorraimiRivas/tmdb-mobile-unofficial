@@ -1,17 +1,31 @@
-import React from "react";
-import { Platform } from "react-native";
-import { Tabs } from "expo-router";
+import { Platform, Pressable, View } from "react-native";
 import { setStatusBarStyle } from "expo-status-bar";
+import { Tabs, useRouter } from "expo-router";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
+import HeaderProfileButton from "@/components/common/HeaderProfileButton";
+import { useAppSelector } from "@/hooks/useRedux";
+import { imageParser } from "@/lib/utils";
+import { profileSize } from "@/api";
+import { DrawerToggleButton } from "@react-navigation/drawer";
+
+setStatusBarStyle("light");
+
 export default function TabsLayout() {
-  setStatusBarStyle("light");
+  const router = useRouter();
+  const { account, isLogged } = useAppSelector((state) => state.userSession);
+  const avatar = account?.avatar?.gravatar;
+  const profileImage = imageParser(
+    account?.avatar?.tmdb.avatar_path,
+    profileSize.original,
+  );
 
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: "#0d253f" },
+        headerStyle: { backgroundColor: "#0d253f", height: 110 },
+        headerShadowVisible: false,
         headerTintColor: "white",
         headerTitleAlign: "center",
         tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
@@ -44,12 +58,40 @@ export default function TabsLayout() {
             },
           }),
         },
+        headerLeft: () =>
+          router.canGoBack() ? (
+            <Pressable onPress={() => router.back()} className="mx-4">
+              <MaterialIcons name="arrow-back-ios" size={25} color="white" />
+            </Pressable>
+          ) : (
+            <DrawerToggleButton pressOpacity={0.5} tintColor="white" />
+          ),
+        headerRight: () => (
+          <View className="flex flex-row items-center gap-2 rounded-full">
+            <HeaderProfileButton
+              image={profileImage}
+              isAuth={isLogged}
+              username={account?.name!}
+              userEmail={account?.username!}
+              avatar={avatar!}
+            />
+            <Pressable className="mx-4">
+              {({ pressed }) => (
+                <MaterialIcons
+                  name="search"
+                  size={30}
+                  color="#01b4e4"
+                  style={{ opacity: pressed ? 0.5 : 1 }}
+                />
+              )}
+            </Pressable>
+          </View>
+        ),
       }}
     >
       <Tabs.Screen
         name="movie"
         options={{
-          headerShown: false,
           title: "Movies",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialIcons
@@ -64,7 +106,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="tv"
         options={{
-          headerShown: false,
           title: "TV Series",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialIcons
@@ -79,7 +120,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="person"
         options={{
-          headerShown: false,
           title: "People",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialIcons

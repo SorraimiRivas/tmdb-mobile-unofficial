@@ -6,8 +6,11 @@ import { Fold } from "react-native-animated-spinkit";
 
 import useLogin from "@/hooks/useLogin";
 import CustomButton from "@/components/common/CustomButton";
+import { setStatusBarStyle } from "expo-status-bar";
 
-export default function login() {
+setStatusBarStyle("dark");
+
+export default function Login() {
   const { loading, loadingUserAccount, getRequestToken, getUserAccount } =
     useLogin();
   const router = useRouter();

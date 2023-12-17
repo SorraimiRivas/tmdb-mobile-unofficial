@@ -374,13 +374,13 @@ export type Account = {
 };
 
 export type Avatar = {
-  gravatar: Gravatar;
+  gravatar: TGravatar;
   tmdb: {
     avatar_path: string;
   };
 };
 
-export type Gravatar = {
+export type TGravatar = {
   hash: string;
 };
 
