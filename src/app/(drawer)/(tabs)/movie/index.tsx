@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
 import Constants from "expo-constants";
+import { useState } from "react";
 
 import CommonCard from "@/components/common/CommonCard";
 import { useGetMovies } from "@/hooks/useGetMovies";
@@ -26,6 +26,7 @@ export default function Movies() {
 
   const { data: inTheaters } = useGetMovies("movie/now_playing");
   const { data: popularData } = useGetMovies("movie/top_rated");
+
   const { data: upcoming } = useGetMovies("discover/movie", {
     include_adult: false,
     language: "en-US",

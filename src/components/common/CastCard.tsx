@@ -30,6 +30,7 @@ const CastCard = ({ name, profile_path, character, id }: CastCardProps) => {
           />
         ) : (
           <View className="h-44 w-32 items-center justify-center rounded-md bg-tertiary">
+
             <Text className="text-4xl font-bold text-gray-600">{initials}</Text>
           </View>
         )}

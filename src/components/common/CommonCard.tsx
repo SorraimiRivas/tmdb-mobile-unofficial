@@ -73,6 +73,7 @@ const CommonCard = ({
             {title || name}
           </Text>
           {/* TODO: use better validation */}
+
           {formattedDate !== "n/a" ? (
             <Text className=" text-xs text-gray-600">{formattedDate}</Text>
           ) : null}

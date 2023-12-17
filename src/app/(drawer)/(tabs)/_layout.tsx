@@ -20,6 +20,13 @@ export default function TabsLayout() {
     account?.avatar?.tmdb.avatar_path,
     profileSize.original,
   );
+import React from "react";
+import { Tabs } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
+import { setStatusBarStyle } from "expo-status-bar";
+
+export default function TabsLayout() {
+  setStatusBarStyle("light");
 
   return (
     <Tabs
@@ -87,6 +94,10 @@ export default function TabsLayout() {
             </Pressable>
           </View>
         ),
+        headerStyle: { backgroundColor: "#0d253f" },
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+
       }}
     >
       <Tabs.Screen
