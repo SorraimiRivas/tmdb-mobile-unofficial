@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
+import Constants from "expo-constants";
+import { useState } from "react";
 
 import CommonCard from "@/components/common/CommonCard";
 import { useGetMovies } from "@/hooks/useGetMovies";
@@ -19,11 +20,13 @@ export default function Movies() {
     sort_by: "popularity.desc",
   });
 
+  // TODO: update to Date-fns
   const minDate = moment().add(1, "day").format("YYYY-MM-DD");
   const maxDate = moment().add(180, "days").format("YYYY-MM-DD");
 
-  const { data: popularData } = useGetMovies("movie/top_rated");
   const { data: inTheaters } = useGetMovies("movie/now_playing");
+  const { data: popularData } = useGetMovies("movie/top_rated");
+
   const { data: upcoming } = useGetMovies("discover/movie", {
     include_adult: false,
     language: "en-US",
@@ -39,7 +42,7 @@ export default function Movies() {
   };
 
   return (
-    <ScrollView className="mb-4" showsVerticalScrollIndicator={false}>
+    <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
       {/* Trending Movies List */}
       <View>
         <View className="mx-4 mt-4 flex flex-row items-center justify-between">

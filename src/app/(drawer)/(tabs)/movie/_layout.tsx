@@ -1,10 +1,10 @@
-import { DrawerToggleButton } from "@react-navigation/drawer";
 import { Stack } from "expo-router";
 
 export default function MoviesLayout() {
   return (
     <Stack
       screenOptions={{
+        headerShown: false,
         headerTitleAlign: "center",
         headerTintColor: "white",
         headerStyle: { backgroundColor: "#0d253f" },
@@ -14,14 +14,8 @@ export default function MoviesLayout() {
       <Stack.Screen
         name="index"
         options={{
+          headerShown: false,
           title: "Movies",
-          headerLeft: () => (
-            <DrawerToggleButton
-              tintColor="white"
-              pressOpacity={0.5}
-              pressColor="gray"
-            />
-          ),
         }}
       />
       <Stack.Screen name="[id]" options={{ title: "Movie Details" }} />

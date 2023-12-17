@@ -8,6 +8,7 @@ const PeopleLayout = () => {
     <>
       <Stack
         screenOptions={{
+          headerShown: false,
           headerTintColor: "white",
           headerStyle: { backgroundColor: "#0d253f" },
           headerTitleAlign: "center",
