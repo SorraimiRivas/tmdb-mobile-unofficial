@@ -9,6 +9,23 @@ export type Movies = {
   vote_average: number | string;
 };
 
+export type Movie = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
 /**
  * Simple Movies Type for formatted Movies Array to be used as a middleware interface between App and API
  */
@@ -357,13 +374,13 @@ export type Account = {
 };
 
 export type Avatar = {
-  gravatar: Gravatar;
+  gravatar: TGravatar;
   tmdb: {
     avatar_path: string;
   };
 };
 
-export type Gravatar = {
+export type TGravatar = {
   hash: string;
 };
 
