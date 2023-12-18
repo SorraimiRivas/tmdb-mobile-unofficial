@@ -20,13 +20,14 @@ What can you do?
 
 ## Gallery
 
-<div style="overflow-x: auto; white-space: nowrap;">
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/dev/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.55.55.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.11.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.27.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.44.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.57.04.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
-    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.57.28.png" style="display: inline-block; width: 300px; margin-right: 10px;" />
+<div style="overflow-x: auto; white-space: nowrap;" align="center">
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/dev/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.55.55.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.11.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.27.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.56.44.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.57.04.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+    <img alt="TMDb Mobile Home Screen" src="https://github.com/SorraimiRivas/tmdb-mobile-unofficial/blob/17b95c9d443a1799c46e937f467e2056fdf2d945/src/assets/images/Simulator%20Screenshot%20-%20iPhone%2015%20Plus%20-%202023-12-17%20at%2015.57.28.png" style="display: inline-block; width: 200px; margin-right: 10px;" />
+
 </div>
 
 ## Installation
