@@ -1,10 +1,9 @@
-import { View } from "react-native";
-import React, { useState } from "react";
-import useGetPeople from "@/hooks/useGetPeople";
-import { FlatList } from "react-native-gesture-handler";
-import { FormattedPeople } from "@/lib/types";
-import CommonCard from "@/components/common/CommonCard";
+import PeopleCard from "@/components/common/PeopleCard";
 import { Flow } from "react-native-animated-spinkit";
+import useGetPeople from "@/hooks/useGetPeople";
+import { FlatList, View } from "react-native";
+import { FormattedPeople } from "@/lib/types";
+import React, { useState } from "react";
 import _ from "lodash";
 
 const People = () => {
@@ -12,11 +11,7 @@ const People = () => {
   const { data, loading } = useGetPeople("person/popular", page);
 
   const renderItem = ({ item }: { item: FormattedPeople }) => {
-    return (
-      <View className="mx-5">
-        <CommonCard {...item} type="person" />
-      </View>
-    );
+    return <PeopleCard {...item} />;
   };
 
   const loadMore = () => {
@@ -28,19 +23,23 @@ const People = () => {
   const FooterComponent = () => {
     return (
       <View className="my-6 flex items-center">
-        <Flow size={50} color="black" />
+        <Flow size={50} color="#01b4e4" />
       </View>
     );
   };
 
   return (
-    <View className="flex-1 items-center">
+    <View className="">
       <FlatList
         keyExtractor={(item, index) => `${item.id + index.toString()}`}
         data={data}
         renderItem={renderItem}
-        numColumns={2}
-        contentContainerStyle={{ gap: 10 }}
+        numColumns={3}
+        contentContainerStyle={{
+          gap: 20,
+          alignItems: "flex-end",
+          marginTop: 20,
+        }}
         showsVerticalScrollIndicator={false}
         onEndReached={debounceLoadMore}
         onEndReachedThreshold={0.3}
