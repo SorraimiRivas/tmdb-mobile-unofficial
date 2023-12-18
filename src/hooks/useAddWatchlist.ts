@@ -1,8 +1,10 @@
 import axios from "axios";
-import { postRequestOptions } from "@/api";
-import { useAppSelector } from "./useRedux";
-import { useState } from "react";
 import * as Burnt from "burnt";
+import { useState } from "react";
+
+import { useAppSelector } from "./useRedux";
+
+import { postRequestOptions } from "@/api";
 
 type PostData = {
   media_type: string;

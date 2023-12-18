@@ -1,9 +1,9 @@
+import Constants from "expo-constants";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { setStatusBarStyle } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import WebView from "react-native-webview";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import Constants from "expo-constants";
-import { setStatusBarStyle } from "expo-status-bar";
 
 export default function Auth() {
   const [url, setUrl] = useState<string>();
@@ -48,7 +48,7 @@ export default function Auth() {
       <WebView
         source={{ uri: `https://www.themoviedb.org/authenticate/${token}` }}
         onNavigationStateChange={onNavigationChange}
-        javaScriptEnabled={true}
+        javaScriptEnabled
       />
     </View>
   );

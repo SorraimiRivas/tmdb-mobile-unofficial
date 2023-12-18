@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { getRequestOptions } from "@/api";
+
 import { useAppSelector } from "./useRedux";
+
+import { getRequestOptions } from "@/api";
 
 const useGetFavoriteMovies = () => {
   const { account } = useAppSelector((state) => state.userSession);

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import { useAppSelector } from "./useRedux";
+
 import { getRequestOptions } from "@/api";
 import { FormattedMovies, FormattedSeries } from "@/lib/types";
-
-import { useAppSelector } from "./useRedux";
 import { formatSeriesArray, formattedMoviesArray } from "@/lib/utils";
 
 const useGetUserFavorites = (content: string) => {

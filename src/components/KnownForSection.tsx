@@ -1,9 +1,11 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { View, Text } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+
+import KnownForCard from "./common/KnownForCard";
+
 import { CombinedCredits, KnownForCardTypes } from "@/lib/types";
 import { knownForConstructor } from "@/lib/utils";
-import { FlatList } from "react-native-gesture-handler";
-import KnownForCard from "./common/KnownForCard";
 
 type KnownForSectionProps = {
   department: string;

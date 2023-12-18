@@ -1,18 +1,18 @@
-import { View } from "react-native";
-import React from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
-import useGetPeopleById from "@/hooks/useGetPeopleById";
-import { ScrollView } from "react-native-gesture-handler";
 import { Image } from "expo-image";
-import { genderSelector, imageParser } from "@/lib/utils";
-import { profileSize } from "@/api";
-import { Grid } from "react-native-animated-spinkit";
-import { blurhash } from "@/lib/constants";
-import SocialMediaSection from "@/components/SocialMediaSection";
+import { Stack, useLocalSearchParams } from "expo-router";
 import moment from "moment";
+import React from "react";
+import { View } from "react-native";
+import { Grid } from "react-native-animated-spinkit";
+import { ScrollView } from "react-native-gesture-handler";
 
+import { profileSize } from "@/api";
 import KnownForSection from "@/components/KnownForSection";
 import PersonalInformationSection from "@/components/PersonalInformationSection";
+import SocialMediaSection from "@/components/SocialMediaSection";
+import useGetPeopleById from "@/hooks/useGetPeopleById";
+import { blurhash } from "@/lib/constants";
+import { genderSelector, imageParser } from "@/lib/utils";
 
 const Details = () => {
   const { id } = useLocalSearchParams();
@@ -46,7 +46,7 @@ const Details = () => {
           contentFit="cover"
           transition={{ effect: "curl-down", duration: 1000 }}
           placeholder={blurhash}
-          cachePolicy={"memory"}
+          cachePolicy="memory"
         />
         <SocialMediaSection data={data?.externalIds!} />
       </View>

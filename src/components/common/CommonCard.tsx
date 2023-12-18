@@ -1,13 +1,14 @@
+import { Image } from "expo-image";
+import { Link } from "expo-router";
+import { styled } from "nativewind";
 import React from "react";
 import { View, Text, Platform, Pressable } from "react-native";
-import { Link } from "expo-router";
-import { Image } from "expo-image";
 
-import { formatDate, imageParser } from "../../lib/utils";
-import { posterSize } from "../../api";
 import NoImageIcon from "./NoImageIcon";
+import { posterSize } from "../../api";
+import { formatDate, imageParser } from "../../lib/utils";
+
 import { blurhash } from "@/lib/constants";
-import { styled } from "nativewind";
 
 type CommonMovieCardProps = {
   title?: string;

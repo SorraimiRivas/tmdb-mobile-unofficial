@@ -1,11 +1,11 @@
+import { Image } from "expo-image";
+import { Link } from "expo-router";
 import React from "react";
 import { View, Text, Pressable } from "react-native";
-import { Image } from "expo-image";
 
-import { getInitials, imageParser } from "@/lib/utils";
 import { profileSize } from "@/api";
 import { blurhash } from "@/lib/constants";
-import { Link } from "expo-router";
+import { getInitials, imageParser } from "@/lib/utils";
 
 type CastCardProps = {
   name: string;
@@ -30,7 +30,6 @@ const CastCard = ({ name, profile_path, character, id }: CastCardProps) => {
           />
         ) : (
           <View className="h-44 w-32 items-center justify-center rounded-md bg-tertiary">
-
             <Text className="text-4xl font-bold text-gray-600">{initials}</Text>
           </View>
         )}

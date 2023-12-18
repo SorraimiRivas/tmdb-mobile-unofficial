@@ -1,4 +1,3 @@
-import { imageURL } from "../api";
 import {
   FormattedMovieDetails,
   FormattedMovies,
@@ -19,6 +18,7 @@ import {
   CreditsCast,
   CreditsCrew,
 } from "./types";
+import { imageURL } from "../api";
 
 export const prettify = (data: any) => {
   console.log(JSON.stringify(data, null, 2));
@@ -262,7 +262,7 @@ export const formatDate = (date: string) => {
   if (!date) {
     return "";
   }
-  const options: {} = { year: "numeric", month: "short", day: "numeric" };
+  const options: object = { year: "numeric", month: "short", day: "numeric" };
   const [year, month, day] = date.split("-").map(Number);
   const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
     "en-US",

@@ -1,18 +1,16 @@
 import { DrawerToggleButton } from "@react-navigation/drawer";
-import { View, Text, FlatList } from "react-native";
 import { Image } from "expo-image";
-
-import CountryFlag from "react-native-country-flag";
-
-import useGetUserFavorites from "@/hooks/useGetUserFavoriteMovies";
-import { FormattedMovies, FormattedSeries } from "@/lib/types";
-import CommonCard from "@/components/common/CommonCard";
-import { useAppSelector } from "@/hooks/useRedux";
-import { imageParser } from "@/lib/utils";
-import { profileSize } from "@/api";
-
-import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
+import { View, Text, FlatList } from "react-native";
+import CountryFlag from "react-native-country-flag";
+import { ScrollView } from "react-native-gesture-handler";
+
+import { profileSize } from "@/api";
+import CommonCard from "@/components/common/CommonCard";
+import useGetUserFavorites from "@/hooks/useGetUserFavoriteMovies";
+import { useAppSelector } from "@/hooks/useRedux";
+import { FormattedMovies, FormattedSeries } from "@/lib/types";
+import { imageParser } from "@/lib/utils";
 
 const Profile = () => {
   const router = useRouter();

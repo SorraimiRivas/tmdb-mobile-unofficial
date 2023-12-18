@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { getRequestOptions } from "../api";
+
 import { FormattedMovieDetails } from "@/lib/types";
 import { formatMovie } from "@/lib/utils";
 
-export default function useGetMovieById(url: string, params?: {}) {
+export default function useGetMovieById(url: string, params?: object) {
   const [data, setData] = useState<FormattedMovieDetails>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");

@@ -3,6 +3,7 @@ import {
   MaterialCommunityIcons,
   FontAwesome5,
 } from "@expo/vector-icons";
+
 import { ExternalIds, SocialMedia } from "./types";
 
 export const socialMediaConstructor = (item: ExternalIds) => {

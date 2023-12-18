@@ -1,15 +1,16 @@
-import { Pressable, View } from "react-native";
-import React from "react";
-import { ExternalIds, SocialMedia } from "@/lib/types";
-import { socialMediaConstructor } from "@/lib/icons";
-import { printer } from "@/lib/constants";
-import { Link } from "expo-router";
 import {
   MaterialIcons,
   MaterialCommunityIcons,
   FontAwesome5,
 } from "@expo/vector-icons";
+import { Link } from "expo-router";
+import React from "react";
+import { Pressable, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+
+import { printer } from "@/lib/constants";
+import { socialMediaConstructor } from "@/lib/icons";
+import { ExternalIds, SocialMedia } from "@/lib/types";
 
 type SocialMediaProps = {
   data: ExternalIds;

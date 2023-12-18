@@ -1,14 +1,13 @@
-import { Platform, Pressable, View } from "react-native";
-import { setStatusBarStyle } from "expo-status-bar";
-import { Tabs, useRouter } from "expo-router";
-
 import { MaterialIcons } from "@expo/vector-icons";
-
-import HeaderProfileButton from "@/components/common/HeaderProfileButton";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { Tabs, useRouter } from "expo-router";
+import { setStatusBarStyle } from "expo-status-bar";
+import { Platform, Pressable, View } from "react-native";
+
+import { profileSize } from "@/api";
+import HeaderProfileButton from "@/components/common/HeaderProfileButton";
 import { useAppSelector } from "@/hooks/useRedux";
 import { imageParser } from "@/lib/utils";
-import { profileSize } from "@/api";
 
 setStatusBarStyle("light");
 

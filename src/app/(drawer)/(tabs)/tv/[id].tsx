@@ -1,3 +1,5 @@
+import { useLocalSearchParams } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import {
   View,
   Text,
@@ -5,30 +7,27 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-
 import { Fold } from "react-native-animated-spinkit";
-import { useLocalSearchParams } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 
+import { backdropSize, posterSize } from "@/api";
+import BannerSection from "@/components/BannerSection";
+import DetailsSection from "@/components/DetailsSection";
+import CastCard from "@/components/common/CastCard";
+import FavoriteButton from "@/components/common/actions/FavoriteButton";
+import ListButton from "@/components/common/actions/ListButton";
+import RatingButton from "@/components/common/actions/RatingButton";
+import WatchlistButton from "@/components/common/actions/WatchlistButton";
+import useFavorites from "@/hooks/useAddFavorites";
+import useAddWatchlist from "@/hooks/useAddWatchlist";
+import useGetAccountStates from "@/hooks/useGetItemState";
+import useGetSeriesById from "@/hooks/useGetSeriesById";
+import { Cast } from "@/lib/types";
 import {
   formatDate,
   imageParser,
   joinGenres,
   trailersArrayFilter,
 } from "@/lib/utils";
-import WatchlistButton from "@/components/common/actions/WatchlistButton";
-import FavoriteButton from "@/components/common/actions/FavoriteButton";
-import RatingButton from "@/components/common/actions/RatingButton";
-import ListButton from "@/components/common/actions/ListButton";
-import useGetAccountStates from "@/hooks/useGetItemState";
-import DetailsSection from "@/components/DetailsSection";
-import useGetSeriesById from "@/hooks/useGetSeriesById";
-import BannerSection from "@/components/BannerSection";
-import useAddWatchlist from "@/hooks/useAddWatchlist";
-import CastCard from "@/components/common/CastCard";
-import useFavorites from "@/hooks/useAddFavorites";
-import { backdropSize, posterSize } from "@/api";
-import { Cast } from "@/lib/types";
 
 export default function TVDetails() {
   const { id } = useLocalSearchParams();
@@ -80,7 +79,7 @@ export default function TVDetails() {
   ) : (
     <ScrollView
       className="relative mb-20 flex flex-1 flex-col"
-      style={{ width: width }}
+      style={{ width }}
       showsVerticalScrollIndicator={false}
     >
       <StatusBar style="auto" />

@@ -73,7 +73,7 @@ export type FormattedMovieDetails = {
   overview: string;
   credits: Credits;
   videos: Videos;
-  genreIds?: Array<number>;
+  genreIds?: number[];
   mediaType: string;
 };
 
@@ -225,7 +225,7 @@ export type People = {
 
 export type PeopleDetails = {
   adult: boolean;
-  also_known_as: Array<string>;
+  also_known_as: string[];
   biography: string;
   birthday: string;
   deathday: any;
@@ -243,7 +243,7 @@ export type PeopleDetails = {
 
 export type FormattedPeopleDetails = {
   adult?: boolean;
-  alsoKnownAs?: Array<string>;
+  alsoKnownAs?: string[];
   biography: string;
   birthday: string;
   deathday: any;
@@ -280,7 +280,7 @@ export type CombinedCredits = {
 export type CreditsCast = {
   adult?: boolean;
   backdrop_path?: string;
-  genre_ids?: Array<number>;
+  genre_ids?: number[];
   id: number;
   original_language?: string;
   original_title?: string;
@@ -296,7 +296,7 @@ export type CreditsCast = {
   credit_id?: string;
   order?: number;
   media_type: string;
-  origin_country?: Array<string>;
+  origin_country?: string[];
   original_name?: string;
   first_air_date?: string;
   name?: string;
@@ -306,7 +306,7 @@ export type CreditsCast = {
 export type CreditsCrew = {
   adult?: boolean;
   backdrop_path?: string;
-  genre_ids?: Array<number>;
+  genre_ids?: number[];
   id: number;
   original_language?: string;
   original_title?: string;
@@ -322,7 +322,7 @@ export type CreditsCrew = {
   department?: string;
   job?: string;
   media_type: string;
-  origin_country?: Array<string>;
+  origin_country?: string[];
   original_name?: string;
   first_air_date?: string;
   name?: string;

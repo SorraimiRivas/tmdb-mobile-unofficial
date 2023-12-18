@@ -1,7 +1,7 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
 import { Octicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
+import React from "react";
+import { View, Text, Pressable } from "react-native";
 
 const DrawerLoginButton = () => {
   return (

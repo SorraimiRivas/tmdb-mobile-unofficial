@@ -1,3 +1,4 @@
+import { useLocalSearchParams } from "expo-router";
 import {
   View,
   Text,
@@ -6,8 +7,20 @@ import {
   FlatList,
 } from "react-native";
 import { Grid } from "react-native-animated-spinkit";
-import { useLocalSearchParams } from "expo-router";
 
+import { backdropSize, posterSize } from "@/api";
+import BannerSection from "@/components/BannerSection";
+import DetailsSection from "@/components/DetailsSection";
+import CastCard from "@/components/common/CastCard";
+import FavoriteButton from "@/components/common/actions/FavoriteButton";
+import ListButton from "@/components/common/actions/ListButton";
+import RatingButton from "@/components/common/actions/RatingButton";
+import WatchlistButton from "@/components/common/actions/WatchlistButton";
+import useFavorites from "@/hooks/useAddFavorites";
+import useAddWatchlist from "@/hooks/useAddWatchlist";
+import useGetAccountStates from "@/hooks/useGetItemState";
+import useGetMovieById from "@/hooks/useGetMovieById";
+import { Cast } from "@/lib/types";
 import {
   formatDate,
   imageParser,
@@ -15,19 +28,6 @@ import {
   runtimeFormatter,
   trailersArrayFilter,
 } from "@/lib/utils";
-import WatchlistButton from "@/components/common/actions/WatchlistButton";
-import FavoriteButton from "@/components/common/actions/FavoriteButton";
-import RatingButton from "@/components/common/actions/RatingButton";
-import ListButton from "@/components/common/actions/ListButton";
-import useGetAccountStates from "@/hooks/useGetItemState";
-import DetailsSection from "@/components/DetailsSection";
-import BannerSection from "@/components/BannerSection";
-import useGetMovieById from "@/hooks/useGetMovieById";
-import useAddWatchlist from "@/hooks/useAddWatchlist";
-import CastCard from "@/components/common/CastCard";
-import useFavorites from "@/hooks/useAddFavorites";
-import { backdropSize, posterSize } from "@/api";
-import { Cast } from "@/lib/types";
 
 export default function Details() {
   const { id } = useLocalSearchParams();
@@ -77,14 +77,13 @@ export default function Details() {
   };
 
   return loading && loadingStateData ? (
-      
     <View className="flex-1 items-center justify-center">
       <Grid size={50} color="#01b4e4" />
     </View>
   ) : (
     <ScrollView
       className="relative mb-20 flex flex-1 flex-col"
-      style={{ width: width }}
+      style={{ width }}
     >
       <View className="relative">
         <BannerSection backdropImageURL={backdropURL} posterURL={posterURL} />

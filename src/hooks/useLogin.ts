@@ -1,10 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 import { Alert } from "react-native";
-import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "./useRedux";
-import { setAccount, setSession } from "@/redux/sessionSlice";
+
 import { postRequestOptions, getRequestOptions } from "@/api";
+import { setAccount, setSession } from "@/redux/sessionSlice";
 
 const useLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);

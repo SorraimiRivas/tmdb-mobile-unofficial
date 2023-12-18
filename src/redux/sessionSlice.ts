@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { Account } from "@/lib/types";
 
 export type Session = {

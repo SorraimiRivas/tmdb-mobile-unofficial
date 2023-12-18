@@ -1,11 +1,11 @@
-import { View, Text, ScrollView, FlatList } from "react-native";
+import moment from "moment";
 import { useState } from "react";
+import { View, Text, ScrollView, FlatList } from "react-native";
+import { Grid } from "react-native-animated-spinkit";
 
 import CommonCard from "@/components/common/CommonCard";
-import { useGetMovies } from "@/hooks/useGetMovies";
-import { Grid } from "react-native-animated-spinkit";
 import RowFilter from "@/components/common/RowFilter";
-import moment from "moment";
+import { useGetMovies } from "@/hooks/useGetMovies";
 import { FormattedMovies } from "@/lib/types";
 
 export default function Movies() {
