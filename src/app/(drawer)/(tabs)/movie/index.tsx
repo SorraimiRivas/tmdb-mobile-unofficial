@@ -1,5 +1,4 @@
 import { View, Text, ScrollView, FlatList } from "react-native";
-import Constants from "expo-constants";
 import { useState } from "react";
 
 import CommonCard from "@/components/common/CommonCard";
