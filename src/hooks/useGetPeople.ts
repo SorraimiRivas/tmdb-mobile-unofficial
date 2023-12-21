@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+
+import { getRequestOptions } from "../api";
 
 import { FormattedPeople } from "@/lib/types";
-import { getRequestOptions } from "../api";
 import { formatPeople } from "@/lib/utils";
 
 const useGetPeople = (url: string, page: number) => {
-  const [data, setData] = useState<Array<FormattedPeople>>([]);
+  const [data, setData] = useState<FormattedPeople[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -38,7 +39,7 @@ const useGetPeople = (url: string, page: number) => {
     };
     fetchData();
 
-    () => abortSignal.abort;
+    return abortSignal.abort();
   }, [page]);
 
   return { data, loading, error };

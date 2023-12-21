@@ -1,17 +1,16 @@
-import { View, Text, SafeAreaView } from "react-native";
-import { useEffect } from "react";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { setStatusBarStyle } from "expo-status-bar";
+import { useEffect } from "react";
+import { View, Text, SafeAreaView } from "react-native";
 import { Fold } from "react-native-animated-spinkit";
 
-import useLogin from "@/hooks/useLogin";
 import CustomButton from "@/components/common/CustomButton";
-import { setStatusBarStyle } from "expo-status-bar";
+import useLogin from "@/hooks/useLogin";
 
 setStatusBarStyle("dark");
 
 export default function Login() {
-
   const { loading, loadingUserAccount, getRequestToken, getUserAccount } =
     useLogin();
   const router = useRouter();

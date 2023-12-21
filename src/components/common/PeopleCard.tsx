@@ -1,11 +1,13 @@
-import { View, Text, Pressable, Platform } from "react-native";
-import { blurhash } from "@/lib/constants";
-import { imageParser } from "@/lib/utils";
-import NoImageIcon from "./NoImageIcon";
-import { styled } from "nativewind";
-import { profileSize } from "@/api";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
+import { styled } from "nativewind";
+import { View, Text, Pressable, Platform } from "react-native";
+
+import NoImageIcon from "./NoImageIcon";
+
+import { profileSize } from "@/api";
+import { blurhash } from "@/lib/constants";
+import { imageParser } from "@/lib/utils";
 
 type Props = {
   name: string;

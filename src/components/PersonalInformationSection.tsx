@@ -1,7 +1,7 @@
-import { View, Text, Pressable } from "react-native";
-import React, { useEffect, useState } from "react";
-import { styled } from "nativewind";
 import { MaterialIcons } from "@expo/vector-icons";
+import { styled } from "nativewind";
+import React, { useEffect, useState } from "react";
+import { View, Text, Pressable } from "react-native";
 
 type PersonalInformationSectionProps = {
   knownForDepartment?: string;

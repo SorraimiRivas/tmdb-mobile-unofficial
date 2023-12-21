@@ -1,5 +1,5 @@
-import { Text } from "react-native";
 import React from "react";
+import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 type CustomButtonProps = {

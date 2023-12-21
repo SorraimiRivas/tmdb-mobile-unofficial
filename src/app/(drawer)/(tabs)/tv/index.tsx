@@ -1,9 +1,10 @@
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { Grid } from "react-native-animated-spinkit";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
+
 import CommonCard from "@/components/common/CommonCard";
 import RowFilter from "@/components/common/RowFilter";
-import { Grid } from "react-native-animated-spinkit";
 import { FormattedSeries } from "@/lib/types";
 import { useGetSeries } from "@/hooks/useGetSeries";
 
@@ -55,7 +56,7 @@ export default function TV() {
             ListHeaderComponent={<View className="mx-1" />}
             ListFooterComponent={<View className="mx-1" />}
             showsHorizontalScrollIndicator={false}
-          ></FlatList>
+          />
         )}
       </View>
       {/* Series Airing Today */}

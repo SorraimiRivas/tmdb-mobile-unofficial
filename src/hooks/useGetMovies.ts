@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-import { FormattedMovies } from "../lib/types";
 import { getRequestOptions } from "../api";
+import { FormattedMovies } from "../lib/types";
+
 import { formattedMoviesArray } from "@/lib/utils";
 
-export const useGetMovies = (url: string, params?: {}) => {
+export const useGetMovies = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedMovies[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");

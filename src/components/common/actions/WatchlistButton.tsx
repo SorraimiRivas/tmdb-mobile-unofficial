@@ -1,6 +1,5 @@
-import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { Pressable } from "react-native";
 
 type Props = {
   onPress: () => void;

@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 
-import VerticalDivider from "./common/VerticalDivider";
-import TrailersPopover from "./common/TrailersPopover";
-import VoteAverage from "./common/VoteAverage";
 import DotDivider from "./common/DotDivider";
+import TrailersPopover from "./common/TrailersPopover";
+import VerticalDivider from "./common/VerticalDivider";
+import VoteAverage from "./common/VoteAverage";
 
-import { convertToWholeNumber, getColorByRating } from "@/lib/utils";
 import { TrailerVideos } from "@/lib/types";
+import { convertToWholeNumber, getColorByRating } from "@/lib/utils";
 
 type MovieDetailsProps = {
   title: string;

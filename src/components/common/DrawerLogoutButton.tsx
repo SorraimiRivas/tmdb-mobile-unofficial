@@ -1,6 +1,7 @@
-import { Text, Pressable, Alert } from "react-native";
-import React from "react";
 import { Octicons } from "@expo/vector-icons";
+import React from "react";
+import { Text, Pressable, Alert } from "react-native";
+
 import { useAppDispatch } from "@/hooks/useRedux";
 import { logout } from "@/redux/sessionSlice";
 

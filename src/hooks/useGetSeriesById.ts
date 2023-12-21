@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { getRequestOptions } from "@/api";
-import { formatSeries } from "@/lib/utils";
 import { FormattedSeriesDetails } from "@/lib/types";
+import { formatSeries } from "@/lib/utils";
 
-const useGetSeriesById = (url: string, params?: {}) => {
+const useGetSeriesById = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedSeriesDetails>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");

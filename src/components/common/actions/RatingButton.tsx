@@ -1,9 +1,7 @@
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCallback, useEffect, useState } from "react";
-import { FontAwesome } from "@expo/vector-icons";
 import { Pressable, View } from "react-native";
-
 import Popover from "react-native-popover-view/dist/Popover";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import StarRating from "react-native-star-rating-widget";
 
 import useGetAccountStates from "@/hooks/useGetItemState";

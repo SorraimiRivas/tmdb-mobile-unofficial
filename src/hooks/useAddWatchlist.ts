@@ -1,8 +1,9 @@
 import axios from "axios";
-import { postRequestOptions } from "@/api";
-import { useAppSelector } from "./useRedux";
 import { useState } from "react";
-import * as Burnt from "burnt";
+
+import { useAppSelector } from "./useRedux";
+
+import { postRequestOptions } from "@/api";
 
 type PostData = {
   media_type: string;
@@ -20,7 +21,6 @@ type Response = {
 
 const useAddWatchlist = () => {
   const { account } = useAppSelector((state) => state.userSession);
-  const [success, setSuccess] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState("");
 
@@ -36,25 +36,8 @@ const useAddWatchlist = () => {
       });
       setError(res.data.status_message);
       setLoading(false);
-      // Toast
-      Burnt.toast({
-        title: "Success",
-        preset: "done",
-        message: res.data.status_message,
-        haptic: "success",
-        duration: 2,
-        shouldDismissByDrag: true,
-        from: "top",
-      });
     } catch (err: any) {
-      Burnt.toast({
-        title: "Failed",
-        preset: "error",
-        message: error,
-        haptic: "error",
-        shouldDismissByDrag: true,
-        from: "top",
-      });
+      console.log(err);
     }
   };
 

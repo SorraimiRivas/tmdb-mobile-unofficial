@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+
+import { getRequestOptions } from "../api";
 
 import { FormattedPeopleDetails } from "@/lib/types";
-import { getRequestOptions } from "../api";
 import { formatPeopleDetails } from "@/lib/utils";
 
-const useGetPeopleById = (url: string, params?: {}) => {
+const useGetPeopleById = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedPeopleDetails>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");

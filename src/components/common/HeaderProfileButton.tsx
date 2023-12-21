@@ -1,15 +1,14 @@
-import { View, Text, Pressable, Alert } from "react-native";
-import { Image } from "expo-image";
-
-import Popover from "react-native-popover-view/dist/Popover";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { Link, useRouter } from "expo-router";
+import { View, Text, Pressable, Alert } from "react-native";
+import Popover from "react-native-popover-view/dist/Popover";
 
 import { useAppDispatch } from "@/hooks/useRedux";
-import { logout } from "@/redux/sessionSlice";
 import { blurhash } from "@/lib/constants";
 import { profileNav } from "@/lib/data";
 import { TGravatar } from "@/lib/types";
-import { Link, useRouter } from "expo-router";
+import { logout } from "@/redux/sessionSlice";
 
 type Props = {
   image: string;

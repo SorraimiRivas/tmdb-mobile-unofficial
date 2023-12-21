@@ -1,10 +1,11 @@
-import PeopleCard from "@/components/common/PeopleCard";
-import { Flow } from "react-native-animated-spinkit";
-import useGetPeople from "@/hooks/useGetPeople";
-import { FlatList, View } from "react-native";
-import { FormattedPeople } from "@/lib/types";
-import React, { useState } from "react";
 import _ from "lodash";
+import React, { useState } from "react";
+import { FlatList, View } from "react-native";
+import { Flow } from "react-native-animated-spinkit";
+
+import PeopleCard from "@/components/common/PeopleCard";
+import useGetPeople from "@/hooks/useGetPeople";
+import { FormattedPeople } from "@/lib/types";
 
 const People = () => {
   const [page, setPage] = useState<number>(1);

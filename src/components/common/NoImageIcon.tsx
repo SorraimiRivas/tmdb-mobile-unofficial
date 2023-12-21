@@ -1,6 +1,6 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 
 type NoImageIconProps = {
   styles: string;
