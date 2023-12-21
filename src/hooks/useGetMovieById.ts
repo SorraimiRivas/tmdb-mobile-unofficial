@@ -34,9 +34,7 @@ export default function useGetMovieById(url: string, params?: object) {
     };
     fetchData();
 
-    return () => {
-      abortSignal.abort;
-    };
+    return abortSignal.abort();
   }, [url]);
 
   return { data, loading, error };

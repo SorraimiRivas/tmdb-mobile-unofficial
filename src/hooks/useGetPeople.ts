@@ -39,7 +39,7 @@ const useGetPeople = (url: string, page: number) => {
     };
     fetchData();
 
-    () => abortSignal.abort;
+    return abortSignal.abort();
   }, [page]);
 
   return { data, loading, error };
