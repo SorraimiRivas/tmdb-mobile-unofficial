@@ -11,13 +11,12 @@ import { FormattedMovies } from "@/lib/types";
 export default function Movies() {
   const [selected, setSelected] = useState<string>("day");
 
-  const {
-    data: trendingData,
-    loading,
-    error,
-  } = useGetMovies(`trending/movie/${selected}`, {
-    sort_by: "popularity.desc",
-  });
+  const { data: trendingData, loading } = useGetMovies(
+    `trending/movie/${selected}`,
+    {
+      sort_by: "popularity.desc",
+    },
+  );
 
   // TODO: update to Date-fns
   const minDate = moment().add(1, "day").format("YYYY-MM-DD");

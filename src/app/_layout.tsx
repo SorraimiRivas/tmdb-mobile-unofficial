@@ -1,11 +1,9 @@
-import { store } from "@/redux/store";
 import { Slot } from "expo-router";
-import { setStatusBarStyle } from "expo-status-bar";
 import { Provider } from "react-redux";
 
-export default function Root() {
-  setStatusBarStyle("light");
+import { store } from "@/redux/store";
 
+export default function Root() {
   return (
     <Provider store={store}>
       <Slot />

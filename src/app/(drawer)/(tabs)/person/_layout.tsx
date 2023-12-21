@@ -1,9 +1,7 @@
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import { Stack } from "expo-router";
-import { setStatusBarStyle } from "expo-status-bar";
 
 const PeopleLayout = () => {
-  setStatusBarStyle("light");
   return (
     <>
       <Stack
