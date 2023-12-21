@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as Burnt from "burnt";
 import { useState } from "react";
 
 import { useAppSelector } from "./useRedux";
@@ -35,27 +34,8 @@ const useFavorites = () => {
       });
       setError(res.data.status_message);
       setLoading(false);
-      // Success Toast
-      Burnt.toast({
-        title: "Success",
-        preset: "done",
-        message: res.data.status_message,
-        haptic: "success",
-        duration: 2,
-        shouldDismissByDrag: true,
-        from: "top",
-      });
     } catch (err: any) {
-      // Failure Toast
-      Burnt.toast({
-        title: "Failed",
-        preset: "error",
-        message: error,
-        haptic: "error",
-        duration: 2,
-        shouldDismissByDrag: true,
-        from: "top",
-      });
+      console.log(err);
     }
   };
 
