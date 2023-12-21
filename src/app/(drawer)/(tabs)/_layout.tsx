@@ -9,9 +9,8 @@ import HeaderProfileButton from "@/components/common/HeaderProfileButton";
 import { useAppSelector } from "@/hooks/useRedux";
 import { imageParser } from "@/lib/utils";
 
-setStatusBarStyle("light");
-
 export default function TabsLayout() {
+  setStatusBarStyle("light");
   const router = useRouter();
   const { account, isLogged } = useAppSelector((state) => state.userSession);
   const avatar = account?.avatar?.gravatar;
