@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { getRequestOptions } from "../api";
+import { requestOptions } from "../api";
 
 import { FormattedPeople } from "@/lib/types";
 import { formatPeople } from "@/lib/utils";
+import { Alert } from "react-native";
 
 const useGetPeople = (url: string, page: number) => {
   const [data, setData] = useState<FormattedPeople[]>([]);
@@ -20,7 +21,7 @@ const useGetPeople = (url: string, page: number) => {
       setError("");
       try {
         const response = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             page,
@@ -32,6 +33,7 @@ const useGetPeople = (url: string, page: number) => {
         if (isError(err)) {
           console.log(err.message);
           setError(err.message);
+          Alert.alert("People Array", err.message);
         }
       } finally {
         setLoading((prev) => !prev);

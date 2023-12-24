@@ -3,7 +3,8 @@ import { useState } from "react";
 
 import { useAppSelector } from "./useRedux";
 
-import { postRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
+import { Alert } from "react-native";
 
 type PostData = {
   media_type: string;
@@ -28,7 +29,8 @@ const useFavorites = () => {
     setLoading(true);
     try {
       const res: Response = await axios.request({
-        ...postRequestOptions,
+        ...requestOptions,
+        method: "POST",
         url: `account/${account?.id}/favorite`,
         data,
       });
@@ -36,6 +38,7 @@ const useFavorites = () => {
       setLoading(false);
     } catch (err: any) {
       console.log(err);
+      Alert.alert("Add Favorites", err.message);
     }
   };
 

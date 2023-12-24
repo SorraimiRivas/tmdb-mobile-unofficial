@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { getRequestOptions } from "../api";
+import { requestOptions } from "../api";
 
 import { FormattedSeries } from "@/lib/types";
 import { formatSeriesArray } from "@/lib/utils";
+import { Alert } from "react-native";
 
 export const useGetSeries = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedSeries[]>();
@@ -18,7 +19,7 @@ export const useGetSeries = (url: string, params?: object) => {
       setLoading(true);
       try {
         const response = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             ...params,
@@ -31,6 +32,7 @@ export const useGetSeries = (url: string, params?: object) => {
         if (isError(err)) {
           console.log(err.message);
           setError(err.message);
+          Alert.alert("Series Array", err.message);
         }
       } finally {
         setLoading(false);

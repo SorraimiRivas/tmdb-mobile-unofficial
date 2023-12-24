@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 import { useAppSelector } from "./useRedux";
 
-import { getRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
 import { FormattedMovies, FormattedSeries } from "@/lib/types";
 import { formatSeriesArray, formattedMoviesArray } from "@/lib/utils";
+import { Alert } from "react-native";
 
 const useGetUserFavorites = (content: string) => {
   const [data, setData] = useState<FormattedMovies[] | FormattedSeries[]>();
@@ -23,7 +24,7 @@ const useGetUserFavorites = (content: string) => {
       setLoading(true);
       try {
         const res = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url: `account/${accountId}/favorite/${content}`,
           params: {},
         });
@@ -35,6 +36,7 @@ const useGetUserFavorites = (content: string) => {
         setLoading(false);
       } catch (err: any) {
         console.log(err.message);
+        Alert.alert("Favorites Data", err.message);
         setError(err);
       }
     };

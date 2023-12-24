@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 
 import { useAppSelector } from "./useRedux";
 
-import { getRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
+import { Alert } from "react-native";
 
 type AccountState = {
   id: number;
@@ -33,7 +34,7 @@ const useGetAccountStates = (id: number, media_type: string) => {
       setLoading(true);
       try {
         const res = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             session_id: session.session_id,
@@ -42,9 +43,10 @@ const useGetAccountStates = (id: number, media_type: string) => {
         setData(res.data);
         setRating(res.data.rated.value!);
         setLoading(false);
-      } catch (err) {
+      } catch (err: any) {
         setError(err);
         console.log(err);
+        Alert.alert("Account State", err.message);
       }
     };
 
@@ -52,9 +54,7 @@ const useGetAccountStates = (id: number, media_type: string) => {
   }, [id, trigger]);
 
   const refetchItemState = () => {
-    if (!loading) {
-      setTrigger((prev) => !prev);
-    }
+    setTrigger((prev) => !prev);
   };
 
   return { data, loading, error, rating, refetchItemState };

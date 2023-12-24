@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { Alert } from "react-native";
 
 import { useAppSelector } from "./useRedux";
 
-import { postRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
 
 type PostData = {
   media_type: string;
@@ -30,7 +31,8 @@ const useAddWatchlist = () => {
 
     try {
       const res: Response = await axios.request({
-        ...postRequestOptions,
+        ...requestOptions,
+        method: "POST",
         url: `account/${account?.id}/watchlist`,
         data,
       });
@@ -38,6 +40,7 @@ const useAddWatchlist = () => {
       setLoading(false);
     } catch (err: any) {
       console.log(err);
+      Alert.alert("Watchlist", err.message);
     }
   };
 

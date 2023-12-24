@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { getRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
 import { FormattedSeriesDetails } from "@/lib/types";
 import { formatSeries } from "@/lib/utils";
+import { Alert } from "react-native";
 
 const useGetSeriesById = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedSeriesDetails>();
@@ -16,7 +17,7 @@ const useGetSeriesById = (url: string, params?: object) => {
       setLoading(true);
       try {
         const response = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             ...params,
@@ -27,6 +28,7 @@ const useGetSeriesById = (url: string, params?: object) => {
       } catch (err: any) {
         console.log("Something went wrong, please try again");
         setError(err);
+        Alert.alert("Series", err.message);
       } finally {
         setLoading(false);
       }
@@ -35,7 +37,7 @@ const useGetSeriesById = (url: string, params?: object) => {
     fetchData();
 
     return () => {
-      abortSignal.abort;
+      abortSignal.abort();
     };
   }, [url]);
 
