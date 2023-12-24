@@ -30,6 +30,7 @@ const useFavorites = () => {
     try {
       const res: Response = await axios.request({
         ...requestOptions,
+        method: "POST",
         url: `account/${account?.id}/favorite`,
         data,
       });

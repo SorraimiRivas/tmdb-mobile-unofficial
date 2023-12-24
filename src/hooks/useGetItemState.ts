@@ -54,9 +54,7 @@ const useGetAccountStates = (id: number, media_type: string) => {
   }, [id, trigger]);
 
   const refetchItemState = () => {
-    if (!loading) {
-      setTrigger((prev) => !prev);
-    }
+    setTrigger((prev) => !prev);
   };
 
   return { data, loading, error, rating, refetchItemState };

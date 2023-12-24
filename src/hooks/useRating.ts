@@ -23,11 +23,9 @@ const useRating = () => {
         method: "POST",
         url,
         data: {
-          value: rating,
+          value: rating * 2,
         },
       });
-      console.log(res.data.success);
-
       setLoading(false);
     } catch (err: any) {
       console.log("Post Rating", err);

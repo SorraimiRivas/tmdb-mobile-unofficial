@@ -42,7 +42,8 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
         },
       ]);
     } else {
-      setIsRated(!isRated);
+      console.log(selectedRating);
+      selectedRating > 0 ? setIsRated(true) : setIsRated(true);
       addRating(selectedRating, media_id, media_type);
       refetchItemState();
     }
@@ -71,9 +72,11 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
   };
 
   useEffect(() => {
-    if (!rating) {
+    if (!rating || rating === 0) {
       setSelectedRating(0);
+      setIsRated(false);
     } else {
+      setIsRated(true);
       setSelectedRating(rating / 2);
     }
   }, [rating]);
@@ -85,7 +88,7 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
           <FontAwesome
             name="star"
             size={25}
-            color={rating && rating > 0 ? "#FFD700" : "white"}
+            color={isRated ? "#FFD700" : "white"}
           />
         </Pressable>
       }

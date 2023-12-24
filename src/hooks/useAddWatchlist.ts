@@ -32,6 +32,7 @@ const useAddWatchlist = () => {
     try {
       const res: Response = await axios.request({
         ...requestOptions,
+        method: "POST",
         url: `account/${account?.id}/watchlist`,
         data,
       });
