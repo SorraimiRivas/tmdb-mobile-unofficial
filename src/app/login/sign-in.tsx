@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import WebView from "react-native-webview";
 
+setStatusBarStyle("dark");
+
 export default function Auth() {
   const [url, setUrl] = useState<string>();
   const { token } = useLocalSearchParams();
   const router = useRouter();
-
-  setStatusBarStyle("dark");
 
   const handleReturnNavigation = (res: string) => {
     if (res === "allow") {

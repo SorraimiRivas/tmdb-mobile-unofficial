@@ -1,10 +1,11 @@
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import {
   View,
   Text,
   ScrollView,
   useWindowDimensions,
   FlatList,
+  Alert,
 } from "react-native";
 import { Grid } from "react-native-animated-spinkit";
 
@@ -20,6 +21,7 @@ import useFavorites from "@/hooks/useAddFavorites";
 import useAddWatchlist from "@/hooks/useAddWatchlist";
 import useGetAccountStates from "@/hooks/useGetItemState";
 import useGetMovieById from "@/hooks/useGetMovieById";
+import { useAppSelector } from "@/hooks/useRedux";
 import { Cast } from "@/lib/types";
 import {
   formatDate,
@@ -29,7 +31,7 @@ import {
   trailersArrayFilter,
 } from "@/lib/utils";
 
-export default function Details() {
+const MovieDetails = () => {
   const { id } = useLocalSearchParams();
   const { data, loading } = useGetMovieById(`movie/${id}`, {
     append_to_response: "credits,videos",
@@ -42,6 +44,8 @@ export default function Details() {
     refetchItemState,
     loading: loadingStateData,
   } = useGetAccountStates(Number(id), "movie");
+
+  const { isLogged } = useAppSelector((state) => state.userSession);
 
   const { width } = useWindowDimensions();
 
@@ -57,23 +61,51 @@ export default function Details() {
   };
 
   const handleAddFavorite = async () => {
-    !loadingFavorites &&
-      (await addFavorite({
-        media_type: "movie",
-        favorite: !stateData?.favorite,
-        media_id: Number(id),
-      }));
-    !loadingFavorites && refetchItemState();
+    if (!isLogged) {
+      Alert.alert("Alert", "You must be logged in to perform this action", [
+        {
+          text: "Cancel",
+          style: "destructive",
+        },
+        {
+          text: "Login",
+          onPress: () => router.push("/login/"),
+        },
+      ]);
+    } else {
+      isLogged &&
+        !loadingFavorites &&
+        (await addFavorite({
+          media_type: "movie",
+          favorite: !stateData?.favorite,
+          media_id: Number(id),
+        }));
+      isLogged && !loadingFavorites && refetchItemState();
+    }
   };
 
   const handleAddWatchlist = () => {
-    !loadingWatchlist &&
-      addWatchlist({
-        media_type: "movie",
-        watchlist: !stateData?.watchlist,
-        media_id: Number(id),
-      });
-    !loadingWatchlist && refetchItemState();
+    if (!isLogged) {
+      Alert.alert("Alert", "You must be logged in to perform this action", [
+        {
+          text: "Cancel",
+          style: "destructive",
+        },
+        {
+          text: "Login",
+          onPress: () => router.push("/login/"),
+        },
+      ]);
+    } else {
+      isLogged &&
+        !loadingWatchlist &&
+        addWatchlist({
+          media_type: "movie",
+          watchlist: !stateData?.watchlist,
+          media_id: Number(id),
+        });
+      isLogged && !loadingWatchlist && refetchItemState();
+    }
   };
 
   return loading && loadingStateData ? (
@@ -127,4 +159,6 @@ export default function Details() {
       )}
     </ScrollView>
   );
-}
+};
+
+export default MovieDetails;
