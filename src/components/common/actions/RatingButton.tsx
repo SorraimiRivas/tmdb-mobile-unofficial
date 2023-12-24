@@ -17,7 +17,7 @@ type RatingButtonProps = {
 // TODO: fix snake_case to be camelCase
 const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
   const router = useRouter();
-  const [selectedRating, setSelectedRating] = useState<number | false>(0);
+  const [selectedRating, setSelectedRating] = useState<number>(0);
   const [isRated, setIsRated] = useState<boolean>(false);
   const { refetchItemState, rating } = useGetAccountStates(
     media_id,
@@ -25,7 +25,7 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
   );
   const { isLogged } = useAppSelector((state) => state.userSession);
 
-  const { addRating } = useRating();
+  const { addRating, removeRating } = useRating();
 
   const handleRating = useCallback(() => {
     if (!isLogged) {
@@ -43,25 +43,36 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
       ]);
     } else {
       setIsRated(!isRated);
-      addRating(
-        !selectedRating ? false : selectedRating * 2,
-        media_id,
-        media_type,
-      );
+      addRating(selectedRating, media_id, media_type);
       refetchItemState();
     }
   }, [selectedRating]);
 
   const handleRemoveRating = () => {
-    setSelectedRating(0);
-    setIsRated(false);
-    handleRating();
-    refetchItemState();
+    if (isLogged) {
+      setSelectedRating(0);
+      setIsRated(false);
+      removeRating(media_id, "media_type");
+      refetchItemState();
+    } else {
+      Alert.alert("Message", "You need to login to perfom this action", [
+        {
+          text: "Cancel",
+          style: "destructive",
+          onPress: () => setSelectedRating(0),
+        },
+        {
+          text: "Login",
+          onPress: () => router.push("/login/"),
+          style: "default",
+        },
+      ]);
+    }
   };
 
   useEffect(() => {
     if (!rating) {
-      setSelectedRating(rating!);
+      setSelectedRating(0);
     } else {
       setSelectedRating(rating / 2);
     }
