@@ -4,7 +4,7 @@ import { Alert } from "react-native";
 
 import { useAppDispatch, useAppSelector } from "./useRedux";
 
-import { postRequestOptions, getRequestOptions } from "@/api";
+import { requestOptions } from "@/api";
 import { setAccount, setSession } from "@/redux/sessionSlice";
 
 const useLogin = () => {
@@ -23,7 +23,8 @@ const useLogin = () => {
     setError("");
     try {
       const response = await axios.request({
-        ...getRequestOptions,
+        ...requestOptions,
+        method: "GET",
         url: "authentication/token/new",
       });
       return response.data.request_token;
@@ -45,7 +46,8 @@ const useLogin = () => {
     setError("");
     try {
       const response = await axios.request({
-        ...postRequestOptions,
+        ...requestOptions,
+        method: "GET",
         url: "authentication/session/new",
         data: {
           request_token: token,
@@ -72,7 +74,8 @@ const useLogin = () => {
     const sessionId = await getSessionId(validatedToken);
     try {
       const response = await axios.request({
-        ...getRequestOptions,
+        ...requestOptions,
+        method: "GET",
         url: "account",
         params: {
           session_id: sessionId,

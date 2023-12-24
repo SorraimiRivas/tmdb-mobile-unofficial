@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { getRequestOptions } from "../api";
+import { requestOptions } from "../api";
 
 import { FormattedPeopleDetails } from "@/lib/types";
 import { formatPeopleDetails } from "@/lib/utils";
+import { Alert } from "react-native";
 
 const useGetPeopleById = (url: string, params?: object) => {
   const [data, setData] = useState<FormattedPeopleDetails>();
@@ -20,7 +21,7 @@ const useGetPeopleById = (url: string, params?: object) => {
       setError("");
       try {
         const response = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             ...params,
@@ -32,6 +33,7 @@ const useGetPeopleById = (url: string, params?: object) => {
         if (isError(err)) {
           console.log(err.message);
           setError(err.message);
+          Alert.alert("People", err.message);
         }
       } finally {
         setLoading(false);
@@ -39,7 +41,7 @@ const useGetPeopleById = (url: string, params?: object) => {
     };
     fetchData();
 
-    () => abortSignal.abort;
+    return abortSignal.abort();
   }, [url]);
 
   return { data, loading, error };

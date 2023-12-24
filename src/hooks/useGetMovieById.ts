@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Alert } from "react-native";
 
-import { getRequestOptions } from "../api";
+import { requestOptions } from "../api";
+
 import { FormattedMovieDetails } from "@/lib/types";
 import { formatMovie } from "@/lib/utils";
 
@@ -16,7 +18,7 @@ export default function useGetMovieById(url: string, params?: object) {
       setLoading(true);
       try {
         const response = await axios.request({
-          ...getRequestOptions,
+          ...requestOptions,
           url,
           params: {
             ...params,
@@ -27,6 +29,7 @@ export default function useGetMovieById(url: string, params?: object) {
       } catch (err: any) {
         console.log("Something went wrong please try again", err);
         setError(err);
+        Alert.alert("Movies", err.message);
       } finally {
         setLoading(false);
       }
