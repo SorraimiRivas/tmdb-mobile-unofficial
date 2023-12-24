@@ -1,35 +1,55 @@
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { Pressable, View } from "react-native";
+import { Alert, Pressable, View } from "react-native";
 import Popover from "react-native-popover-view/dist/Popover";
 import StarRating from "react-native-star-rating-widget";
 
 import useGetAccountStates from "@/hooks/useGetItemState";
 import useRating from "@/hooks/useRating";
+import { useAppSelector } from "@/hooks/useRedux";
 
 type RatingButtonProps = {
   media_id: number;
   media_type: string;
 };
 
+// TODO: fix snake_case to be camelCase
 const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
+  const router = useRouter();
   const [selectedRating, setSelectedRating] = useState<number | false>(0);
   const [isRated, setIsRated] = useState<boolean>(false);
   const { refetchItemState, rating } = useGetAccountStates(
     media_id,
     media_type,
   );
+  const { isLogged } = useAppSelector((state) => state.userSession);
 
   const { addRating } = useRating();
 
   const handleRating = useCallback(() => {
-    setIsRated(!isRated);
-    addRating(
-      !selectedRating ? false : selectedRating * 2,
-      media_id,
-      media_type,
-    );
-    refetchItemState();
+    if (!isLogged) {
+      Alert.alert("Message", "You need to login to perfom this action", [
+        {
+          text: "Cancel",
+          style: "destructive",
+          onPress: () => setSelectedRating(0),
+        },
+        {
+          text: "Login",
+          onPress: () => router.push("/login/"),
+          style: "default",
+        },
+      ]);
+    } else {
+      setIsRated(!isRated);
+      addRating(
+        !selectedRating ? false : selectedRating * 2,
+        media_id,
+        media_type,
+      );
+      refetchItemState();
+    }
   }, [selectedRating]);
 
   const handleRemoveRating = () => {
@@ -50,7 +70,7 @@ const RatingButton = ({ media_id, media_type }: RatingButtonProps) => {
   return (
     <Popover
       from={
-        <Pressable className="mx-1 h-10 w-10 items-center justify-center rounded-full bg-primary">
+        <Pressable className="h-10 w-10 items-center justify-center rounded-full bg-primary">
           <FontAwesome
             name="star"
             size={25}
